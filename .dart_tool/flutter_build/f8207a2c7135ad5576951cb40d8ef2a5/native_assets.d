@@ -1,0 +1,1 @@
+ E:\\Project\\cruiseBuddy\\.dart_tool\\flutter_build\\f8207a2c7135ad5576951cb40d8ef2a5\\native_assets.yaml: 
