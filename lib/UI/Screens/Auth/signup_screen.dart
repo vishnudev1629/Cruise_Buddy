@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import 'package:flutter/material.dart';
-=======
 import 'package:cruise_buddy/UI/Widgets/Button/full_width_bluebutton.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
->>>>>>> 46545761b607376bc0ffcf28c86cf0c874f303c1
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -15,13 +11,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-<<<<<<< HEAD
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-=======
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController retypepasswordController = TextEditingController();
@@ -227,4 +216,3 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 }
->>>>>>> 46545761b607376bc0ffcf28c86cf0c874f303c1
