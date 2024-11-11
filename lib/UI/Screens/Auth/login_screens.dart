@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Forgot Password?",
-                          style: TextStyles.ubuntu12blue23w500,
+                          style: TextStyles.ubuntu12blue23w700,
                         ))
                   ],
                 ),
@@ -129,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       size: 25,
                       value: isChecked,
                       colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-                        checkedColor: Colors.blue,
+                        checkedColor: const Color(0xFF1F8386),
                       ),
                       style: MSHCheckboxStyle.stroke,
                       onChanged: (selected) {
@@ -193,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextSpan(
                         text: " Create an account",
-                        style: TextStyles.ubuntu16blue86w500,
+                        style: TextStyles.ubuntu16blue86w600,
                       ),
                     ],
                   ),
