@@ -21,7 +21,7 @@ class ForgotPasswordScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,7 +29,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               Center(
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(80),
                     border: Border.all(
                       color: const Color.fromARGB(255, 183, 183, 183),
                     ),
@@ -38,8 +38,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Image.asset(
                       'assets/lock_icon.png',
-                      width: 50,
-                      height: 50,
+                      width: 120,
+                      height: 120,
                     ),
                   ),
                 ),
@@ -64,7 +64,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 "Allow users to securely reset their password if they have trouble logging in.",
                 style: TextStyles.ubuntu16black55w400,
               ),
-              const SizedBox(height: 33),
+              const SizedBox(height: 60),
               Center(
                 child: Text(
                   "Please enter the 4 digit code sent to hello@example.com",
@@ -72,7 +72,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 25),
               SizedBox(
                 width: double.infinity,
                 child: Center(
@@ -83,7 +83,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     children: [
                       OtpPinField(
                         autoFocus: false,
-                        fieldHeight: 50,
+                        fieldHeight: 60,
                         fieldWidth: 60,
                         key: _otpPinFieldController,
                         autoFillEnable: false,
@@ -99,15 +99,15 @@ class ForgotPasswordScreen extends StatelessWidget {
                         },
                         otpPinFieldStyle: OtpPinFieldStyle(
                           textStyle: TextStyles.ubuntu32blue86w700,
-                          fieldBorderRadius: 25,
-                          fieldBorderWidth: 1,
-                          fieldPadding: 25,
+                          fieldBorderRadius: 20,
+                          fieldBorderWidth: 1.5,
+                         fieldPadding: MediaQuery.of(context).size.width * 0.05,
                           hintTextColor: Colors.grey,
                           showHintText: true,
                           activeFieldBorderGradient: const LinearGradient(
                             colors: [
-                              Colors.blue,
-                              Colors.blue,
+                              Color(0xFF1F8386),
+                              Color(0xFF1F8386),
                             ],
                           ),
                           filledFieldBorderGradient: const LinearGradient(
