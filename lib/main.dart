@@ -1,5 +1,5 @@
-import 'package:cruise_buddy/UI/Screens/Auth/forgot_password_screen.dart';
-import 'package:cruise_buddy/UI/Screens/Splash/splash_screen.dart';
+
+import 'package:cruise_buddy/UI/Screens/Auth/login_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:   ForgotPasswordScreen(),
+      home:LoginScreen(),
     );
   }
 }

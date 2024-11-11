@@ -99,7 +99,7 @@
     },
     {
       "name": "flutter_svg",
-      "rootUri": "file:///C:/Users/Cyber%20Fort/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-2.0.11",
+      "rootUri": "file:///C:/Users/Cyber%20Fort/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-2.0.14",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -357,9 +357,9 @@
     },
     {
       "name": "vector_graphics",
-      "rootUri": "file:///C:/Users/Cyber%20Fort/AppData/Local/Pub/Cache/hosted/pub.dev/vector_graphics-1.1.11+1",
+      "rootUri": "file:///C:/Users/Cyber%20Fort/AppData/Local/Pub/Cache/hosted/pub.dev/vector_graphics-1.1.14",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.4"
     },
     {
       "name": "vector_graphics_codec",
@@ -369,9 +369,9 @@
     },
     {
       "name": "vector_graphics_compiler",
-      "rootUri": "file:///C:/Users/Cyber%20Fort/AppData/Local/Pub/Cache/hosted/pub.dev/vector_graphics_compiler-1.1.11+1",
+      "rootUri": "file:///C:/Users/Cyber%20Fort/AppData/Local/Pub/Cache/hosted/pub.dev/vector_graphics_compiler-1.1.15",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.4"
     },
     {
       "name": "vector_math",
@@ -410,7 +410,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-11-10T14:18:57.970093Z",
+  "generated": "2024-11-11T06:25:49.503706Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///C:/flutter_windows_3.22.2-stable/flutter",

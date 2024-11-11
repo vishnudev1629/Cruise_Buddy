@@ -50,11 +50,11 @@ class _SignupScreenState extends State<SignupScreen> {
                     children: [
                       TextSpan(
                         text: "Hello ",
-                        style: TextStyles.ubuntu32blue24w2700,
+                        style: TextStyles.ubuntu32blue24w2900,
                       ),
                       TextSpan(
                         text: "there!",
-                        style: TextStyles.ubuntu32black24w2700,
+                        style: TextStyles.ubuntu32black24w2900,
                       ),
                     ],
                   ),
@@ -67,7 +67,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 12),
                 Text(
                   "Email Address",
-                  style: TextStyles.ubuntu16black23w500,
+                  style: TextStyles.ubuntu16black23w700,
                 ),
                 const SizedBox(height: 12),
                 TextField(
@@ -83,7 +83,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 18),
                 Text(
                   "Create Password",
-                  style: TextStyles.ubuntu16black23w500,
+                  style: TextStyles.ubuntu16black23w700,
                 ),
                 const SizedBox(height: 12),
                 TextField(
@@ -107,7 +107,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 12),
                 Text(
                   "Re-type your Password",
-                  style: TextStyles.ubuntu16black23w500,
+                  style: TextStyles.ubuntu16black23w700,
                 ),
                 const SizedBox(height: 12),
                 TextField(

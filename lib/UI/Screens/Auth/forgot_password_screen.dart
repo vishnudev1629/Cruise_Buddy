@@ -50,11 +50,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: "Forgot ",
-                      style: TextStyles.ubuntu32blue24w2700,
+                      style: TextStyles.ubuntu32blue24w2900,
                     ),
                     TextSpan(
                       text: "password ?",
-                      style: TextStyles.ubuntu32black24w2700,
+                      style: TextStyles.ubuntu32black24w2900,
                     ),
                   ],
                 ),
@@ -68,7 +68,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               Center(
                 child: Text(
                   "Please enter the 4 digit code sent to hello@example.com",
-                  style: TextStyles.ubuntu16black23w500,
+                  style: TextStyles.ubuntu16black23w700,
                   textAlign: TextAlign.center,
                 ),
               ),
