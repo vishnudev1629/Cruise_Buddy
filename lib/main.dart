@@ -1,3 +1,5 @@
+import 'package:cruise_buddy/UI/Screens/layout/main_layout/main_layout.dart';
+import 'package:cruise_buddy/UI/Screens/layout/sections/Home/home_screen.dart';
 import 'package:cruise_buddy/UI/Screens/Splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:const SplashScreen(),
+      home: const MainLayout(),
     );
   }
 }
