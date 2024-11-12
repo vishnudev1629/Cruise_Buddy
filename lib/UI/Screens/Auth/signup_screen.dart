@@ -1,6 +1,8 @@
 import 'package:cruise_buddy/UI/Widgets/Button/full_width_bluebutton.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -11,16 +13,19 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phonenumberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController retypepasswordController = TextEditingController();
 
   bool isTextVisible = false;
   bool isChecked = false;
+  FocusNode nameFocusNode = FocusNode();
+  FocusNode phonenumberFocusNode = FocusNode();
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
   FocusNode reTypepasswordFocusNode = FocusNode();
-
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +36,28 @@ class _SignupScreenState extends State<SignupScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 70),
                 Center(
-                  child: Image.asset(
-                    'assets/signup_icon.png',
-                    width: 70,
-                    height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(80),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 183, 183, 183),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Image.asset(
+                        'assets/image/auth_img/Signup.png',
+                        width: 120,
+                        height: 120,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -50,11 +66,11 @@ class _SignupScreenState extends State<SignupScreen> {
                     children: [
                       TextSpan(
                         text: "Hello ",
-                        style: TextStyles.ubuntu32blue24w2700,
+                        style: TextStyles.ubuntu32blue24w2900,
                       ),
                       TextSpan(
                         text: "there!",
-                        style: TextStyles.ubuntu32black24w2700,
+                        style: TextStyles.ubuntu32black24w2900,
                       ),
                     ],
                   ),
@@ -66,34 +82,79 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  "Email Address",
-                  style: TextStyles.ubuntu16black23w500,
+                  "Full Name",
+                  style: TextStyles.ubuntu16black23w700,
                 ),
                 const SizedBox(height: 12),
                 TextField(
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    prefixIcon: const Icon(Icons.mail_outline_rounded),
-                  ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: SvgPicture.asset(
+                            'assets/image/auth_img/icon_name.svg'),
+                      )),
+                  controller: nameController,
+                  focusNode: nameFocusNode,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  "Phone Number",
+                  style: TextStyles.ubuntu16black23w700,
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: SvgPicture.asset(
+                            'assets/image/auth_img/icon_phone_num.svg'),
+                      )),
+                  controller: phonenumberController,
+                  focusNode: phonenumberFocusNode,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  "Email Address",
+                  style: TextStyles.ubuntu16black23w700,
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: SvgPicture.asset(
+                            'assets/image/auth_img/ion_mail-outline.svg'),
+                      )),
                   controller: emailController,
                   focusNode: emailFocusNode,
                 ),
                 const SizedBox(height: 18),
                 Text(
                   "Create Password",
-                  style: TextStyles.ubuntu16black23w500,
+                  style: TextStyles.ubuntu16black23w700,
                 ),
                 const SizedBox(height: 12),
                 TextField(
                   obscureText: false,
                   decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_open_outlined),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: SvgPicture.asset(
+                            'assets/image/auth_img/icon_password-outline.svg'),
+                      ),
                       suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
-                              //   isTextVisible = !isTextVisible;
+                                //  isTextVisible = !isTextVisible;
                             });
                           },
                           child: Icon(isTextVisible
@@ -107,17 +168,21 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 12),
                 Text(
                   "Re-type your Password",
-                  style: TextStyles.ubuntu16black23w500,
+                  style: TextStyles.ubuntu16black23w700,
                 ),
                 const SizedBox(height: 12),
                 TextField(
                   obscureText: false,
                   decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_open_outlined),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: SvgPicture.asset(
+                            'assets/image/auth_img/icon_password-outline.svg'),
+                      ),
                       suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
-                              //   isTextVisible = !isTextVisible;
+                                //  isTextVisible = !isTextVisible;
                             });
                           },
                           child: Icon(isTextVisible
@@ -135,7 +200,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       size: 25,
                       value: isChecked,
                       colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-                        checkedColor: Colors.blue,
+                        checkedColor: const Color(0xFF1F8386),
                       ),
                       style: MSHCheckboxStyle.stroke,
                       onChanged: (selected) {
@@ -147,16 +212,40 @@ class _SignupScreenState extends State<SignupScreen> {
                     const SizedBox(
                       width: 15,
                     ),
-                    Text("Keep me signed in",
-                        style: TextStyles.ubuntu16black23w300),
+                    RichText(
+                      text: TextSpan(
+                        text: 'By signing up you agree to our\n',
+                        style: TextStyles.ubuntu16black23w300,
+                        children: [
+                          TextSpan(
+                            text: 'Terms of Services',
+                            style: TextStyles.ubuntu16blue86w600,
+                            recognizer: TapGestureRecognizer()..onTap = () {},
+                          ),
+                          TextSpan(
+                            text: ' and ',
+                            style: TextStyles.ubuntu16black23w300,
+                          ),
+                          TextSpan(
+                            text: 'Privacy Policy',
+                            style: TextStyles.ubuntu16blue86w600,
+                            recognizer: TapGestureRecognizer()..onTap = () {},
+                          ),
+                          TextSpan(
+                            text: '.',
+                            style: TextStyles.ubuntu16black23w300,
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 20),
                 const FullWidthBlueButton(
                   text: 'Signup',
                 ),
                 const SizedBox(
-                  height: 12,
+                  height: 20,
                 ),
                 Row(
                   children: [
@@ -178,7 +267,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 20),
                 Center(
                   child: Container(
                       decoration: BoxDecoration(
@@ -202,12 +291,15 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         TextSpan(
                           text: "Sign in.",
-                          style: TextStyles.ubuntu16blue86w400,
+                          style: TextStyles.ubuntu16blue86w600,
                         ),
                       ],
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 50,
+                )
               ],
             ),
           ),

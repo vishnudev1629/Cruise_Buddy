@@ -21,7 +21,7 @@ class ForgotPasswordScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,7 +29,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               Center(
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(80),
                     border: Border.all(
                       color: const Color.fromARGB(255, 183, 183, 183),
                     ),
@@ -38,8 +38,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Image.asset(
                       'assets/lock_icon.png',
-                      width: 50,
-                      height: 50,
+                      width: 120,
+                      height: 120,
                     ),
                   ),
                 ),
@@ -50,11 +50,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: "Forgot ",
-                      style: TextStyles.ubuntu32blue24w2700,
+                      style: TextStyles.ubuntu32blue24w2900,
                     ),
                     TextSpan(
                       text: "password ?",
-                      style: TextStyles.ubuntu32black24w2700,
+                      style: TextStyles.ubuntu32black24w2900,
                     ),
                   ],
                 ),
@@ -64,15 +64,15 @@ class ForgotPasswordScreen extends StatelessWidget {
                 "Allow users to securely reset their password if they have trouble logging in.",
                 style: TextStyles.ubuntu16black55w400,
               ),
-              const SizedBox(height: 33),
+              const SizedBox(height: 60),
               Center(
                 child: Text(
                   "Please enter the 4 digit code sent to hello@example.com",
-                  style: TextStyles.ubuntu16black23w500,
+                  style: TextStyles.ubuntu16black23w700,
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 25),
               SizedBox(
                 width: double.infinity,
                 child: Center(
@@ -83,7 +83,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     children: [
                       OtpPinField(
                         autoFocus: false,
-                        fieldHeight: 50,
+                        fieldHeight: 60,
                         fieldWidth: 60,
                         key: _otpPinFieldController,
                         autoFillEnable: false,
@@ -99,15 +99,15 @@ class ForgotPasswordScreen extends StatelessWidget {
                         },
                         otpPinFieldStyle: OtpPinFieldStyle(
                           textStyle: TextStyles.ubuntu32blue86w700,
-                          fieldBorderRadius: 25,
-                          fieldBorderWidth: 1,
-                          fieldPadding: 25,
+                          fieldBorderRadius: 20,
+                          fieldBorderWidth: 1.5,
+                         fieldPadding: MediaQuery.of(context).size.width * 0.05,
                           hintTextColor: Colors.grey,
                           showHintText: true,
                           activeFieldBorderGradient: const LinearGradient(
                             colors: [
-                              Colors.blue,
-                              Colors.blue,
+                              Color(0xFF1F8386),
+                              Color(0xFF1F8386),
                             ],
                           ),
                           filledFieldBorderGradient: const LinearGradient(
@@ -176,181 +176,3 @@ class ForgotPasswordScreen extends StatelessWidget {
     );
   }
 }
-
-// import 'package:cruise_buddy/UI/Widgets/custom_bottombutton.dart';
-// import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
-// import 'package:flutter/material.dart';
-
-// class ForgotPasswordScreen extends StatelessWidget {
-//   const ForgotPasswordScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: const Color(0XFFFFFFFF),
-//       body: SingleChildScrollView(
-//         child: Padding(
-//           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               const SizedBox(height: 90),
-
-//               // SvgPicture.asset(
-//               //   'assets/image/auth_img/forgot_password.svg',
-//               //   height: 80,
-//               //   width: 80,
-//               // ),
-//               Center(
-//                   child: SizedBox(
-//                       child: Image.asset(
-//                           'assets/image/auth_img/forgot_password.png'))),
-//               const SizedBox(height: 20),
-
-//               const Row(
-//                 children: [
-//                   Text(
-//                     'Forgot',
-//                     style: TextStyle(
-//                       fontSize: 32,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color(0xff1F8386),
-//                     ),
-//                   ),
-//                   SizedBox(
-//                     width: 5,
-//                   ),
-//                   Text(
-//                     'Password?',
-//                     style: TextStyle(
-//                       fontSize: 32,
-//                       fontWeight: FontWeight.bold,
-//                       color: Colors.black,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-
-//               const SizedBox(height: 8),
-
-//               // Subtext
-//               const Text(
-//                 'Allow users to securely reset their password\nif they have trouble logging in.',
-//                 textAlign: TextAlign.start,
-//                 style: TextStyle(
-//                   fontSize: 16,
-//                   color: Color(0xff555555),
-//                 ),
-//               ),
-
-//               const SizedBox(height: 60),
-
-//               // Instruction Text
-//               const Center(
-//                 child: Text(
-//                   'Please enter the 4 digit code sent to\nhello@example.com',
-//                   textAlign: TextAlign.center,
-//                   style: TextStyle(
-//                     fontSize: 16,
-//                     fontWeight: FontWeight.bold,
-//                     color: Color(0xff555555),
-//                   ),
-//                 ),
-//               ),
-
-//               const SizedBox(height: 24),
-
-//               // OTP Fields
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 children: [
-//                   _otpTextField(),
-//                   _otpTextField(),
-//                   _otpTextField(),
-//                   _otpTextField(),
-//                 ],
-//               ),
-
-//               const SizedBox(height: 54),
-
-//               // Verify Button
-
-//               CustomBottomButton(
-//                   backgroundcolor: const Color(0xff1F8386),
-//                   foregroundColor: const Color(0xffFFFFFF),
-//                   text: 'Verify',
-//                   onPressed: () {}),
-//               // SizedBox(
-//               //   width: double.infinity,
-//               //   height: 48,
-//               //   child: ElevatedButton(
-//               //     style: ElevatedButton.styleFrom(
-//               //       backgroundColor: const Color(0xff1F8386),
-//               //       foregroundColor: const Color(0xffFFFFFF),
-//               //     ),
-//               //     onPressed: () {},
-//               //     child: Text(
-//               //       'Verify',
-//               //       style: TextStyles.rubik16whitew2700,
-//               //     ),
-//               //   ),
-//               // ),
-
-//               const SizedBox(height: 10),
-
-//               // Resend Code Text
-//               Center(
-//                 child: TextButton(
-//                   onPressed: () {},
-//                   child: const Text(
-//                     'Resend Code',
-//                     style: TextStyle(
-//                       fontSize: 16,
-//                       color: Color(0xff1F8386),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   // OTP Text Field
-//   Widget _otpTextField() {
-//     return SizedBox(
-//       width: 70,
-//       height: 70,
-//       child: TextField(
-//         cursorColor: const Color(0xff1F8386),
-//         decoration: InputDecoration(
-//           counterText: '',
-//           border: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(30),
-//             borderSide: const BorderSide(
-//                 color: Color(0XFFE2E2E2)), // Default border color
-//           ),
-//           focusedBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(30),
-//             borderSide: const BorderSide(
-//                 color: Color(0xff1F8386)), // Border color when focused
-//           ),
-//           enabledBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(30),
-//             borderSide: const BorderSide(
-//                 color: Color(0XFFE2E2E2)), // Border color when enabled
-//           ),
-//         ),
-//         style: const TextStyle(
-//             fontSize: 26,
-//             fontWeight: FontWeight.bold,
-//             color: Color(0xff1F8386)),
-//         textAlign: TextAlign.center,
-//         keyboardType: TextInputType.number,
-//         maxLength: 1,
-//       ),
-//     );
-//   }
-// }

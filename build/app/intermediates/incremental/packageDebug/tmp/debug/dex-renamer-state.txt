@@ -1,9 +1,9 @@
-#Tue Nov 05 14:05:45 IST 2024
-base.0=E\:\\Project\\cruiseBuddy\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=E\:\\Project\\cruiseBuddy\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
-base.2=E\:\\Project\\cruiseBuddy\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.3=E\:\\Project\\cruiseBuddy\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
-base.4=E\:\\Project\\cruiseBuddy\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+#Mon Nov 11 15:11:30 IST 2024
+base.0=E\:\\CAC\\Cruise_Buddy\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=E\:\\CAC\\Cruise_Buddy\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
+base.2=E\:\\CAC\\Cruise_Buddy\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.3=E\:\\CAC\\Cruise_Buddy\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
+base.4=E\:\\CAC\\Cruise_Buddy\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=0/classes.dex

@@ -2,6 +2,7 @@ import 'package:cruise_buddy/UI/Widgets/Button/full_width_bluebutton.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,8 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: Image.asset(
                     'assets/email_logo.png',
-                    width: 80,
-                    height: 80,
+                    width: 120,
+                    height: 120,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -46,11 +47,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       TextSpan(
                         text: "welcome ",
-                        style: TextStyles.ubuntu32blue24w2700,
+                        style: TextStyles.ubuntu32blue24w2900,
                       ),
                       TextSpan(
                         text: "back!",
-                        style: TextStyles.ubuntu32black24w2700,
+                        style: TextStyles.ubuntu32black24w2900,
                       ),
                     ],
                   ),
@@ -60,10 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Your gateway to seamless boat rentals and memorable experiences on the water.",
                   style: TextStyles.ubuntu16black55w400,
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 15),
                 Text(
                   "Email Address",
-                  style: TextStyles.ubuntu16black23w500,
+                  style: TextStyles.ubuntu16black23w700,
                 ),
                 const SizedBox(height: 12),
                 TextField(
@@ -71,17 +72,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(32),
                     ),
-                    prefixIcon: const Icon(Icons.mail_outline_rounded),
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SvgPicture.asset(
+                        'assets/image/auth_img/ion_mail-outline.svg',
+                      ),
+                    ),
                   ),
                   controller: emailController,
                   focusNode: emailFocusNode,
                 ),
-                const SizedBox(height: 18),
                 Row(
                   children: [
                     Text(
                       "Password",
-                      style: TextStyles.ubuntu16black23w500,
+                      style: TextStyles.ubuntu16black23w700,
                     ),
                     const Spacer(),
                     TextButton(
@@ -90,15 +95,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Forgot Password?",
-                          style: TextStyles.ubuntu12blue23w500,
+                          style: TextStyles.ubuntu12blue23w700,
                         ))
                   ],
                 ),
-                const SizedBox(height: 12),
                 TextField(
                   obscureText: isTextVisible,
                   decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_open_outlined),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: SvgPicture.asset(
+                          'assets/image/auth_img/icon_password-outline.svg',
+                        ),
+                      ),
                       suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -120,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       size: 25,
                       value: isChecked,
                       colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-                        checkedColor: Colors.blue,
+                        checkedColor: const Color(0xFF1F8386),
                       ),
                       style: MSHCheckboxStyle.stroke,
                       onChanged: (selected) {
@@ -184,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextSpan(
                         text: " Create an account",
-                        style: TextStyles.ubuntu16blue86w400,
+                        style: TextStyles.ubuntu16blue86w600,
                       ),
                     ],
                   ),
