@@ -1,4 +1,0 @@
-#Wed Nov 13 04:48:38 IST 2024
-base.0=C\:\\Users\\91884\\Desktop\\FRONTEND\\Code and Craft\\Cruise_Buddy\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

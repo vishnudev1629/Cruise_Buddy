@@ -20,18 +20,63 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [],
+      body: SafeArea(
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity, // Set the desired width
+              height: 200, // Set the desired height
+              child: Stack(
+                children: [
+                  SvgPicture.asset(
+                    'assets/home/promotionalBanner.svg',
+                    fit: BoxFit
+                        .cover, // Ensures the SVG covers the available space
+                  ),
+                  Positioned(
+                    left: 20, // Adjust to position horizontally
+                    top: 50, // Adjust to position vertically
+                    child: SizedBox(
+                      width: 220,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Hi Rohan!",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Colors.black, // Adjust color for visibility
+                            ),
+                          ),
+                          Text(
+                            "Book your perfect boat adventure in just a few taps!",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color:
+                                  Colors.black, // Adjust color for visibility
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: SizedBox(
-        height: 92.0,
+        height: 82.0,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: SizedBox(
-                width: 24.0, // Set a fixed width
-                height: 24.0, // Set a fixed height
+                width: 24.0,
+                height: 24.0,
                 child: _selectedIndex == 0
                     ? SvgPicture.asset(
                         'assets/bottomNav/home.svg',
