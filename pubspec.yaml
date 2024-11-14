@@ -44,6 +44,10 @@ dependencies:
   msh_checkbox: ^2.0.1
   shared_preferences: ^2.3.3
   dartz: ^0.10.1
+  flutter_bloc: ^8.1.6
+  freezed: ^2.5.7
+  freezed_annotation: ^2.4.4
+  build_runner: ^2.4.13
 
 dev_dependencies:
   flutter_test:
