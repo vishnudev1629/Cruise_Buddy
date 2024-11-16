@@ -9,4 +9,5 @@ class ColorConstants {
   static const Color lightblueDB = Color(0XFFB4D6DB);
   static const Color lightblueCE = Color(0XFF7ACACE);
   static const Color darkblue86 = Color(0XFF1F8386);
+  static const Color lightblueC5 = Color(0XFF4FC2C5);
 }

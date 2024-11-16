@@ -1,6 +1,9 @@
 import 'package:cruise_buddy/UI/Screens/layout/main_layout/main_layout.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/home_screen.dart';
 import 'package:cruise_buddy/UI/Screens/Splash/splash_screen.dart';
+import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/details_delegate.dart';
+import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/location_search_delgate.dart';
+import 'package:cruise_buddy/UI/Screens/search%20Results/screen/search_results_screen.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
 import 'package:cruise_buddy/macahan/ui_test.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
         home: const MainLayout(),
