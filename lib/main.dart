@@ -5,7 +5,7 @@ import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/details_del
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/location_search_delgate.dart';
 import 'package:cruise_buddy/UI/Screens/search%20Results/screen/search_results_screen.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
-import 'package:cruise_buddy/macahan/ui_test.dart';
+import 'package:cruise_buddy/test_folder/ui_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
