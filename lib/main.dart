@@ -1,3 +1,4 @@
+import 'package:cruise_buddy/UI/Screens/Auth/login_screens.dart';
 import 'package:cruise_buddy/UI/Screens/layout/main_layout/main_layout.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/home_screen.dart';
 import 'package:cruise_buddy/UI/Screens/Splash/splash_screen.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: const SearchResultsScreen(),
+        home: const MainLayout(),
       ),
     );
   }

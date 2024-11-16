@@ -35,7 +35,7 @@ class ApiServices {
         },
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 201 || response.statusCode == 200) {
         final data = json.decode(response.body);
 
         final loginModel = LoginModel.fromJson(data);
