@@ -243,7 +243,9 @@ class SearchResultsScreen extends StatelessWidget {
                               height: 45,
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0XFF1F8386),
                                   shape: RoundedRectangleBorder(
