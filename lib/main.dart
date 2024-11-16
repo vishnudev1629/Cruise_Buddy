@@ -6,6 +6,8 @@ import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/details_del
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/location_search_delgate.dart';
 import 'package:cruise_buddy/UI/Screens/search%20Results/screen/search_results_screen.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
+import 'package:cruise_buddy/core/view_model/regsiter/register_bloc.dart';
+import 'package:cruise_buddy/test_folder/api_test.dart';
 import 'package:cruise_buddy/test_folder/ui_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,6 +28,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => LoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => RegisterBloc(),
         ),
       ],
       child: MaterialApp(

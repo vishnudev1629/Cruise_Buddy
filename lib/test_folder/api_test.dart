@@ -1,4 +1,4 @@
-import 'package:cruise_buddy/core/services/api_services.dart';
+import 'package:cruise_buddy/core/services/auth/auth_services.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,12 +28,13 @@ class ApiTest extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  BlocProvider.of<LoginBloc>(context).add(
-                    LoginEvent.loginRequested(
-                      email: 'email',
-                      password: 'password',
-                    ),
-                  );
+                  //   BlocProvider.of<LoginBloc>(context).add(
+                  //     LoginEvent.loginRequested(
+                  //       email: 'email',
+                  //       password: 'password',
+                  //     ),
+                  //   );
+                  AuthServices().register('name', 'email', 'password');
                 },
                 child: Text("Call Api"),
               ),

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cruise_buddy/core/model/login_model/login_model.dart';
-import 'package:cruise_buddy/core/services/api_services.dart';
+import 'package:cruise_buddy/core/services/auth/auth_services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_event.dart';
@@ -9,7 +9,7 @@ part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(_Initial()) {
-    ApiServices apiServices = ApiServices();
+    AuthServices apiServices = AuthServices();
     on<_LoginRequested>((event, emit) async {
       emit(const LoginState.loading());
 
