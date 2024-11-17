@@ -1,3 +1,4 @@
+import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/details_delegate.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -185,7 +186,9 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
                       Color(0XFF1F8386),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    openDetailsDelegate(context);
+                  },
                   child: Text(
                     "Continue",
                     style: TextStyles.ubuntu16whiteFFw500,
@@ -196,6 +199,22 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
             Spacer(),
           ],
         ),
+      ),
+    );
+  }
+
+  void openDetailsDelegate(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return FadeTransition(
+            opacity: animation,
+            child: const DetailsDelegate(),
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 500),
+        reverseTransitionDuration: const Duration(milliseconds: 300),
       ),
     );
   }

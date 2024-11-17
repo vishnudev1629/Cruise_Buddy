@@ -1,3 +1,4 @@
+import 'package:cruise_buddy/UI/Screens/layout/main_layout/main_layout.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/booking_dateSelection.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/booking_selection_widget.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/counter_pill.dart';
