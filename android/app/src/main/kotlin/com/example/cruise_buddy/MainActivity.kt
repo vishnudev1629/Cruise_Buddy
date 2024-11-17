@@ -1,4 +1,4 @@
-package com.example.cruise_buddy
+package com.cruisebuddy.app
 
 import io.flutter.embedding.android.FlutterActivity
 

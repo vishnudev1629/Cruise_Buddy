@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cruise_buddy"
+    package="com.cruisebuddy.app"
     android:versionCode="1"
     android:versionName="1.0.0" >
 
@@ -31,10 +31,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <permission
-        android:name="com.example.cruise_buddy.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.cruisebuddy.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.example.cruise_buddy.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.cruisebuddy.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:name="android.app.Application"
@@ -44,7 +44,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Cruise Buddy" >
         <activity
-            android:name="com.example.cruise_buddy.MainActivity"
+            android:name="com.cruisebuddy.app.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -110,7 +110,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.example.cruise_buddy.androidx-startup"
+            android:authorities="com.cruisebuddy.app.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"

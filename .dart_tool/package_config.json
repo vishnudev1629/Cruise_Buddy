@@ -188,6 +188,24 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "firebase_core",
+      "rootUri": "file:///C:/Users/91884/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-3.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "firebase_core_platform_interface",
+      "rootUri": "file:///C:/Users/91884/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_platform_interface-5.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "firebase_core_web",
+      "rootUri": "file:///C:/Users/91884/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_web-2.18.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
       "name": "fixnum",
       "rootUri": "file:///C:/Users/91884/AppData/Local/Pub/Cache/hosted/pub.dev/fixnum-1.1.1",
       "packageUri": "lib/",
@@ -692,7 +710,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-11-16T19:19:59.387682Z",
+  "generated": "2024-11-17T09:58:05.518609Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///C:/Development/flutter",

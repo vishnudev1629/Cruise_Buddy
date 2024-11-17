@@ -4,7 +4,7 @@
     "type": "COMPATIBLE_SCREEN_MANIFEST",
     "kind": "Directory"
   },
-  "applicationId": "com.example.cruise_buddy",
+  "applicationId": "com.cruisebuddy.app",
   "variantName": "debug",
   "elements": []
 }
