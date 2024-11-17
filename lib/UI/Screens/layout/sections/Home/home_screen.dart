@@ -1,3 +1,5 @@
+import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/categories_section.dart';
+import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/explore_destination.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/location_search_delgate.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/boats/widgets/featured_boats_container.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
@@ -156,47 +158,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            SizedBox(
-              height: 210,
-              child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      left: index == 0 ? 30 : 10,
-                    ),
-                    child: SizedBox(
-                      width: 200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              'assets/image/onboarding_img/onboarding_one.png',
-                              width: 200,
-                              height: 110,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            "Luxury/nHouseboats",
-                            style: TextStyles.ubuntu16blue86w500,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.start,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+            CategoriesSection(),
             Padding(
               padding: const EdgeInsets.only(
                 left: 30,
@@ -215,41 +177,9 @@ class HomeScreen extends StatelessWidget {
                   double itemWidth = (gridWidth - 15) / 2;
                   double itemHeight = itemWidth * 1.1;
 
-                  return GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: 12,
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 15,
-                      crossAxisSpacing: 15,
-                      childAspectRatio: itemWidth / itemHeight,
-                    ),
-                    itemBuilder: (context, index) {
-                      return Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              'assets/image/onboarding_img/onboarding_one.png',
-                              fit: BoxFit.cover,
-                              width: itemWidth,
-                              height: itemHeight,
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 10,
-                            left: 0,
-                            right: 0,
-                            child: Text(
-                              "Alleppey",
-                              style: TextStyles.ubuntu16whiteE2w2500,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                      );
-                    },
+                  return ExploreDestinationWidget(
+                    itemWidth: itemWidth,
+                    itemHeight: itemHeight,
                   );
                 },
               ),
