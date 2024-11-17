@@ -128,25 +128,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            SizedBox(
-              height: 300,
-              child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      left: index == 0
-                          ? 30
-                          : 10, // Apply 30 for the first item, 10 for others
-                    ),
-                    child: FeaturedBoatContainer(),
-                  );
-                },
-              ),
-            ),
+            FeaturedBoatsSection(),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(

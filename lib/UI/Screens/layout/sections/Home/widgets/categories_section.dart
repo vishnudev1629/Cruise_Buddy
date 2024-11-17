@@ -116,7 +116,8 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                 scale: _scales[index],
                 duration: const Duration(milliseconds: 150),
                 curve: Curves.easeInOut,
-                child: SizedBox(
+                child: Container(
+                  color: const Color.fromARGB(0, 0, 0, 0),
                   width: 200,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
