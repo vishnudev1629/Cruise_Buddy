@@ -30,8 +30,8 @@ class AuthServices {
         Uri.parse('$url/login'),
         headers: _headers,
         body: {
-          'email': 'test@example.com',
-          'password': 'test@example.com',
+          'email': email,
+          'password': password,
         },
       );
 
@@ -43,15 +43,19 @@ class AuthServices {
         return Right(loginModel);
       } else {
         print('data failed ${response.body.toLowerCase()}');
-        return Left('Failed to login: ${response.statusCode}');
+        return Left('Failed to login: ${response.body}');
       }
     } catch (e) {
       return Left('Error: $e');
     }
   }
 
-  Future<Either<String, RegistrationModel>> register(
-      String name, String email, String password) async {
+  Future<Either<String, RegistrationModel>> register({
+  required  String name,
+  required  String email,
+ required   String password,
+ required   String confirmPassword,
+  }) async {
     final Uri uri = Uri.parse('$url/register');
 
     // Prepare the headers
@@ -62,10 +66,10 @@ class AuthServices {
 
     // Prepare the form data
     final body = {
-      'name': 'Delvin',
-      'email': 'apdsi@gmail.com',
-      'password': 'api@gmail.com',
-      'password_confirmation': 'api@gmail.com',
+      'name': name,
+      'email': email,
+      'password': password,
+      'password_confirmation': confirmPassword,
     };
 
     try {

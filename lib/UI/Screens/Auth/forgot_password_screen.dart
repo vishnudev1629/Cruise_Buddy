@@ -101,7 +101,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                           textStyle: TextStyles.ubuntu32blue86w700,
                           fieldBorderRadius: 20,
                           fieldBorderWidth: 1.5,
-                         fieldPadding: MediaQuery.of(context).size.width * 0.05,
+                          fieldPadding:
+                              MediaQuery.of(context).size.width * 0.05,
                           hintTextColor: Colors.grey,
                           showHintText: true,
                           activeFieldBorderGradient: const LinearGradient(
@@ -153,8 +154,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50),
-              const FullWidthBlueButton(
+              FullWidthBlueButton(
                 text: 'Verify',
+                onPressed: () {},
               ),
               const SizedBox(
                 height: 12,

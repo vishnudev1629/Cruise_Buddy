@@ -19,19 +19,25 @@ mixin _$RegisterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String email, String password) loginRequested,
+    required TResult Function(
+            String name, String email, String password, String confirmPassword)
+        loginRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String email, String password)? loginRequested,
+    TResult? Function(
+            String name, String email, String password, String confirmPassword)?
+        loginRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String email, String password)? loginRequested,
+    TResult Function(
+            String name, String email, String password, String confirmPassword)?
+        loginRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,7 +125,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String email, String password) loginRequested,
+    required TResult Function(
+            String name, String email, String password, String confirmPassword)
+        loginRequested,
   }) {
     return started();
   }
@@ -128,7 +136,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String email, String password)? loginRequested,
+    TResult? Function(
+            String name, String email, String password, String confirmPassword)?
+        loginRequested,
   }) {
     return started?.call();
   }
@@ -137,7 +147,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String email, String password)? loginRequested,
+    TResult Function(
+            String name, String email, String password, String confirmPassword)?
+        loginRequested,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -188,7 +200,8 @@ abstract class _$$RegisterRequestedImplCopyWith<$Res> {
           $Res Function(_$RegisterRequestedImpl) then) =
       __$$RegisterRequestedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String email, String password});
+  $Res call(
+      {String name, String email, String password, String confirmPassword});
 }
 
 /// @nodoc
@@ -204,10 +217,16 @@ class __$$RegisterRequestedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? email = null,
     Object? password = null,
+    Object? confirmPassword = null,
   }) {
     return _then(_$RegisterRequestedImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -216,6 +235,10 @@ class __$$RegisterRequestedImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      confirmPassword: null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -223,16 +246,24 @@ class __$$RegisterRequestedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RegisterRequestedImpl implements _RegisterRequested {
-  const _$RegisterRequestedImpl({required this.email, required this.password});
+  const _$RegisterRequestedImpl(
+      {required this.name,
+      required this.email,
+      required this.password,
+      required this.confirmPassword});
 
+  @override
+  final String name;
   @override
   final String email;
   @override
   final String password;
+  @override
+  final String confirmPassword;
 
   @override
   String toString() {
-    return 'RegisterEvent.loginRequested(email: $email, password: $password)';
+    return 'RegisterEvent.loginRequested(name: $name, email: $email, password: $password, confirmPassword: $confirmPassword)';
   }
 
   @override
@@ -240,13 +271,17 @@ class _$RegisterRequestedImpl implements _RegisterRequested {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RegisterRequestedImpl &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode =>
+      Object.hash(runtimeType, name, email, password, confirmPassword);
 
   /// Create a copy of RegisterEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -261,29 +296,35 @@ class _$RegisterRequestedImpl implements _RegisterRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String email, String password) loginRequested,
+    required TResult Function(
+            String name, String email, String password, String confirmPassword)
+        loginRequested,
   }) {
-    return loginRequested(email, password);
+    return loginRequested(name, email, password, confirmPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String email, String password)? loginRequested,
+    TResult? Function(
+            String name, String email, String password, String confirmPassword)?
+        loginRequested,
   }) {
-    return loginRequested?.call(email, password);
+    return loginRequested?.call(name, email, password, confirmPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String email, String password)? loginRequested,
+    TResult Function(
+            String name, String email, String password, String confirmPassword)?
+        loginRequested,
     required TResult orElse(),
   }) {
     if (loginRequested != null) {
-      return loginRequested(email, password);
+      return loginRequested(name, email, password, confirmPassword);
     }
     return orElse();
   }
@@ -322,11 +363,15 @@ class _$RegisterRequestedImpl implements _RegisterRequested {
 
 abstract class _RegisterRequested implements RegisterEvent {
   const factory _RegisterRequested(
-      {required final String email,
-      required final String password}) = _$RegisterRequestedImpl;
+      {required final String name,
+      required final String email,
+      required final String password,
+      required final String confirmPassword}) = _$RegisterRequestedImpl;
 
+  String get name;
   String get email;
   String get password;
+  String get confirmPassword;
 
   /// Create a copy of RegisterEvent
   /// with the given fields replaced by the non-null parameter values.

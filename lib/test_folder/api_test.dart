@@ -34,7 +34,7 @@ class ApiTest extends StatelessWidget {
                   //       password: 'password',
                   //     ),
                   //   );
-                  AuthServices().register('name', 'email', 'password');
+             //     AuthServices().register('name', 'email', 'password');
                 },
                 child: Text("Call Api"),
               ),

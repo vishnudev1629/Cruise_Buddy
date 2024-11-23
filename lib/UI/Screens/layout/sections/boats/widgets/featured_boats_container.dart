@@ -1,5 +1,4 @@
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
-import 'package:cruise_buddy/test_folder/ui_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -305,7 +304,9 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                         child: SizedBox(
                           height: 45,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // Your book now logic
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0XFF1F8386),
                               shape: RoundedRectangleBorder(
@@ -322,7 +323,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                             ),
                           ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),

@@ -15,9 +15,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
       try {
         final result = await apiServices.register(
-          's',
-          's',
-          '',
+          name: event.name,
+          email: event.email,
+          password: event.password,
+          confirmPassword: event.confirmPassword,
         );
 
         await result.fold((failure) async {

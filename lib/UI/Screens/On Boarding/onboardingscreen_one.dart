@@ -51,7 +51,9 @@ class _OnboardingScreenOneState extends State<OnboardingScreenOne>
               top: 40,
               right: 20,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  AppRoutes.navigateToLoginScreen(context);
+                },
                 child: const Text(
                   'Skip',
                   style: TextStyle(

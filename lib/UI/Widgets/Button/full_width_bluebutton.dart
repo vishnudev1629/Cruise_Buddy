@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FullWidthBlueButton extends StatelessWidget {
   final String text;
+  final VoidCallback onPressed;
   const FullWidthBlueButton({
     super.key,
     required this.text,
+    required this.onPressed,
   });
 
   @override
@@ -21,14 +23,7 @@ class FullWidthBlueButton extends StatelessWidget {
             const Color(0xFF1F8386),
           ),
         ),
-        onPressed: () {
-          BlocProvider.of<LoginBloc>(context).add(
-            LoginEvent.loginRequested(
-              email: 'email',
-              password: 'password',
-            ),
-          );
-        },
+        onPressed: onPressed,
         child: Text(
           text,
           style: TextStyles.ubuntu16whiteFFw500,

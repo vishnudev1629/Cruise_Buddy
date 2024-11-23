@@ -50,7 +50,9 @@ class _OnboardingScreenTwoState extends State<OnboardingScreenTwo>
               top: 40,
               right: 20,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  AppRoutes.navigateToLoginScreen(context);
+                },
                 child: const Text(
                   'Skip',
                   style: TextStyle(
@@ -107,7 +109,7 @@ class _OnboardingScreenTwoState extends State<OnboardingScreenTwo>
                               icon: const Icon(Icons.arrow_forward,
                                   color: Colors.white),
                               onPressed: () {
-                                   AppRoutes.navigateToOnboardingThree(context);
+                                AppRoutes.navigateToOnboardingThree(context);
                               },
                             ),
                           ),
@@ -141,14 +143,3 @@ class _OnboardingScreenTwoState extends State<OnboardingScreenTwo>
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-

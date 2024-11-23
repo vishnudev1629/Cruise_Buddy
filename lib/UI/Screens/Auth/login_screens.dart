@@ -35,9 +35,13 @@ class _LoginScreenState extends State<LoginScreen> {
           }, loading: (_) {
             print('loading');
           }, loginSuccess: (success) {
-            AppRoutes.navigateToForgotPasswordScreen(context);
+            AppRoutes.navigateToMainLayoutScreen(context);
           }, loginFailure: (failure) {
-            print('failed ${failure.error.toString()}');
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text("${failure.error}"),
+              ),
+            );
           });
         },
         child: Scaffold(
@@ -104,18 +108,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const Spacer(),
                       TextButton(
-                          onPressed: () {
-                            BlocProvider.of<LoginBloc>(context).add(
-                              LoginEvent.loginRequested(
-                                email: 'email',
-                                password: 'password',
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "Forgot Password?",
-                            style: TextStyles.ubuntu12blue23w700,
-                          ))
+                        onPressed: () {},
+                        child: Text(
+                          "Forgot Password?",
+                          style: TextStyles.ubuntu12blue23w700,
+                        ),
+                      ),
                     ],
                   ),
                   TextField(
@@ -166,8 +164,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  const FullWidthBlueButton(
+                  FullWidthBlueButton(
                     text: 'Login',
+                    onPressed: () {
+                      BlocProvider.of<LoginBloc>(context).add(
+                        LoginEvent.loginRequested(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 12),
                   Row(
@@ -204,19 +210,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         )),
                   ),
                   const SizedBox(height: 20),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Don’t have an account?",
-                          style: TextStyles.ubuntu16black23w400,
+                  Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Don’t have an account?",
+                              style: TextStyles.ubuntu16black23w400,
+                            ),
+                          ],
                         ),
-                        TextSpan(
-                          text: " Create an account",
-                          style: TextStyles.ubuntu16blue86w600,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          AppRoutes.navigateToRegistartionScreen(context);
+                        },
+                        child: Text(
+                          "Create an account",
+                          style: TextStyles.ubuntu12blue23w700,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 40)
                 ],
