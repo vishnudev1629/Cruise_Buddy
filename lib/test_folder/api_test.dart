@@ -1,4 +1,5 @@
 import 'package:cruise_buddy/core/services/auth/auth_services.dart';
+import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_bloc.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,17 +9,25 @@ class ApiTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(
+    return BlocListener<GetUserProfileBloc, GetUserProfileState>(
       listener: (context, state) {
-        state.map(initial: (_) {
-          print('initial');
-        }, loading: (_) {
-          print('loading');
-        }, loginSuccess: (success) {
-          print('xxxxxxxxxxxxxxxxxx ${success.loginModel.user?.email}');
-        }, loginFailure: (success) {
-          print('failed');
-        });
+        state.map(
+          initial: (value) {
+            print(value);
+          },
+          loading: (value) {
+            print(value);
+          },
+          getuseruccess: (value) {
+            print(value);
+          },
+          getuserFailure: (value) {
+            print(value);
+          },
+          noInternet: (value) {
+            print(value);
+          },
+        );
       },
       child: Scaffold(
         body: Center(
@@ -28,13 +37,9 @@ class ApiTest extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  //   BlocProvider.of<LoginBloc>(context).add(
-                  //     LoginEvent.loginRequested(
-                  //       email: 'email',
-                  //       password: 'password',
-                  //     ),
-                  //   );
-             //     AuthServices().register('name', 'email', 'password');
+                  BlocProvider.of<GetUserProfileBloc>(context)
+                      .add(GetUserProfileEvent.getUserProfile());
+                  //     AuthServices().register('name', 'email', 'password');
                 },
                 child: Text("Call Api"),
               ),

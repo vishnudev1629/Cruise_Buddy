@@ -22,7 +22,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         );
 
         await result.fold((failure) async {
-          emit(RegisterState.registrationFailure(error: failure.toString()));
+          if (failure == "No internet") {
+            emit(const RegisterState.noInternet());
+          } else {
+            emit(RegisterState.registrationFailure(error: failure));
+          }
         }, (success) async {
           // var accessToken = await SetSharedPreferences.storeAccessToken(
           //         success.misc.accessToken) ??

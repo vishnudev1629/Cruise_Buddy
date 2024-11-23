@@ -8,4 +8,5 @@ class LoginState with _$LoginState {
       _LoginSuccess;
 
   const factory LoginState.loginFailure({required String error}) = LoginFailure;
+  const factory LoginState.noInternet() = _NoInternet;
 }

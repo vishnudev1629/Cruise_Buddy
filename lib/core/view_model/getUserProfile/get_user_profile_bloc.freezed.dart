@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'register_bloc.dart';
+part of 'get_user_profile_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,71 +15,65 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$RegisterEvent {
+mixin _$GetUserProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(
-            String name, String email, String password, String confirmPassword)
-        loginRequested,
+    required TResult Function() getUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(
-            String name, String email, String password, String confirmPassword)?
-        loginRequested,
+    TResult? Function()? getUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            String name, String email, String password, String confirmPassword)?
-        loginRequested,
+    TResult Function()? getUserProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_RegisterRequested value) loginRequested,
+    required TResult Function(_GetUserProfile value) getUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_RegisterRequested value)? loginRequested,
+    TResult? Function(_GetUserProfile value)? getUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_RegisterRequested value)? loginRequested,
+    TResult Function(_GetUserProfile value)? getUserProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RegisterEventCopyWith<$Res> {
-  factory $RegisterEventCopyWith(
-          RegisterEvent value, $Res Function(RegisterEvent) then) =
-      _$RegisterEventCopyWithImpl<$Res, RegisterEvent>;
+abstract class $GetUserProfileEventCopyWith<$Res> {
+  factory $GetUserProfileEventCopyWith(
+          GetUserProfileEvent value, $Res Function(GetUserProfileEvent) then) =
+      _$GetUserProfileEventCopyWithImpl<$Res, GetUserProfileEvent>;
 }
 
 /// @nodoc
-class _$RegisterEventCopyWithImpl<$Res, $Val extends RegisterEvent>
-    implements $RegisterEventCopyWith<$Res> {
-  _$RegisterEventCopyWithImpl(this._value, this._then);
+class _$GetUserProfileEventCopyWithImpl<$Res, $Val extends GetUserProfileEvent>
+    implements $GetUserProfileEventCopyWith<$Res> {
+  _$GetUserProfileEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RegisterEvent
+  /// Create a copy of GetUserProfileEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -92,13 +86,13 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$RegisterEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$GetUserProfileEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterEvent
+  /// Create a copy of GetUserProfileEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -109,7 +103,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'RegisterEvent.started()';
+    return 'GetUserProfileEvent.started()';
   }
 
   @override
@@ -125,9 +119,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(
-            String name, String email, String password, String confirmPassword)
-        loginRequested,
+    required TResult Function() getUserProfile,
   }) {
     return started();
   }
@@ -136,9 +128,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(
-            String name, String email, String password, String confirmPassword)?
-        loginRequested,
+    TResult? Function()? getUserProfile,
   }) {
     return started?.call();
   }
@@ -147,9 +137,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            String name, String email, String password, String confirmPassword)?
-        loginRequested,
+    TResult Function()? getUserProfile,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -162,7 +150,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_RegisterRequested value) loginRequested,
+    required TResult Function(_GetUserProfile value) getUserProfile,
   }) {
     return started(this);
   }
@@ -171,7 +159,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_RegisterRequested value)? loginRequested,
+    TResult? Function(_GetUserProfile value)? getUserProfile,
   }) {
     return started?.call(this);
   }
@@ -180,7 +168,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_RegisterRequested value)? loginRequested,
+    TResult Function(_GetUserProfile value)? getUserProfile,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -190,141 +178,75 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements RegisterEvent {
+abstract class _Started implements GetUserProfileEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$RegisterRequestedImplCopyWith<$Res> {
-  factory _$$RegisterRequestedImplCopyWith(_$RegisterRequestedImpl value,
-          $Res Function(_$RegisterRequestedImpl) then) =
-      __$$RegisterRequestedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {String name, String email, String password, String confirmPassword});
+abstract class _$$GetUserProfileImplCopyWith<$Res> {
+  factory _$$GetUserProfileImplCopyWith(_$GetUserProfileImpl value,
+          $Res Function(_$GetUserProfileImpl) then) =
+      __$$GetUserProfileImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RegisterRequestedImplCopyWithImpl<$Res>
-    extends _$RegisterEventCopyWithImpl<$Res, _$RegisterRequestedImpl>
-    implements _$$RegisterRequestedImplCopyWith<$Res> {
-  __$$RegisterRequestedImplCopyWithImpl(_$RegisterRequestedImpl _value,
-      $Res Function(_$RegisterRequestedImpl) _then)
+class __$$GetUserProfileImplCopyWithImpl<$Res>
+    extends _$GetUserProfileEventCopyWithImpl<$Res, _$GetUserProfileImpl>
+    implements _$$GetUserProfileImplCopyWith<$Res> {
+  __$$GetUserProfileImplCopyWithImpl(
+      _$GetUserProfileImpl _value, $Res Function(_$GetUserProfileImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterEvent
+  /// Create a copy of GetUserProfileEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? email = null,
-    Object? password = null,
-    Object? confirmPassword = null,
-  }) {
-    return _then(_$RegisterRequestedImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$RegisterRequestedImpl implements _RegisterRequested {
-  const _$RegisterRequestedImpl(
-      {required this.name,
-      required this.email,
-      required this.password,
-      required this.confirmPassword});
-
-  @override
-  final String name;
-  @override
-  final String email;
-  @override
-  final String password;
-  @override
-  final String confirmPassword;
+class _$GetUserProfileImpl implements _GetUserProfile {
+  const _$GetUserProfileImpl();
 
   @override
   String toString() {
-    return 'RegisterEvent.loginRequested(name: $name, email: $email, password: $password, confirmPassword: $confirmPassword)';
+    return 'GetUserProfileEvent.getUserProfile()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RegisterRequestedImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.confirmPassword, confirmPassword) ||
-                other.confirmPassword == confirmPassword));
+        (other.runtimeType == runtimeType && other is _$GetUserProfileImpl);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, email, password, confirmPassword);
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RegisterRequestedImplCopyWith<_$RegisterRequestedImpl> get copyWith =>
-      __$$RegisterRequestedImplCopyWithImpl<_$RegisterRequestedImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(
-            String name, String email, String password, String confirmPassword)
-        loginRequested,
+    required TResult Function() getUserProfile,
   }) {
-    return loginRequested(name, email, password, confirmPassword);
+    return getUserProfile();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(
-            String name, String email, String password, String confirmPassword)?
-        loginRequested,
+    TResult? Function()? getUserProfile,
   }) {
-    return loginRequested?.call(name, email, password, confirmPassword);
+    return getUserProfile?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            String name, String email, String password, String confirmPassword)?
-        loginRequested,
+    TResult Function()? getUserProfile,
     required TResult orElse(),
   }) {
-    if (loginRequested != null) {
-      return loginRequested(name, email, password, confirmPassword);
+    if (getUserProfile != null) {
+      return getUserProfile();
     }
     return orElse();
   }
@@ -333,62 +255,46 @@ class _$RegisterRequestedImpl implements _RegisterRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_RegisterRequested value) loginRequested,
+    required TResult Function(_GetUserProfile value) getUserProfile,
   }) {
-    return loginRequested(this);
+    return getUserProfile(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_RegisterRequested value)? loginRequested,
+    TResult? Function(_GetUserProfile value)? getUserProfile,
   }) {
-    return loginRequested?.call(this);
+    return getUserProfile?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_RegisterRequested value)? loginRequested,
+    TResult Function(_GetUserProfile value)? getUserProfile,
     required TResult orElse(),
   }) {
-    if (loginRequested != null) {
-      return loginRequested(this);
+    if (getUserProfile != null) {
+      return getUserProfile(this);
     }
     return orElse();
   }
 }
 
-abstract class _RegisterRequested implements RegisterEvent {
-  const factory _RegisterRequested(
-      {required final String name,
-      required final String email,
-      required final String password,
-      required final String confirmPassword}) = _$RegisterRequestedImpl;
-
-  String get name;
-  String get email;
-  String get password;
-  String get confirmPassword;
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RegisterRequestedImplCopyWith<_$RegisterRequestedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _GetUserProfile implements GetUserProfileEvent {
+  const factory _GetUserProfile() = _$GetUserProfileImpl;
 }
 
 /// @nodoc
-mixin _$RegisterState {
+mixin _$GetUserProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegistrationModel registerModel)
-        registrationSuccess,
-    required TResult Function(String error) registrationFailure,
+    required TResult Function(UserProfileModel userprofilemodel) getuseruccess,
+    required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
   }) =>
       throw _privateConstructorUsedError;
@@ -396,8 +302,8 @@ mixin _$RegisterState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult? Function(String error)? registrationFailure,
+    TResult? Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) =>
       throw _privateConstructorUsedError;
@@ -405,8 +311,8 @@ mixin _$RegisterState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult Function(String error)? registrationFailure,
+    TResult Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) =>
@@ -415,8 +321,8 @@ mixin _$RegisterState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_RegistrationSuccess value) registrationSuccess,
-    required TResult Function(LoginFailure value) registrationFailure,
+    required TResult Function(_Getuseruccess value) getuseruccess,
+    required TResult Function(GetuserFailure value) getuserFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) =>
       throw _privateConstructorUsedError;
@@ -424,8 +330,8 @@ mixin _$RegisterState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult? Function(LoginFailure value)? registrationFailure,
+    TResult? Function(_Getuseruccess value)? getuseruccess,
+    TResult? Function(GetuserFailure value)? getuserFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) =>
       throw _privateConstructorUsedError;
@@ -433,8 +339,8 @@ mixin _$RegisterState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult Function(LoginFailure value)? registrationFailure,
+    TResult Function(_Getuseruccess value)? getuseruccess,
+    TResult Function(GetuserFailure value)? getuserFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) =>
@@ -442,23 +348,23 @@ mixin _$RegisterState {
 }
 
 /// @nodoc
-abstract class $RegisterStateCopyWith<$Res> {
-  factory $RegisterStateCopyWith(
-          RegisterState value, $Res Function(RegisterState) then) =
-      _$RegisterStateCopyWithImpl<$Res, RegisterState>;
+abstract class $GetUserProfileStateCopyWith<$Res> {
+  factory $GetUserProfileStateCopyWith(
+          GetUserProfileState value, $Res Function(GetUserProfileState) then) =
+      _$GetUserProfileStateCopyWithImpl<$Res, GetUserProfileState>;
 }
 
 /// @nodoc
-class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
-    implements $RegisterStateCopyWith<$Res> {
-  _$RegisterStateCopyWithImpl(this._value, this._then);
+class _$GetUserProfileStateCopyWithImpl<$Res, $Val extends GetUserProfileState>
+    implements $GetUserProfileStateCopyWith<$Res> {
+  _$GetUserProfileStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -471,13 +377,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$GetUserProfileStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -488,7 +394,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'RegisterState.initial()';
+    return 'GetUserProfileState.initial()';
   }
 
   @override
@@ -505,9 +411,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegistrationModel registerModel)
-        registrationSuccess,
-    required TResult Function(String error) registrationFailure,
+    required TResult Function(UserProfileModel userprofilemodel) getuseruccess,
+    required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
   }) {
     return initial();
@@ -518,8 +423,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult? Function(String error)? registrationFailure,
+    TResult? Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
     return initial?.call();
@@ -530,8 +435,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult Function(String error)? registrationFailure,
+    TResult Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
@@ -546,8 +451,8 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_RegistrationSuccess value) registrationSuccess,
-    required TResult Function(LoginFailure value) registrationFailure,
+    required TResult Function(_Getuseruccess value) getuseruccess,
+    required TResult Function(GetuserFailure value) getuserFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
     return initial(this);
@@ -558,8 +463,8 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult? Function(LoginFailure value)? registrationFailure,
+    TResult? Function(_Getuseruccess value)? getuseruccess,
+    TResult? Function(GetuserFailure value)? getuserFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
     return initial?.call(this);
@@ -570,8 +475,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult Function(LoginFailure value)? registrationFailure,
+    TResult Function(_Getuseruccess value)? getuseruccess,
+    TResult Function(GetuserFailure value)? getuserFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
@@ -582,7 +487,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements RegisterState {
+abstract class _Initial implements GetUserProfileState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -595,13 +500,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$GetUserProfileStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -612,7 +517,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'RegisterState.loading()';
+    return 'GetUserProfileState.loading()';
   }
 
   @override
@@ -629,9 +534,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegistrationModel registerModel)
-        registrationSuccess,
-    required TResult Function(String error) registrationFailure,
+    required TResult Function(UserProfileModel userprofilemodel) getuseruccess,
+    required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
   }) {
     return loading();
@@ -642,8 +546,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult? Function(String error)? registrationFailure,
+    TResult? Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
     return loading?.call();
@@ -654,8 +558,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult Function(String error)? registrationFailure,
+    TResult Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
@@ -670,8 +574,8 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_RegistrationSuccess value) registrationSuccess,
-    required TResult Function(LoginFailure value) registrationFailure,
+    required TResult Function(_Getuseruccess value) getuseruccess,
+    required TResult Function(GetuserFailure value) getuserFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
     return loading(this);
@@ -682,8 +586,8 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult? Function(LoginFailure value)? registrationFailure,
+    TResult? Function(_Getuseruccess value)? getuseruccess,
+    TResult? Function(GetuserFailure value)? getuserFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
     return loading?.call(this);
@@ -694,8 +598,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult Function(LoginFailure value)? registrationFailure,
+    TResult Function(_Getuseruccess value)? getuseruccess,
+    TResult Function(GetuserFailure value)? getuserFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
@@ -706,88 +610,86 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements RegisterState {
+abstract class _Loading implements GetUserProfileState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$RegistrationSuccessImplCopyWith<$Res> {
-  factory _$$RegistrationSuccessImplCopyWith(_$RegistrationSuccessImpl value,
-          $Res Function(_$RegistrationSuccessImpl) then) =
-      __$$RegistrationSuccessImplCopyWithImpl<$Res>;
+abstract class _$$GetuseruccessImplCopyWith<$Res> {
+  factory _$$GetuseruccessImplCopyWith(
+          _$GetuseruccessImpl value, $Res Function(_$GetuseruccessImpl) then) =
+      __$$GetuseruccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RegistrationModel registerModel});
+  $Res call({UserProfileModel userprofilemodel});
 }
 
 /// @nodoc
-class __$$RegistrationSuccessImplCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$RegistrationSuccessImpl>
-    implements _$$RegistrationSuccessImplCopyWith<$Res> {
-  __$$RegistrationSuccessImplCopyWithImpl(_$RegistrationSuccessImpl _value,
-      $Res Function(_$RegistrationSuccessImpl) _then)
+class __$$GetuseruccessImplCopyWithImpl<$Res>
+    extends _$GetUserProfileStateCopyWithImpl<$Res, _$GetuseruccessImpl>
+    implements _$$GetuseruccessImplCopyWith<$Res> {
+  __$$GetuseruccessImplCopyWithImpl(
+      _$GetuseruccessImpl _value, $Res Function(_$GetuseruccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? registerModel = null,
+    Object? userprofilemodel = null,
   }) {
-    return _then(_$RegistrationSuccessImpl(
-      registerModel: null == registerModel
-          ? _value.registerModel
-          : registerModel // ignore: cast_nullable_to_non_nullable
-              as RegistrationModel,
+    return _then(_$GetuseruccessImpl(
+      userprofilemodel: null == userprofilemodel
+          ? _value.userprofilemodel
+          : userprofilemodel // ignore: cast_nullable_to_non_nullable
+              as UserProfileModel,
     ));
   }
 }
 
 /// @nodoc
 
-class _$RegistrationSuccessImpl implements _RegistrationSuccess {
-  const _$RegistrationSuccessImpl({required this.registerModel});
+class _$GetuseruccessImpl implements _Getuseruccess {
+  const _$GetuseruccessImpl({required this.userprofilemodel});
 
   @override
-  final RegistrationModel registerModel;
+  final UserProfileModel userprofilemodel;
 
   @override
   String toString() {
-    return 'RegisterState.registrationSuccess(registerModel: $registerModel)';
+    return 'GetUserProfileState.getuseruccess(userprofilemodel: $userprofilemodel)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RegistrationSuccessImpl &&
-            (identical(other.registerModel, registerModel) ||
-                other.registerModel == registerModel));
+            other is _$GetuseruccessImpl &&
+            (identical(other.userprofilemodel, userprofilemodel) ||
+                other.userprofilemodel == userprofilemodel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, registerModel);
+  int get hashCode => Object.hash(runtimeType, userprofilemodel);
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RegistrationSuccessImplCopyWith<_$RegistrationSuccessImpl> get copyWith =>
-      __$$RegistrationSuccessImplCopyWithImpl<_$RegistrationSuccessImpl>(
-          this, _$identity);
+  _$$GetuseruccessImplCopyWith<_$GetuseruccessImpl> get copyWith =>
+      __$$GetuseruccessImplCopyWithImpl<_$GetuseruccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegistrationModel registerModel)
-        registrationSuccess,
-    required TResult Function(String error) registrationFailure,
+    required TResult Function(UserProfileModel userprofilemodel) getuseruccess,
+    required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
   }) {
-    return registrationSuccess(registerModel);
+    return getuseruccess(userprofilemodel);
   }
 
   @override
@@ -795,11 +697,11 @@ class _$RegistrationSuccessImpl implements _RegistrationSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult? Function(String error)? registrationFailure,
+    TResult? Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
-    return registrationSuccess?.call(registerModel);
+    return getuseruccess?.call(userprofilemodel);
   }
 
   @override
@@ -807,13 +709,13 @@ class _$RegistrationSuccessImpl implements _RegistrationSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult Function(String error)? registrationFailure,
+    TResult Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
-    if (registrationSuccess != null) {
-      return registrationSuccess(registerModel);
+    if (getuseruccess != null) {
+      return getuseruccess(userprofilemodel);
     }
     return orElse();
   }
@@ -823,11 +725,11 @@ class _$RegistrationSuccessImpl implements _RegistrationSuccess {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_RegistrationSuccess value) registrationSuccess,
-    required TResult Function(LoginFailure value) registrationFailure,
+    required TResult Function(_Getuseruccess value) getuseruccess,
+    required TResult Function(GetuserFailure value) getuserFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
-    return registrationSuccess(this);
+    return getuseruccess(this);
   }
 
   @override
@@ -835,11 +737,11 @@ class _$RegistrationSuccessImpl implements _RegistrationSuccess {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult? Function(LoginFailure value)? registrationFailure,
+    TResult? Function(_Getuseruccess value)? getuseruccess,
+    TResult? Function(GetuserFailure value)? getuserFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
-    return registrationSuccess?.call(this);
+    return getuseruccess?.call(this);
   }
 
   @override
@@ -847,57 +749,56 @@ class _$RegistrationSuccessImpl implements _RegistrationSuccess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult Function(LoginFailure value)? registrationFailure,
+    TResult Function(_Getuseruccess value)? getuseruccess,
+    TResult Function(GetuserFailure value)? getuserFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
-    if (registrationSuccess != null) {
-      return registrationSuccess(this);
+    if (getuseruccess != null) {
+      return getuseruccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _RegistrationSuccess implements RegisterState {
-  const factory _RegistrationSuccess(
-          {required final RegistrationModel registerModel}) =
-      _$RegistrationSuccessImpl;
+abstract class _Getuseruccess implements GetUserProfileState {
+  const factory _Getuseruccess(
+      {required final UserProfileModel userprofilemodel}) = _$GetuseruccessImpl;
 
-  RegistrationModel get registerModel;
+  UserProfileModel get userprofilemodel;
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RegistrationSuccessImplCopyWith<_$RegistrationSuccessImpl> get copyWith =>
+  _$$GetuseruccessImplCopyWith<_$GetuseruccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoginFailureImplCopyWith<$Res> {
-  factory _$$LoginFailureImplCopyWith(
-          _$LoginFailureImpl value, $Res Function(_$LoginFailureImpl) then) =
-      __$$LoginFailureImplCopyWithImpl<$Res>;
+abstract class _$$GetuserFailureImplCopyWith<$Res> {
+  factory _$$GetuserFailureImplCopyWith(_$GetuserFailureImpl value,
+          $Res Function(_$GetuserFailureImpl) then) =
+      __$$GetuserFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$LoginFailureImplCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$LoginFailureImpl>
-    implements _$$LoginFailureImplCopyWith<$Res> {
-  __$$LoginFailureImplCopyWithImpl(
-      _$LoginFailureImpl _value, $Res Function(_$LoginFailureImpl) _then)
+class __$$GetuserFailureImplCopyWithImpl<$Res>
+    extends _$GetUserProfileStateCopyWithImpl<$Res, _$GetuserFailureImpl>
+    implements _$$GetuserFailureImplCopyWith<$Res> {
+  __$$GetuserFailureImplCopyWithImpl(
+      _$GetuserFailureImpl _value, $Res Function(_$GetuserFailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$LoginFailureImpl(
+    return _then(_$GetuserFailureImpl(
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -908,47 +809,47 @@ class __$$LoginFailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoginFailureImpl implements LoginFailure {
-  const _$LoginFailureImpl({required this.error});
+class _$GetuserFailureImpl implements GetuserFailure {
+  const _$GetuserFailureImpl({required this.error});
 
   @override
   final String error;
 
   @override
   String toString() {
-    return 'RegisterState.registrationFailure(error: $error)';
+    return 'GetUserProfileState.getuserFailure(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoginFailureImpl &&
+            other is _$GetuserFailureImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoginFailureImplCopyWith<_$LoginFailureImpl> get copyWith =>
-      __$$LoginFailureImplCopyWithImpl<_$LoginFailureImpl>(this, _$identity);
+  _$$GetuserFailureImplCopyWith<_$GetuserFailureImpl> get copyWith =>
+      __$$GetuserFailureImplCopyWithImpl<_$GetuserFailureImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegistrationModel registerModel)
-        registrationSuccess,
-    required TResult Function(String error) registrationFailure,
+    required TResult Function(UserProfileModel userprofilemodel) getuseruccess,
+    required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
   }) {
-    return registrationFailure(error);
+    return getuserFailure(error);
   }
 
   @override
@@ -956,11 +857,11 @@ class _$LoginFailureImpl implements LoginFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult? Function(String error)? registrationFailure,
+    TResult? Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
-    return registrationFailure?.call(error);
+    return getuserFailure?.call(error);
   }
 
   @override
@@ -968,13 +869,13 @@ class _$LoginFailureImpl implements LoginFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult Function(String error)? registrationFailure,
+    TResult Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
-    if (registrationFailure != null) {
-      return registrationFailure(error);
+    if (getuserFailure != null) {
+      return getuserFailure(error);
     }
     return orElse();
   }
@@ -984,11 +885,11 @@ class _$LoginFailureImpl implements LoginFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_RegistrationSuccess value) registrationSuccess,
-    required TResult Function(LoginFailure value) registrationFailure,
+    required TResult Function(_Getuseruccess value) getuseruccess,
+    required TResult Function(GetuserFailure value) getuserFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
-    return registrationFailure(this);
+    return getuserFailure(this);
   }
 
   @override
@@ -996,11 +897,11 @@ class _$LoginFailureImpl implements LoginFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult? Function(LoginFailure value)? registrationFailure,
+    TResult? Function(_Getuseruccess value)? getuseruccess,
+    TResult? Function(GetuserFailure value)? getuserFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
-    return registrationFailure?.call(this);
+    return getuserFailure?.call(this);
   }
 
   @override
@@ -1008,28 +909,28 @@ class _$LoginFailureImpl implements LoginFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult Function(LoginFailure value)? registrationFailure,
+    TResult Function(_Getuseruccess value)? getuseruccess,
+    TResult Function(GetuserFailure value)? getuserFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
-    if (registrationFailure != null) {
-      return registrationFailure(this);
+    if (getuserFailure != null) {
+      return getuserFailure(this);
     }
     return orElse();
   }
 }
 
-abstract class LoginFailure implements RegisterState {
-  const factory LoginFailure({required final String error}) =
-      _$LoginFailureImpl;
+abstract class GetuserFailure implements GetUserProfileState {
+  const factory GetuserFailure({required final String error}) =
+      _$GetuserFailureImpl;
 
   String get error;
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoginFailureImplCopyWith<_$LoginFailureImpl> get copyWith =>
+  _$$GetuserFailureImplCopyWith<_$GetuserFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1042,13 +943,13 @@ abstract class _$$NoInternetImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoInternetImplCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$NoInternetImpl>
+    extends _$GetUserProfileStateCopyWithImpl<$Res, _$NoInternetImpl>
     implements _$$NoInternetImplCopyWith<$Res> {
   __$$NoInternetImplCopyWithImpl(
       _$NoInternetImpl _value, $Res Function(_$NoInternetImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterState
+  /// Create a copy of GetUserProfileState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -1059,7 +960,7 @@ class _$NoInternetImpl implements _NoInternet {
 
   @override
   String toString() {
-    return 'RegisterState.noInternet()';
+    return 'GetUserProfileState.noInternet()';
   }
 
   @override
@@ -1076,9 +977,8 @@ class _$NoInternetImpl implements _NoInternet {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegistrationModel registerModel)
-        registrationSuccess,
-    required TResult Function(String error) registrationFailure,
+    required TResult Function(UserProfileModel userprofilemodel) getuseruccess,
+    required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
   }) {
     return noInternet();
@@ -1089,8 +989,8 @@ class _$NoInternetImpl implements _NoInternet {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult? Function(String error)? registrationFailure,
+    TResult? Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
     return noInternet?.call();
@@ -1101,8 +1001,8 @@ class _$NoInternetImpl implements _NoInternet {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegistrationModel registerModel)? registrationSuccess,
-    TResult Function(String error)? registrationFailure,
+    TResult Function(UserProfileModel userprofilemodel)? getuseruccess,
+    TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
@@ -1117,8 +1017,8 @@ class _$NoInternetImpl implements _NoInternet {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_RegistrationSuccess value) registrationSuccess,
-    required TResult Function(LoginFailure value) registrationFailure,
+    required TResult Function(_Getuseruccess value) getuseruccess,
+    required TResult Function(GetuserFailure value) getuserFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
     return noInternet(this);
@@ -1129,8 +1029,8 @@ class _$NoInternetImpl implements _NoInternet {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult? Function(LoginFailure value)? registrationFailure,
+    TResult? Function(_Getuseruccess value)? getuseruccess,
+    TResult? Function(GetuserFailure value)? getuserFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
     return noInternet?.call(this);
@@ -1141,8 +1041,8 @@ class _$NoInternetImpl implements _NoInternet {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_RegistrationSuccess value)? registrationSuccess,
-    TResult Function(LoginFailure value)? registrationFailure,
+    TResult Function(_Getuseruccess value)? getuseruccess,
+    TResult Function(GetuserFailure value)? getuserFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
@@ -1153,6 +1053,6 @@ class _$NoInternetImpl implements _NoInternet {
   }
 }
 
-abstract class _NoInternet implements RegisterState {
+abstract class _NoInternet implements GetUserProfileState {
   const factory _NoInternet() = _$NoInternetImpl;
 }

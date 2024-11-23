@@ -1,6 +1,7 @@
 import 'package:cruise_buddy/UI/Screens/Auth/signup_screen.dart';
 import 'package:cruise_buddy/UI/Screens/Splash/splash_screen.dart';
 import 'package:cruise_buddy/UI/Screens/layout/main_layout/main_layout.dart';
+import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_bloc.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
 import 'package:cruise_buddy/core/view_model/regsiter/register_bloc.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => RegisterBloc(),
+        ),
+        BlocProvider(
+          create: (context) => GetUserProfileBloc(),
         ),
       ],
       child: MaterialApp(

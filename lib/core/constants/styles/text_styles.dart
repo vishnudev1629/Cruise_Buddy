@@ -62,7 +62,7 @@ class TextStyles {
     color: const Color(0xFF1F8386),
   );
   static final TextStyle ubuntu32blue86w700 = ubuntu.copyWith(
-    fontSize: 32,
+    fontSize: 22,
     fontWeight: FontWeight.w700,
     color: const Color(0xFF1F8386),
   );
@@ -107,7 +107,7 @@ class TextStyles {
     color: const Color(0xFFE2E2E2),
   );
   static final TextStyle ubuntu32black15w700 = ubuntu.copyWith(
-    fontSize: 32,
+    fontSize: 22,
     fontWeight: FontWeight.w700,
     color: const Color(0xFF131515),
   );

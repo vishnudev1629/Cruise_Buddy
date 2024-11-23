@@ -15,8 +15,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController =
+      TextEditingController(text: 'test@example.com');
+  TextEditingController passwordController =
+      TextEditingController(text: 'test@example.com');
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
   bool isTextVisible = false;
@@ -30,19 +32,31 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
-          state.map(initial: (_) {
-            print('initial');
-          }, loading: (_) {
-            print('loading');
-          }, loginSuccess: (success) {
-            AppRoutes.navigateToMainLayoutScreen(context);
-          }, loginFailure: (failure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text("${failure.error}"),
-              ),
-            );
-          });
+          state.map(
+            initial: (_) {
+              print('initial');
+            },
+            loading: (_) {
+              print('loading');
+            },
+            loginSuccess: (success) {
+              AppRoutes.navigateToMainLayoutScreen(context);
+            },
+            loginFailure: (failure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("${failure.error}"),
+                ),
+              );
+            },
+            noInternet: (value) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("No Internet please try again"),
+                ),
+              );
+            },
+          );
         },
         child: Scaffold(
           body: Padding(

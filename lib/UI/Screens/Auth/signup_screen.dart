@@ -52,6 +52,13 @@ class _SignupScreenState extends State<SignupScreen> {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(value.error)));
             },
+            noInternet: (value) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("No Internet please try again"),
+                ),
+              );
+            },
           );
         },
         child: Scaffold(

@@ -3,13 +3,31 @@ import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/explore_des
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/location_search_delgate.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/boats/widgets/featured_boats_container.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
   });
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      BlocProvider.of<GetUserProfileBloc>(context)
+          .add(GetUserProfileEvent.getUserProfile());
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +65,42 @@ class HomeScreen extends StatelessWidget {
                                       style: TextStyles.ubuntu32black15w700,
                                     ),
                                     SizedBox(width: 5),
-                                    Text(
-                                      "Rohan!",
-                                      style: TextStyles.ubuntu32blue86w700,
+                                    BlocBuilder<GetUserProfileBloc,
+                                        GetUserProfileState>(
+                                      builder: (context, state) {
+                                        return state.map(
+                                          initial: (value) {
+                                            return SizedBox.shrink();
+                                          },
+                                          loading: (value) {
+                                          return Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Text(
+            "Loading...", // Placeholder text
+            style: TextStyles.ubuntu32blue86w700,
+          ),
+        );
+                                          },
+                                          getuseruccess: (value) {
+                                            return Text(
+                                              "${value.userprofilemodel.data?.name}",
+                                              style:
+                                                  TextStyles.ubuntu32blue86w700,
+                                            );
+                                          },
+                                          getuserFailure: (value) {
+                                            return Text(
+                                              "User",
+                                              style:
+                                                  TextStyles.ubuntu32blue86w700,
+                                            );
+                                          },
+                                          noInternet: (value) {
+                                            return SizedBox.shrink();
+                                          },
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),

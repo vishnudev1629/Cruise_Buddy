@@ -20,7 +20,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
 
         await result.fold((failure) async {
-          emit(LoginState.loginFailure(error: failure));
+           if (failure == "No internet") {
+            emit(const LoginState.noInternet());
+          } else {
+            emit(LoginState.loginFailure(error: failure));
+          }
         }, (success) async {
           // var accessToken = await SetSharedPreferences.storeAccessToken(
           //         success.misc.accessToken) ??
