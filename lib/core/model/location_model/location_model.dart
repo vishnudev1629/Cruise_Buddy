@@ -11,7 +11,7 @@ class LocationModel {
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
     return LocationModel(
-      data: (json['data'] as List<dynamic>? ?? []) // Handle null or invalid data
+      data: (json['data'] as List<dynamic>? ?? [])
           .map((e) => LocationData.fromJson(e as Map<String, dynamic>))
           .toList(),
       links: json['links'] != null

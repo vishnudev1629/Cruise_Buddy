@@ -48,4 +48,6 @@ class LocationService {
       return Left('Error: $e'); // Handling other errors
     }
   }
+
+
 }

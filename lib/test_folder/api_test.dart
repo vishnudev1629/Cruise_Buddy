@@ -1,5 +1,8 @@
 import 'package:cruise_buddy/core/services/auth/auth_services.dart';
+import 'package:cruise_buddy/core/services/cruise/cruise_service.dart';
 import 'package:cruise_buddy/core/services/location/location_service.dart';
+import 'package:cruise_buddy/core/view_model/getCruiseTypes/get_cruise_types_bloc.dart';
+import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getLocationDetails/get_location_details_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_bloc.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
@@ -11,7 +14,7 @@ class ApiTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<GetLocationDetailsBloc, GetLocationDetailsState>(
+    return BlocListener<GetCruiseTypesBloc, GetCruiseTypesState>(
       listener: (context, state) {
         state.map(
           initial: (value) {
@@ -20,10 +23,10 @@ class ApiTest extends StatelessWidget {
           loading: (value) {
             print(value);
           },
-          getLocationDetails: (value) {
+          getCruiseTypes: (value) {
             print(value);
           },
-          getlocationsFailure: (value) {
+          getCruiseTypesFailure: (value) {
             print(value);
           },
           noInternet: (value) {
@@ -39,8 +42,9 @@ class ApiTest extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  BlocProvider.of<GetLocationDetailsBloc>(context)
-                      .add(GetLocationDetailsEvent.getLocation());
+                  BlocProvider.of<GetCruiseTypesBloc>(context)
+                      .add(GetCruiseTypesEvent.getCruiseTypes());
+                  //  await CruiseService().getCruiseTypes();
                 },
                 child: Text("Call Api"),
               ),
