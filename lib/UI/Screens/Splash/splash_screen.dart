@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cruise_buddy/core/constants/colors/app_colors.dart';
+import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:cruise_buddy/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -35,9 +38,14 @@ class _SplashScreenState extends State<SplashScreen>
       }
     });
 
-    Future.delayed(const Duration(milliseconds: 2600), () {
+    Future.delayed(const Duration(milliseconds: 2600), () async {
       if (mounted) {
-        AppRoutes.navigateToOnboardingOne(context);
+        final token = await GetSharedPreferences.getAccessToken();
+        if (token != null && token.isNotEmpty) {
+          AppRoutes.navigateToMainLayoutScreen(context);
+        } else {
+          AppRoutes.navigateToOnboardingOne(context);
+        }
       }
     });
   }
@@ -61,14 +69,11 @@ class _SplashScreenState extends State<SplashScreen>
           builder: (context, child) {
             return Stack(
               children: [
-                // Background color
                 Positioned.fill(
                   child: Container(
                     color: ColorConstants.whiteFF,
                   ),
                 ),
-
-                //  Fourth wave
                 Positioned.fill(
                   child: ClipPath(
                     clipper: FourthWaveClipper(_controller.value,
@@ -78,7 +83,6 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                   ),
                 ),
-                //  Third wave
                 Positioned.fill(
                   child: ClipPath(
                     clipper: ThirdWaveClipper(_controller.value,
@@ -88,8 +92,6 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                   ),
                 ),
-
-                //  Second wave
                 Positioned.fill(
                   child: ClipPath(
                     clipper: SecondWaveClipper(_controller.value,
@@ -99,7 +101,6 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                   ),
                 ),
-                // First wave
                 Positioned.fill(
                   child: ClipPath(
                     clipper: FirstWaveClipper(_controller.value,
@@ -109,7 +110,6 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                   ),
                 ),
-
                 AnimatedOpacity(
                   opacity: _opacity,
                   duration: const Duration(milliseconds: 1300),

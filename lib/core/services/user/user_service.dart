@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cruise_buddy/core/constants/functions/connection/connectivity_checker.dart';
+import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:cruise_buddy/core/model/user_profile_model/user_profile_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
@@ -23,9 +24,16 @@ class UserService {
         return const Left('No internet');
       }
 
-      // Adding the Authorization Bearer token to the headers dynamically
-      _headers['Authorization'] =
-          'Bearer 28|IhezHX5SbP9QfVBEqvHbg4LRdeq0wPxCf33uXLad7c50bf88';
+      // Retrieve the Bearer token from shared preferences
+      final token = await GetSharedPreferences.getAccessToken();
+
+      if (token == null) {
+        print('No access token found.');
+        return const Left('No access token found.');
+      }
+
+      // Add the Authorization Bearer token to the headers dynamically
+      _headers['Authorization'] = 'Bearer $token';
 
       final response = await http.get(
         Uri.parse('$url/user/1'),

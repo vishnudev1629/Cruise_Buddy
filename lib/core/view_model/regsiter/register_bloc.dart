@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:cruise_buddy/core/model/registration_model/registration_model.dart';
 import 'package:cruise_buddy/core/services/auth/auth_services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -28,9 +29,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
             emit(RegisterState.registrationFailure(error: failure));
           }
         }, (success) async {
-          // var accessToken = await SetSharedPreferences.storeAccessToken(
-          //         success.misc.accessToken) ??
-          //     'Access Token empty';
+          await SetSharedPreferences.storeAccessToken(
+            accessToken: success.token.toString(),
+          );
           emit(RegisterState.registrationSuccess(registerModel: success));
         });
       } catch (e) {

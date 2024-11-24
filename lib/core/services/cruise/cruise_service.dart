@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cruise_buddy/core/constants/functions/connection/connectivity_checker.dart';
+import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:cruise_buddy/core/model/cruise_type_model/cruise_type_model.dart';
 import 'package:cruise_buddy/core/model/featured_boats_model/featured_boats_model.dart';
 import 'package:dartz/dartz.dart';
@@ -24,9 +25,16 @@ class CruiseService {
         return const Left('No internet');
       }
 
-      // Adding the Authorization Bearer token to the headers dynamically
-      _headers['Authorization'] =
-          'Bearer 28|IhezHX5SbP9QfVBEqvHbg4LRdeq0wPxCf33uXLad7c50bf88';
+      // Retrieve the Bearer token from shared preferences
+      final token = await GetSharedPreferences.getAccessToken();
+
+      if (token == null) {
+        print('No access token found.');
+        return const Left('No access token found.');
+      }
+
+      // Add the Authorization Bearer token to the headers dynamically
+      _headers['Authorization'] = 'Bearer $token';
 
       final response = await http.get(
         Uri.parse('$url/cruise-type'),
@@ -49,7 +57,7 @@ class CruiseService {
     }
   }
 
- Future<Either<String, FeaturedBoatsModel>> getFeaturedBoats() async {
+  Future<Either<String, FeaturedBoatsModel>> getFeaturedBoats() async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {
@@ -57,12 +65,20 @@ class CruiseService {
         return const Left('No internet');
       }
 
-      // Adding the Authorization Bearer token to the headers dynamically
-      _headers['Authorization'] =
-          'Bearer 28|IhezHX5SbP9QfVBEqvHbg4LRdeq0wPxCf33uXLad7c50bf88';
+      // Retrieve the Bearer token from shared preferences
+      final token = await GetSharedPreferences.getAccessToken();
+
+      if (token == null) {
+        print('No access token found.');
+        return const Left('No access token found.');
+      }
+
+      // Add the Authorization Bearer token to the headers dynamically
+      _headers['Authorization'] = 'Bearer $token';
 
       final response = await http.get(
-        Uri.parse('$url/featured/cruise?include=cruisesImages,packages.bookingTypes&limit=2'),
+        Uri.parse(
+            '$url/featured/cruise?include=cruisesImages,packages.bookingTypes&limit=2'),
         headers: _headers,
       );
 
@@ -81,7 +97,4 @@ class CruiseService {
       return Left('Error: $e'); // Handling other errors
     }
   }
-
-
-
 }

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cruise_buddy/core/model/login_model/login_model.dart';
 import 'package:cruise_buddy/core/services/auth/auth_services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -20,15 +21,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
 
         await result.fold((failure) async {
-           if (failure == "No internet") {
+          if (failure == "No internet") {
             emit(const LoginState.noInternet());
           } else {
             emit(LoginState.loginFailure(error: failure));
           }
         }, (success) async {
-          // var accessToken = await SetSharedPreferences.storeAccessToken(
-          //         success.misc.accessToken) ??
-          //     'Access Token empty';
+          await SetSharedPreferences.storeAccessToken(
+            accessToken: success.token.toString(),
+          );
           emit(LoginState.loginSuccess(loginModel: success));
         });
       } catch (e) {

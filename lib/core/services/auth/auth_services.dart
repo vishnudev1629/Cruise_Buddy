@@ -39,7 +39,7 @@ class AuthServices {
         final data = json.decode(response.body);
 
         final loginModel = LoginModel.fromJson(data);
-        print(loginModel.user?.name);
+       
         return Right(loginModel);
       } else {
         print('data failed ${response.body.toLowerCase()}');
