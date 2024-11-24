@@ -31,6 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String truncateString(String? value, int maxLength) {
+      if (value == null) {
+        return '';
+      }
+      return value.length > maxLength ? value.substring(0, maxLength) : value;
+    }
+
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -85,7 +92,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                           },
                                           getuseruccess: (value) {
                                             return Text(
-                                              "${value.userprofilemodel.data?.name}",
+                                              truncateString(
+                                                  value.userprofilemodel.data
+                                                      ?.name,
+                                                  11),
                                               style:
                                                   TextStyles.ubuntu32blue86w700,
                                             );
