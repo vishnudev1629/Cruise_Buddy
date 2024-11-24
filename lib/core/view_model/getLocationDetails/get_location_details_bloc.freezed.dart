@@ -19,19 +19,19 @@ mixin _$GetLocationDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getLocation,
+    required TResult Function(String? locationName) getLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getLocation,
+    TResult? Function(String? locationName)? getLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getLocation,
+    TResult Function(String? locationName)? getLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getLocation,
+    required TResult Function(String? locationName) getLocation,
   }) {
     return started();
   }
@@ -129,7 +129,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getLocation,
+    TResult? Function(String? locationName)? getLocation,
   }) {
     return started?.call();
   }
@@ -138,7 +138,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getLocation,
+    TResult Function(String? locationName)? getLocation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -188,6 +188,8 @@ abstract class _$$GetLocationImplCopyWith<$Res> {
   factory _$$GetLocationImplCopyWith(
           _$GetLocationImpl value, $Res Function(_$GetLocationImpl) then) =
       __$$GetLocationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? locationName});
 }
 
 /// @nodoc
@@ -200,54 +202,80 @@ class __$$GetLocationImplCopyWithImpl<$Res>
 
   /// Create a copy of GetLocationDetailsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? locationName = freezed,
+  }) {
+    return _then(_$GetLocationImpl(
+      locationName: freezed == locationName
+          ? _value.locationName
+          : locationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetLocationImpl implements _GetLocation {
-  const _$GetLocationImpl();
+  const _$GetLocationImpl({this.locationName});
+
+  @override
+  final String? locationName;
 
   @override
   String toString() {
-    return 'GetLocationDetailsEvent.getLocation()';
+    return 'GetLocationDetailsEvent.getLocation(locationName: $locationName)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetLocationImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$GetLocationImpl &&
+            (identical(other.locationName, locationName) ||
+                other.locationName == locationName));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, locationName);
+
+  /// Create a copy of GetLocationDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetLocationImplCopyWith<_$GetLocationImpl> get copyWith =>
+      __$$GetLocationImplCopyWithImpl<_$GetLocationImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getLocation,
+    required TResult Function(String? locationName) getLocation,
   }) {
-    return getLocation();
+    return getLocation(locationName);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getLocation,
+    TResult? Function(String? locationName)? getLocation,
   }) {
-    return getLocation?.call();
+    return getLocation?.call(locationName);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getLocation,
+    TResult Function(String? locationName)? getLocation,
     required TResult orElse(),
   }) {
     if (getLocation != null) {
-      return getLocation();
+      return getLocation(locationName);
     }
     return orElse();
   }
@@ -285,7 +313,15 @@ class _$GetLocationImpl implements _GetLocation {
 }
 
 abstract class _GetLocation implements GetLocationDetailsEvent {
-  const factory _GetLocation() = _$GetLocationImpl;
+  const factory _GetLocation({final String? locationName}) = _$GetLocationImpl;
+
+  String? get locationName;
+
+  /// Create a copy of GetLocationDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetLocationImplCopyWith<_$GetLocationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

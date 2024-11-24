@@ -1,4 +1,5 @@
 import 'package:cruise_buddy/core/view_model/getCruiseTypes/get_cruise_types_bloc.dart';
+import 'package:cruise_buddy/core/view_model/getLocationDetails/get_location_details_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,7 +8,7 @@ class ApiTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<GetCruiseTypesBloc, GetCruiseTypesState>(
+    return BlocListener<GetLocationDetailsBloc, GetLocationDetailsState>(
       listener: (context, state) {
         state.map(
           initial: (value) {
@@ -16,10 +17,10 @@ class ApiTest extends StatelessWidget {
           loading: (value) {
             print(value);
           },
-          getCruiseTypes: (value) {
+          getLocationDetails: (value) {
             print(value);
           },
-          getCruiseTypesFailure: (value) {
+          getlocationsFailure: (value) {
             print(value);
           },
           noInternet: (value) {
@@ -35,9 +36,8 @@ class ApiTest extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  BlocProvider.of<GetCruiseTypesBloc>(context)
-                      .add(GetCruiseTypesEvent.getCruiseTypes());
-                  //  await CruiseService().getCruiseTypes();
+                  BlocProvider.of<GetLocationDetailsBloc>(context).add(
+                      GetLocationDetailsEvent.getLocation(locationName: 'Kum'));
                 },
                 child: Text("Call Api"),
               ),

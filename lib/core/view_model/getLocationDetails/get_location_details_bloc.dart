@@ -15,7 +15,9 @@ class GetLocationDetailsBloc
       emit(const GetLocationDetailsState.loading());
 
       try {
-        final result = await locationService.getLocationDetails();
+        final result = await locationService.getLocationDetails(
+          locationName: event.locationName,
+        );
 
         await result.fold((failure) async {
           if (failure == "No internet") {

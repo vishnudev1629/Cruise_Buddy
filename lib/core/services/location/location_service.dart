@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:cruise_buddy/core/constants/functions/connection/connectivity_checker.dart';
 import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
@@ -16,43 +17,50 @@ class LocationService {
     // Bearer token will be added dynamically to the headers
   };
 
-  Future<Either<String, LocationModel>> getLocationDetails() async {
+  Future<Either<String, LocationModel>> getLocationDetails(
+      {String? locationName}) async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {
-        print("No internet");
-        return const Left('No internet');
+        print("No internet connection");
+        return const Left('No internet connection');
       }
 
-      // Retrieve the Bearer token from shared preferences
       final token = await GetSharedPreferences.getAccessToken();
-
       if (token == null) {
         print('No access token found.');
         return const Left('No access token found.');
       }
 
-      // Add the Authorization Bearer token to the headers dynamically
+      // Add headers
       _headers['Authorization'] = 'Bearer $token';
+      _headers['CRUISE_AUTH_KEY'] = '29B37-89DFC5E37A525891-FE788E23';
 
-      final response = await http.get(
-        Uri.parse('$url/location'),
-        headers: _headers,
+      // Build URL with query parameter
+      final uri = Uri.parse('$url/location').replace(queryParameters: {
+        'filter[name]': locationName,
+      });
+
+      final response = await http.get(uri, headers: _headers).timeout(
+        Duration(seconds: 10),
+        onTimeout: () {
+          throw TimeoutException('The request timed out.');
+        },
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = json.decode(response.body);
-
-        final locationdetails = LocationModel.fromJson(data);
+        final locationDetails = LocationModel.fromJson(data);
         print(data);
-        return Right(locationdetails);
+        return Right(locationDetails);
       } else {
-        print('Request failed: ${response.body.toLowerCase()}');
-        return Left('Failed to get cruise type: ${response.statusCode}');
+        print('Request failed with status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        return Left('Failed to fetch location details: ${response.statusCode}');
       }
     } catch (e) {
-      print(e);
-      return Left('Error: $e'); // Handling other errors
+      print('Error occurred: $e');
+      return Left('Error: $e');
     }
   }
 }
