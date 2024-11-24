@@ -24,7 +24,7 @@ class AuthServices {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {
         print("No internet");
-        return const Left('No internet connection');
+        return const Left('No internet');
       }
       final response = await http.post(
         Uri.parse('$url/login'),
@@ -51,10 +51,10 @@ class AuthServices {
   }
 
   Future<Either<String, RegistrationModel>> register({
-  required  String name,
-  required  String email,
- required   String password,
- required   String confirmPassword,
+    required String name,
+    required String email,
+    required String password,
+    required String confirmPassword,
   }) async {
     final Uri uri = Uri.parse('$url/register');
 
@@ -76,7 +76,7 @@ class AuthServices {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {
         print("No internet");
-        return const Left('No internet connection');
+        return const Left('No internet');
       }
       // Make the POST request
       final response = await http.post(uri, headers: headers, body: body);

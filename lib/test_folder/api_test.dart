@@ -1,4 +1,6 @@
 import 'package:cruise_buddy/core/services/auth/auth_services.dart';
+import 'package:cruise_buddy/core/services/location/location_service.dart';
+import 'package:cruise_buddy/core/view_model/getLocationDetails/get_location_details_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_bloc.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,7 @@ class ApiTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<GetUserProfileBloc, GetUserProfileState>(
+    return BlocListener<GetLocationDetailsBloc, GetLocationDetailsState>(
       listener: (context, state) {
         state.map(
           initial: (value) {
@@ -18,10 +20,10 @@ class ApiTest extends StatelessWidget {
           loading: (value) {
             print(value);
           },
-          getuseruccess: (value) {
+          getLocationDetails: (value) {
             print(value);
           },
-          getuserFailure: (value) {
+          getlocationsFailure: (value) {
             print(value);
           },
           noInternet: (value) {
@@ -37,9 +39,8 @@ class ApiTest extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  BlocProvider.of<GetUserProfileBloc>(context)
-                      .add(GetUserProfileEvent.getUserProfile());
-                  //     AuthServices().register('name', 'email', 'password');
+                  BlocProvider.of<GetLocationDetailsBloc>(context)
+                      .add(GetLocationDetailsEvent.getLocation());
                 },
                 child: Text("Call Api"),
               ),

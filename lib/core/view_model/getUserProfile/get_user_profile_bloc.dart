@@ -24,9 +24,6 @@ class GetUserProfileBloc
             emit(GetUserProfileState.getuserFailure(error: failure));
           }
         }, (success) async {
-          // var accessToken = await SetSharedPreferences.storeAccessToken(
-          //         success.misc.accessToken) ??
-          //     'Access Token empty';
           emit(GetUserProfileState.getuseruccess(userprofilemodel: success));
         });
       } catch (e) {

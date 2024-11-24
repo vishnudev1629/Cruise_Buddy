@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:cruise_buddy/core/constants/functions/connection/connectivity_checker.dart';
+import 'package:cruise_buddy/core/model/location_model/location_model.dart';
+import 'package:cruise_buddy/core/model/user_profile_model/user_profile_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
-class CruiseService {
+class LocationService {
   final ConnectivityChecker _connectivityChecker = ConnectivityChecker();
 
   final String url = 'https://khaki-cheetah-745520.hostingersite.com/api/v1';
@@ -14,9 +16,7 @@ class CruiseService {
     // Bearer token will be added dynamically to the headers
   };
 
-  Future<Either<String, Map<String, dynamic>>> getCruiseType({
-    required String bearerToken,
-  }) async {
+  Future<Either<String, LocationModel>> getLocationDetails() async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {
@@ -25,21 +25,26 @@ class CruiseService {
       }
 
       // Adding the Authorization Bearer token to the headers dynamically
-      _headers['Authorization'] = 'Bearer $bearerToken';
+      _headers['Authorization'] =
+          'Bearer 28|IhezHX5SbP9QfVBEqvHbg4LRdeq0wPxCf33uXLad7c50bf88';
 
       final response = await http.get(
-        Uri.parse('$url/cruise-type'),
+        Uri.parse('$url/location'),
         headers: _headers,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = json.decode(response.body);
-        return Right(data); // Return the response body as a map if successful
+
+        final locationdetails = LocationModel.fromJson(data);
+        print(data);
+        return Right(locationdetails);
       } else {
         print('Request failed: ${response.body.toLowerCase()}');
         return Left('Failed to get cruise type: ${response.statusCode}');
       }
     } catch (e) {
+      print(e);
       return Left('Error: $e'); // Handling other errors
     }
   }

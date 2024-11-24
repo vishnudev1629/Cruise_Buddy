@@ -1,5 +1,8 @@
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:cruise_buddy/core/view_model/getLocationDetails/get_location_details_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 List<ExploreDestinationmodel> exploreDestination = [
   const ExploreDestinationmodel(
@@ -66,7 +69,10 @@ class _ExploreDestinationWidgetState extends State<ExploreDestinationWidget> {
   @override
   void initState() {
     super.initState();
-
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      BlocProvider.of<GetLocationDetailsBloc>(context)
+          .add(GetLocationDetailsEvent.getLocation());
+    });
     _scales = List.generate(exploreDestination.length, (index) => 1.0);
   }
 
@@ -88,8 +94,7 @@ class _ExploreDestinationWidgetState extends State<ExploreDestinationWidget> {
     });
   }
 
-
- // Handle the tap without parameters for `onTap`
+  // Handle the tap without parameters for `onTap`
   void handleTap(int index) {
     onTapDown(index, TapDownDetails()); // Handle tap down with no details
     // You can reset the scale after a delay if needed
@@ -99,52 +104,221 @@ class _ExploreDestinationWidgetState extends State<ExploreDestinationWidget> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: exploreDestination.length,
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 15,
-        crossAxisSpacing: 15,
-        childAspectRatio: widget.itemWidth / widget.itemHeight,
-      ),
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTapDown: (details) => onTapDown(index, details),
-          onTapUp: (details) => onTapUp(index, details),
-          onTap: () => handleTap(index),
-          onTapCancel: () => onTapCancel(index),
-          child: AnimatedScale(
-            scale: _scales[index],
-            duration: const Duration(milliseconds: 150),
-            curve: Curves.easeInOut,
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    'assets/image/onboarding_img/onboarding_one.png',
-                    fit: BoxFit.cover,
+    return BlocBuilder<GetLocationDetailsBloc, GetLocationDetailsState>(
+      builder: (context, state) {
+        return state.map(
+          initial: (value) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.wifi_off,
+                    size: 80,
+                    color: Colors.redAccent,
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "No internet",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Please check your internet settings and try again.",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add your retry logic here
+                    },
+                    child: Text("Retry"),
+                  ),
+                ],
+              ),
+            );
+          },
+          loading: (value) {
+            return GridView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: 2,
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 15,
+                crossAxisSpacing: 15,
+                childAspectRatio: widget.itemWidth / widget.itemHeight,
+              ),
+              itemBuilder: (context, index) {
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     width: widget.itemWidth,
                     height: widget.itemHeight,
                   ),
-                ),
-                Positioned(
-                  bottom: 10,
-                  left: 0,
-                  right: 0,
-                  child: Text(
-                    "Alleppey",
-                    style: TextStyles.ubuntu16whiteE2w2500,
+                );
+              },
+            );
+          },
+          getLocationDetails: (value) {
+            return GridView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: value.locationmodel.data?.length,
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 15,
+                crossAxisSpacing: 15,
+                childAspectRatio: widget.itemWidth / widget.itemHeight,
+              ),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTapDown: (details) => onTapDown(index, details),
+                  onTapUp: (details) => onTapUp(index, details),
+                  onTap: () => handleTap(index),
+                  onTapCancel: () => onTapCancel(index),
+                  child: AnimatedScale(
+                    scale: _scales[index],
+                    duration: const Duration(milliseconds: 150),
+                    curve: Curves.easeInOut,
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            'assets/image/onboarding_img/onboarding_one.png',
+                            fit: BoxFit.cover,
+                            width: widget.itemWidth,
+                            height: widget.itemHeight,
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 10,
+                          left: 0,
+                          right: 0,
+                          child: Text(
+                            "${value.locationmodel.data?[index].name}",
+                            style: TextStyles.ubuntu16whiteE2w2500,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+          getlocationsFailure: (value) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.error_outline,
+                    size: 80,
+                    color: Colors.redAccent,
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Something Went Wrong!",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "We encountered an error while loading the data.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey[600],
+                    ),
                     textAlign: TextAlign.center,
                   ),
-                ),
-              ],
-            ),
-          ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Error: ${value.error}",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.redAccent,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      // Add your retry logic here
+                    },
+                    icon: Icon(Icons.refresh),
+                    label: Text("Retry"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+          noInternet: (value) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.wifi_off,
+                    size: 80,
+                    color: Colors.redAccent,
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "No internet",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Please check your internet settings and try again.",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add your retry logic here
+                    },
+                    child: Text("Retry"),
+                  ),
+                ],
+              ),
+            );
+          },
         );
       },
     );

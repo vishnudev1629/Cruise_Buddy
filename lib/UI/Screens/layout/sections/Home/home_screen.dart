@@ -73,14 +73,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                             return SizedBox.shrink();
                                           },
                                           loading: (value) {
-                                          return Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Text(
-            "Loading...", // Placeholder text
-            style: TextStyles.ubuntu32blue86w700,
-          ),
-        );
+                                            return Shimmer.fromColors(
+                                              baseColor: Colors.grey[300]!,
+                                              highlightColor: Colors.grey[100]!,
+                                              child: Text(
+                                                "Loading...", // Placeholder text
+                                                style: TextStyles
+                                                    .ubuntu32blue86w700,
+                                              ),
+                                            );
                                           },
                                           getuseruccess: (value) {
                                             return Text(

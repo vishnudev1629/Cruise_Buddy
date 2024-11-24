@@ -20,7 +20,7 @@ class UserService {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {
         print("No internet");
-        return const Left('No internet connection');
+        return const Left('No internet');
       }
 
       // Adding the Authorization Bearer token to the headers dynamically
