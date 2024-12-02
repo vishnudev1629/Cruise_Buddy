@@ -562,204 +562,237 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
             );
           },
           getFeaturedBoats: (value) {
-            return SizedBox(
-              height: 300,
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: value.featuredBoats.data?.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      left: index == 0 ? 30 : 10,
-                    ),
-                    child: GestureDetector(
-                      onTapDown: (details) => onTapDown(index, details),
-                      onTapUp: (details) => onTapUp(index, details),
-                      onTapCancel: () => onTapCancel(index),
-                      onTap: () => handleTap(index),
-                      child: AnimatedScale(
-                        scale: _scales[index],
-                        duration: const Duration(milliseconds: 150),
-                        curve: Curves.easeInOut,
-                        child: Container(
-                          width: 240,
-                          height: 300,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(13),
-                            border: Border.all(
-                              color: const Color(0xFFE2E2E2),
-                              width: 1.5,
-                            ),
+            return value.featuredBoats.data?.isEmpty ?? true
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 20),
+                        Icon(
+                          Icons.directions_boat,
+                          size: 60,
+                          color: Colors.grey[400],
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "No Featured Boats Available",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey[600],
                           ),
-                          child: Stack(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 100,
-                                    child: Stack(
+                        ),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  )
+                : SizedBox(
+                    height: 300,
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: value.featuredBoats.data?.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            left: index == 0 ? 30 : 10,
+                          ),
+                          child: GestureDetector(
+                            onTapDown: (details) => onTapDown(index, details),
+                            onTapUp: (details) => onTapUp(index, details),
+                            onTapCancel: () => onTapCancel(index),
+                            onTap: () => handleTap(index),
+                            child: AnimatedScale(
+                              scale: _scales[index],
+                              duration: const Duration(milliseconds: 150),
+                              curve: Curves.easeInOut,
+                              child: Container(
+                                width: 240,
+                                height: 300,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(13),
+                                  border: Border.all(
+                                    color: const Color(0xFFE2E2E2),
+                                    width: 1.5,
+                                  ),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        ClipRRect(
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(13),
-                                            topRight: Radius.circular(13),
-                                          ),
-                                          child: Image.asset(
-                                            "assets/image/onboarding_img/onboarding_one.png",
-                                            width: double.infinity,
-                                            height: 100,
-                                            fit: BoxFit.cover,
+                                        SizedBox(
+                                          height: 100,
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                ),
+                                                child: Image.asset(
+                                                  "assets/image/onboarding_img/onboarding_one.png",
+                                                  width: double.infinity,
+                                                  height: 100,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                top: 60,
+                                                right: 8,
+                                                child: Container(
+                                                  width: 68,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            24),
+                                                  ),
+                                                  child: Row(
+                                                    children: [
+                                                      const SizedBox(width: 10),
+                                                      const Icon(
+                                                        Icons.star,
+                                                        color: Colors.amber,
+                                                        size: 24,
+                                                      ),
+                                                      const Text("4.3"),
+                                                      const SizedBox(width: 10),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        Positioned(
-                                          top: 60,
-                                          right: 8,
-                                          child: Container(
-                                            width: 68,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(24),
-                                            ),
-                                            child: Row(
+                                        Container(
+                                          color: const Color.fromARGB(
+                                              0, 255, 214, 64),
+                                          height: 195,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 12),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
-                                                const SizedBox(width: 10),
-                                                const Icon(
-                                                  Icons.star,
-                                                  color: Colors.amber,
-                                                  size: 24,
+                                                const SizedBox(height: 10),
+                                                Row(
+                                                  children: [
+                                                    PillWidget(
+                                                      image:
+                                                          'assets/icons/wifi.svg',
+                                                      text: 'Wifi',
+                                                    ),
+                                                    const SizedBox(width: 5),
+                                                    PillWidget(
+                                                      image:
+                                                          'assets/icons/heater.svg',
+                                                      text: 'Heater',
+                                                    ),
+                                                  ],
                                                 ),
-                                                const Text("4.3"),
-                                                const SizedBox(width: 10),
+                                                Text(
+                                                  value
+                                                                  .featuredBoats
+                                                                  .data?[index]
+                                                                  .description !=
+                                                              null &&
+                                                          value
+                                                                  .featuredBoats
+                                                                  .data![index]
+                                                                  .description!
+                                                                  .length >
+                                                              34
+                                                      ? "${value.featuredBoats.data?[index].description!.substring(0, 34)}..."
+                                                      : "${value.featuredBoats.data?[index].description}",
+                                                  style: TextStyles
+                                                      .ubuntu16black15w500,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "₹5000",
+                                                      style: TextStyles
+                                                          .ubuntu18bluew700,
+                                                    ),
+                                                    const Spacer(),
+                                                  ],
+                                                ),
                                               ],
                                             ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  Container(
-                                    color:
-                                        const Color.fromARGB(0, 255, 214, 64),
-                                    height: 195,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 12),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(height: 10),
-                                          Row(
-                                            children: [
-                                              PillWidget(
-                                                image: 'assets/icons/wifi.svg',
-                                                text: 'Wifi',
+                                    // Positioned items
+                                    Positioned(
+                                      top: 8,
+                                      right: 8,
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(5.0),
+                                              child: Icon(
+                                                Icons.favorite,
+                                                color: Color(0XFF4FC2C5),
+                                                size: 20,
                                               ),
-                                              const SizedBox(width: 5),
-                                              PillWidget(
-                                                image:
-                                                    'assets/icons/heater.svg',
-                                                text: 'Heater',
-                                              ),
-                                            ],
+                                            ),
                                           ),
-                                          Text(
-                                            value.featuredBoats.data?[index]
-                                                            .description !=
-                                                        null &&
-                                                    value
-                                                            .featuredBoats
-                                                            .data![index]
-                                                            .description!
-                                                            .length >
-                                                        34
-                                                ? "${value.featuredBoats.data?[index].description!.substring(0, 34)}..."
-                                                : "${value.featuredBoats.data?[index].description}",
-                                            style:
-                                                TextStyles.ubuntu16black15w500,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "₹5000",
-                                                style:
-                                                    TextStyles.ubuntu18bluew700,
-                                              ),
-                                              const Spacer(),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              // Positioned items
-                              Positioned(
-                                top: 8,
-                                right: 8,
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(25),
-                                      ),
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(5.0),
-                                        child: Icon(
-                                          Icons.favorite,
-                                          color: Color(0XFF4FC2C5),
-                                          size: 20,
                                         ),
                                       ),
                                     ),
-                                  ),
+                                    Positioned(
+                                      bottom: 35,
+                                      right: 8,
+                                      child: SizedBox(
+                                        height: 45,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            // Your book now logic
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                const Color(0XFF1F8386),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 16,
+                                              vertical: 12,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            "Book Now",
+                                            style:
+                                                TextStyles.ubuntu12whiteFFw400,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
-                              Positioned(
-                                bottom: 35,
-                                right: 8,
-                                child: SizedBox(
-                                  height: 45,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      // Your book now logic
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0XFF1F8386),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 12,
-                                      ),
-                                    ),
-                                    child: Text(
-                                      "Book Now",
-                                      style: TextStyles.ubuntu12whiteFFw400,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                   );
-                },
-              ),
-            );
           },
           getFeaturedBoatsFailure: (value) {
             return CircularProgressIndicator();
