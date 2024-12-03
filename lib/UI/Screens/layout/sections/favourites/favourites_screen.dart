@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'package:cruise_buddy/UI/Screens/layout/sections/boats/widgets/featured_boats_container.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   @override
   void initState() {
     super.initState();
-    int itemCount = 10; 
+    int itemCount = 10;
     isFavoriteList = List.generate(itemCount, (index) => true);
     _scales = List.generate(itemCount, (index) => 1.0);
   }
@@ -228,7 +227,13 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 22.0),
+              child: Text("Favorites", style: TextStyles.ubuntu16black23w700),
+            ),
+            SizedBox(height: 8),
             if (showUndoSection)
               Card(
                 margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 18),
@@ -245,7 +250,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                   trailing: TextButton(
                     onPressed: _undoLastRemoval,
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: () {},
                       child: const Text(
                         "UNDO",
                         style: TextStyle(color: Colors.blue),
