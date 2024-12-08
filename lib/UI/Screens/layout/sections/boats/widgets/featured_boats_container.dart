@@ -633,8 +633,8 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                   topLeft: Radius.circular(13),
                                                   topRight: Radius.circular(13),
                                                 ),
-                                                child: Image.asset(
-                                                  "assets/image/onboarding_img/onboarding_one.png",
+                                                child: Image.network(
+                                                  "${value.featuredBoats.data?[index].cruisesImages?[0].cruiseImg}",
                                                   width: double.infinity,
                                                   height: 100,
                                                   fit: BoxFit.cover,
@@ -700,16 +700,16 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                   value
                                                                   .featuredBoats
                                                                   .data?[index]
-                                                                  .description !=
+                                                                  .name !=
                                                               null &&
                                                           value
                                                                   .featuredBoats
                                                                   .data![index]
-                                                                  .description!
+                                                                  .name!
                                                                   .length >
                                                               34
-                                                      ? "${value.featuredBoats.data?[index].description!.substring(0, 34)}..."
-                                                      : "${value.featuredBoats.data?[index].description}",
+                                                      ? "${value.featuredBoats.data?[index].name!.substring(0, 34)}..."
+                                                      : "${value.featuredBoats.data?[index].name}",
                                                   style: TextStyles
                                                       .ubuntu16black15w500,
                                                 ),
