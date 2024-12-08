@@ -201,8 +201,8 @@ class _ExploreDestinationWidgetState extends State<ExploreDestinationWidget> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'assets/image/onboarding_img/onboarding_one.png',
+                          child: Image.network(
+                            '${value.locationmodel.data?[index].thumbnail}',
                             fit: BoxFit.cover,
                             width: widget.itemWidth,
                             height: widget.itemHeight,
