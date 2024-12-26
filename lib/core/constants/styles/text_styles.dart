@@ -116,9 +116,19 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: const Color(0xFF555555),
   );
+   static final TextStyle ubuntu14black00w500 = ubuntu.copyWith(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: const Color(0xff000000),
+  );
   static final TextStyle ubuntu16black23w500 = ubuntu.copyWith(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     color: const Color(0xFF191D23),
+  );
+  static final TextStyle ubuntu20black15w600 = ubuntu.copyWith(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: const Color(0xFF131515),
   );
 }
