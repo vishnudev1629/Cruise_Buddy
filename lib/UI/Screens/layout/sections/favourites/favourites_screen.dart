@@ -4,6 +4,7 @@ import 'package:cruise_buddy/core/view_model/getFavouritesList/get_favourites_li
 import 'package:flutter/material.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({super.key});
@@ -37,9 +38,29 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             BlocBuilder<GetFavouritesListBloc, GetFavouritesListState>(
               builder: (context, state) {
                 return state.map(initial: (value) {
-                  return CircularProgressIndicator();
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      top: 100,
+                    ),
+                    child: Center(
+                      child: SpinKitWave(
+                        color: Colors.blue,
+                        size: 50.0,
+                      ),
+                    ),
+                  );
                 }, loading: (value) {
-                  return CircularProgressIndicator();
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      top: 100,
+                    ),
+                    child: Center(
+                      child: SpinKitWave(
+                        color: Colors.blue,
+                        size: 50.0,
+                      ),
+                    ),
+                  );
                 }, getfavouritesBoats: (value) {
                   return Expanded(
                     child: ListView.builder(
