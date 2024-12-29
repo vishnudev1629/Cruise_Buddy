@@ -1,4 +1,6 @@
+import 'package:cruise_buddy/core/services/favourites/favourites_service.dart';
 import 'package:cruise_buddy/core/view_model/getCruiseTypes/get_cruise_types_bloc.dart';
+import 'package:cruise_buddy/core/view_model/getFavouritesList/get_favourites_list_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getLocationDetails/get_location_details_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +10,7 @@ class ApiTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<GetLocationDetailsBloc, GetLocationDetailsState>(
+    return BlocListener<GetFavouritesListBloc, GetFavouritesListState>(
       listener: (context, state) {
         state.map(
           initial: (value) {
@@ -17,10 +19,10 @@ class ApiTest extends StatelessWidget {
           loading: (value) {
             print(value);
           },
-          getLocationDetails: (value) {
+          getfavouritesBoats: (value) {
             print(value);
           },
-          getlocationsFailure: (value) {
+          getfavouritesFailure: (value) {
             print(value);
           },
           noInternet: (value) {
@@ -36,8 +38,9 @@ class ApiTest extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  BlocProvider.of<GetLocationDetailsBloc>(context).add(
-                      GetLocationDetailsEvent.getLocation(locationName: 'Kum'));
+                  BlocProvider.of<GetFavouritesListBloc>(context)
+                      .add(GetFavouritesListEvent.getFavouriteboats());
+                  //  await FavouritesService().getLocationDetails();
                 },
                 child: Text("Call Api"),
               ),

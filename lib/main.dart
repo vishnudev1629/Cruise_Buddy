@@ -1,10 +1,12 @@
 import 'package:cruise_buddy/UI/Screens/Splash/splash_screen.dart';
 import 'package:cruise_buddy/core/view_model/getCruiseTypes/get_cruise_types_bloc.dart';
+import 'package:cruise_buddy/core/view_model/getFavouritesList/get_favourites_list_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getLocationDetails/get_location_details_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_bloc.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
 import 'package:cruise_buddy/core/view_model/regsiter/register_bloc.dart';
+import 'package:cruise_buddy/test_folder/api_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,6 +42,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => GetCruiseTypesBloc(),
         ),
+        BlocProvider(
+          create: (context) => GetFavouritesListBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -50,7 +55,8 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: SplashScreen(),
+         home: SplashScreen(),
+      //  home: ApiTest(),
       ),
     );
   }
