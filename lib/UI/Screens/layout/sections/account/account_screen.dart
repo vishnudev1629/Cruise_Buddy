@@ -1,9 +1,36 @@
-import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
+
+  @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
+  bool isEditing = false;
+  TextEditingController nameController =
+      TextEditingController(text: 'Rohan Jacob');
+  TextEditingController emailController =
+      TextEditingController(text: 'rohanjacob123@gmail.com');
+  TextEditingController phoneController =
+      TextEditingController(text: '+91 9826 727 916');
+
+  XFile? _pickedImage;
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        _pickedImage = image;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +39,20 @@ class AccountScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text('Profile', style: TextStyles.ubuntu20black15w700),
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+        title: const Text('Profile',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        actions: [
+          if (isEditing)
+            IconButton(
+              icon: const Icon(Icons.check, color: Colors.teal),
+              onPressed: () {
+                setState(() {
+                  isEditing = false;
+                });
+              },
+            ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -21,78 +61,119 @@ class AccountScreen extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              CustomPaint(
-                size: const Size(120, 120),
-                painter: DottedBorderPainter(),
-              ),
+              if (!isEditing) ...[
+                CustomPaint(
+                  size: const Size(120, 120),
+                  painter: DottedBorderPainter(),
+                ),
+              ],
               CircleAvatar(
                 radius: 50,
                 backgroundColor: Colors.transparent,
-                child: ClipOval(
-                  child: SvgPicture.asset(
-                    'assets/bottomNav/profile.svg',
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                backgroundImage: _pickedImage != null
+                    ? FileImage(File(_pickedImage!.path))
+                    : null,
+                child: _pickedImage == null
+                    ? ClipOval(
+                        child: SvgPicture.asset(
+                          'assets/bottomNav/profile.svg',
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : null,
               ),
               Positioned(
                 bottom: 0,
                 right: 5,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    if (isEditing) {
+                      _pickImage();
+                    } else {
+                      setState(() {
+                        isEditing = !isEditing;
+                      });
+                    }
+                  },
                   child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        shape: BoxShape.circle,
-                      ),
-                      padding: const EdgeInsets.all(4),
-                      child: SvgPicture.asset(
-                          'assets/image/profile/profile_pic_edit.svg')),
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
+                    padding: const EdgeInsets.all(4),
+                    child: isEditing
+                        ? SvgPicture.asset(
+                            'assets/image/profile/profile_pic_edit.svg')
+                        : SvgPicture.asset(
+                            'assets/image/profile/profile_pic_edit.svg'),
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 20),
-          Text('Rohan Jacob', style: TextStyles.ubuntu20black15w700),
-          const SizedBox(height: 5),
-          Text('rohanjacob123@gmail.com',
-              style: TextStyles.ubuntu14black55w400),
-          const SizedBox(height: 5),
-          Text('+91 9826 727 916', style: TextStyles.ubuntu14black55w400),
+          if (isEditing) ...[
+            _buildEditableField(nameController),
+            _buildEditableField(emailController),
+            _buildEditableField(phoneController),
+          ] else ...[
+            Text(nameController.text,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 5),
+            Text(emailController.text,
+                style: const TextStyle(fontSize: 14, color: Colors.black54)),
+            const SizedBox(height: 5),
+            Text(phoneController.text,
+                style: const TextStyle(fontSize: 14, color: Colors.black54)),
+          ],
           const SizedBox(height: 30),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
-                buildListTile(
-                  leadingIconPath: 'assets/image/profile/payment method.svg',
-                  title: 'Payment Methods',
+                ListTile(
+                  leading: SvgPicture.asset(
+                    'assets/image/profile/payment_method.svg',
+                  ),
+                  title: const Text('Payment Methods'),
+                  trailing: SvgPicture.asset(
+                    'assets/image/profile/arrow_right.svg',
+                  ),
                   onTap: () {},
                 ),
-                const Divider(
-                  thickness: 0,
-                ),
-                buildListTile(
-                  leadingIconPath: 'assets/image/profile/change password.svg',
-                  title: 'Change Password',
+                const Divider(),
+                ListTile(
+                  leading: SvgPicture.asset(
+                    'assets/image/profile/change_password.svg',
+                  ),
+                  title: const Text('Change Password'),
+                  trailing: SvgPicture.asset(
+                    'assets/image/profile/arrow_right.svg',
+                  ),
                   onTap: () {},
                 ),
-                const Divider(
-                  thickness: 0,
-                ),
-                buildListTile(
-                  leadingIconPath:
-                      'assets/image/profile/privacy and policy.svg',
-                  title: 'Privacy Policy',
+                const Divider(),
+                ListTile(
+                  leading: SvgPicture.asset(
+                    'assets/image/profile/privacy_policy.svg',
+                  ),
+                  title: const Text('Privacy Policy'),
+                  trailing: SvgPicture.asset(
+                    'assets/image/profile/arrow_right.svg',
+                  ),
                   onTap: () {},
                 ),
-                const Divider(
-                  thickness: 0,
-                ),
-                buildListTile(
-                  leadingIconPath: 'assets/image/profile/logout (2).svg',
-                  title: 'Logout',
-                  titleStyle: TextStyles.ubuntu16blue86w500,
+                const Divider(),
+                ListTile(
+                  leading: SvgPicture.asset(
+                    'assets/image/profile/logout.svg',
+                  ),
+                  title: const Text('Logout',
+                      style: TextStyle(color: Color(0xff1F8386))),
+                  trailing: SvgPicture.asset(
+                    'assets/image/profile/arrow_right.svg',
+                  ),
                   onTap: () {},
                 ),
               ],
@@ -103,33 +184,34 @@ class AccountScreen extends StatelessWidget {
     );
   }
 
-  Widget buildListTile({
-    required String leadingIconPath,
-    required String title,
-    required VoidCallback onTap,
-    TextStyle? titleStyle,
-  }) {
-    return ListTile(
-      leading: SvgPicture.asset(
-        leadingIconPath,
-        width: 24,
-        height: 24,
-      ),
-      title: Text(
-        title,
-        style: titleStyle ??
-            const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: Colors.black,
+  Widget _buildEditableField(TextEditingController controller) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: TextField(
+          controller: controller,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25))),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+              borderSide: BorderSide(
+                color: Color(0xff555555),
+                width: 2.0,
+              ),
             ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+              borderSide: BorderSide(
+                color: Color(0xffE2E2E2),
+                width: 1.0,
+              ),
+            ),
+            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+          ),
+        ),
       ),
-      trailing: SvgPicture.asset(
-        'assets/image/profile/arrow_right.svg',
-        width: 16,
-        height: 16,
-      ),
-      onTap: onTap,
     );
   }
 }
