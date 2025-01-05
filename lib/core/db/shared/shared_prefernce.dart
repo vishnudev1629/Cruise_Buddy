@@ -13,3 +13,10 @@ class GetSharedPreferences {
     return prefs.getString('accessToken');
   }
 }
+
+class RemoveSharedPreferences {
+  static Future<void> removeAccessToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('accessToken');
+  }
+}

@@ -1,8 +1,10 @@
-
 import 'dart:io';
+import 'package:cruise_buddy/UI/Screens/Auth/login_screens.dart';
+import 'package:cruise_buddy/core/services/auth/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -174,7 +176,18 @@ class _AccountScreenState extends State<AccountScreen> {
                   trailing: SvgPicture.asset(
                     'assets/image/profile/arrow_right.svg',
                   ),
-                  onTap: () {},
+                  onTap: () async {
+                    await AuthServices().logout();
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    await prefs.remove('accessToken');
+
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      (route) => false,
+                    );
+                  },
                 ),
               ],
             ),

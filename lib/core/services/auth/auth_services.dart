@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cruise_buddy/core/constants/functions/connection/connectivity_checker.dart';
+import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:cruise_buddy/core/model/login_model/login_model.dart';
 import 'package:cruise_buddy/core/model/registration_model/registration_model.dart';
 import 'package:http/http.dart' as http;
@@ -39,7 +40,7 @@ class AuthServices {
         final data = json.decode(response.body);
 
         final loginModel = LoginModel.fromJson(data);
-       
+
         return Right(loginModel);
       } else {
         print('data failed ${response.body.toLowerCase()}');
@@ -98,6 +99,36 @@ class AuthServices {
       print('${e.toString()}');
       // Handle any other errors (e.g., network error)
       return Left('Request failed: $e');
+    }
+  }
+
+  Future<Either<int, int>> logout() async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        return const Left(0);
+      }
+      final token = await GetSharedPreferences.getAccessToken();
+      if (token == null) {
+        return const Left(0);
+      }
+
+      final response = await http.post(
+        Uri.parse(
+            'https://khaki-cheetah-745520.hostingersite.com/api/v1/logout'),
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
+
+      if (response.statusCode == 201 || response.statusCode == 200) {
+      
+        return Right(1);
+      } else {
+        return Left(0);
+      }
+    } catch (e) {
+      return Left(0);
     }
   }
 }
