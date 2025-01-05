@@ -18,7 +18,7 @@ class FavouritesService {
     // Bearer token will be added dynamically to the headers
   };
 
-  Future<Either<String, FavouritesListModel>> getLocationDetails(
+  Future<Either<String, FavouritesListModel>> getFavouriteDetails(
       {String? locationName}) async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
@@ -27,8 +27,8 @@ class FavouritesService {
         return const Left('No internet connection');
       }
 
-      // final token = await GetSharedPreferences.getAccessToken();
-      final token = "15|KJVmwnTaGTxYltLdGlmobtxM8IkSM6pHZaunTW7Ibbfa13e8";
+       final token = await GetSharedPreferences.getAccessToken();
+     
       if (token == null) {
         print('No access token found.');
         return const Left('No access token found.');

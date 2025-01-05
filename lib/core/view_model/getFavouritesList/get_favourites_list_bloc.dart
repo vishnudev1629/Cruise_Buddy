@@ -16,7 +16,7 @@ class GetFavouritesListBloc
       emit(const GetFavouritesListState.loading());
 
       try {
-        final result = await favouritesService.getLocationDetails();
+        final result = await favouritesService.getFavouriteDetails();
 
         await result.fold((failure) async {
           if (failure == "No internet") {
