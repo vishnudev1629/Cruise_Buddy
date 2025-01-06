@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:cruise_buddy/UI/Screens/layout/sections/boats/widgets/featured_boats_container.dart';
 import 'package:cruise_buddy/core/view_model/getFavouritesList/get_favourites_list_bloc.dart';
 import 'package:flutter/material.dart';
@@ -26,15 +25,14 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+        title: Text("Favorites", style: TextStyles.ubuntu32black15w700),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 22.0),
-              child: Text("Favorites", style: TextStyles.ubuntu16black23w700),
-            ),
-            SizedBox(height: 8),
             BlocBuilder<GetFavouritesListBloc, GetFavouritesListState>(
               builder: (context, state) {
                 return state.map(initial: (value) {

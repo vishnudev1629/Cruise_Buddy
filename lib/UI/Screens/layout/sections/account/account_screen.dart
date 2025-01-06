@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cruise_buddy/UI/Screens/Auth/login_screens.dart';
+import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/core/services/auth/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -42,8 +43,7 @@ class _AccountScreenState extends State<AccountScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
-        title: const Text('Profile',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        title: Text('Profile', style: TextStyles.ubuntu32black15w700),
         actions: [
           if (isEditing)
             IconButton(
