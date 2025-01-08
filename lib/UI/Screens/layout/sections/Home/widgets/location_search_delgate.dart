@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:async';
 
-
 class LocationSearchDelegate extends StatefulWidget {
   const LocationSearchDelegate({super.key});
 
@@ -65,7 +64,9 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
           children: [
             const SizedBox(height: 10),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
               icon: Icon(Icons.arrow_back_ios_new_sharp),
             ),
             const SizedBox(height: 10),
