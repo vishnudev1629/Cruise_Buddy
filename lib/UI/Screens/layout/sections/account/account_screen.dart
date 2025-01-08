@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cruise_buddy/UI/Screens/Auth/login_screens.dart';
+import 'package:cruise_buddy/UI/Screens/misc/privacy_policy.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/core/services/auth/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -164,7 +165,16 @@ class _AccountScreenState extends State<AccountScreen> {
                   trailing: SvgPicture.asset(
                     'assets/image/profile/arrow_right.svg',
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return PrivacyPolicyScreen();
+                        },
+                      ),
+                    );
+                  },
                 ),
                 const Divider(),
                 ListTile(
