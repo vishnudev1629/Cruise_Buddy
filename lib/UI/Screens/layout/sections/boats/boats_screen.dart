@@ -633,46 +633,37 @@ class _BoatsScreenState extends State<BoatsScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-        title: Text('My Booking', style: TextStyles.ubuntu32black15w700),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 15),
-              Text('Upcoming Bookings', style: TextStyles.ubuntu20black15w600),
-              const SizedBox(height: 7),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(
-                    10,
-                    (index) => _buildUpcomingBookingCard(index, width),
-                  ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 15),
+            Text('Upcoming Bookings', style: TextStyles.ubuntu20black15w600),
+            const SizedBox(height: 7),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  10,
+                  (index) => _buildUpcomingBookingCard(index, width),
                 ),
               ),
-              const SizedBox(height: 15),
-              Text('Past Bookings', style: TextStyles.ubuntu20black15w600),
-              const SizedBox(height: 7),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(
-                    10,
-                    (index) => _buildPastBookingCard(index, width),
-                  ),
+            ),
+            const SizedBox(height: 15),
+            Text('Past Bookings', style: TextStyles.ubuntu20black15w600),
+            const SizedBox(height: 7),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  10,
+                  (index) => _buildPastBookingCard(index, width),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
