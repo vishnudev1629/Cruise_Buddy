@@ -17,8 +17,12 @@ class LocationService {
     // Bearer token will be added dynamically to the headers
   };
 
-  Future<Either<String, LocationModel>> getLocationDetails(
-      {String? locationName}) async {
+  Future<Either<String, LocationModel>> getLocationDetails({
+    String? locationName,
+    String? dateRangeStart,
+    String? dateRangeEnd,
+    String? include,
+  }) async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {
@@ -32,14 +36,18 @@ class LocationService {
         return const Left('No access token found.');
       }
 
-      // Add headers
       _headers['Authorization'] = 'Bearer $token';
       _headers['CRUISE_AUTH_KEY'] = '29B37-89DFC5E37A525891-FE788E23';
 
-      // Build URL with query parameter
-      final uri = Uri.parse('$url/location').replace(queryParameters: {
-        'filter[name]': locationName,
-      });
+      final queryParams = {
+        if (locationName != null) 'filter[name]': locationName,
+        if (dateRangeStart != null) 'filter[dateRange][start]': dateRangeStart,
+        if (dateRangeEnd != null) 'filter[dateRange][end]': dateRangeEnd,
+        if (include != null) 'include': include,
+      };
+
+      final uri =
+          Uri.parse('$url/location').replace(queryParameters: queryParams);
 
       final response = await http.get(uri, headers: _headers).timeout(
         Duration(seconds: 10),

@@ -1,13 +1,12 @@
-
-
-
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/test_folder/ui_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SearchResultsContainer extends StatelessWidget {
+  final String cruisename;
   const SearchResultsContainer({
+    this.cruisename = "Kerala’s Heritage Haven – Traditional Kerala Décor",
     super.key,
   });
 
@@ -108,7 +107,7 @@ class SearchResultsContainer extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  "Kerala’s Heritage Haven – Traditional Kerala Décor",
+                  cruisename,
                   style: TextStyles.ubuntu16black15w500,
                 ),
                 Row(
@@ -146,8 +145,6 @@ class SearchResultsContainer extends StatelessWidget {
     );
   }
 }
-
-
 
 class PillWidget extends StatelessWidget {
   final String image;
