@@ -89,4 +89,6 @@ flutter:
     - assets/home/
     - assets/icons/
     - assets/image/profile/
+    - assets/image/boat_details_img/
+    - assets/image/payment_screen/
   
