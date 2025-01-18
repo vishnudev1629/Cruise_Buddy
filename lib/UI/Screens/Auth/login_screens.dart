@@ -211,17 +211,43 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  Center(
-                    child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(255, 201, 201, 201)),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset("assets/Google.png"),
-                        )),
+                  BlocBuilder<LoginBloc, LoginState>(
+                    builder: (context, state) {
+                      return state.map(initial: (_) {
+                        return Center(
+                          child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: const Color.fromARGB(
+                                        255, 201, 201, 201)),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset("assets/Google.png"),
+                              )),
+                        );
+                      }, loading: (_) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }, loginSuccess: (_) {
+                        return SizedBox(
+                          height: 10,
+                          width: 10,
+                        );
+                      }, loginFailure: (_) {
+                        return SizedBox(
+                          height: 10,
+                          width: 10,
+                        );
+                      }, noInternet: (_) {
+                        return SizedBox(
+                          height: 10,
+                          width: 10,
+                        );
+                      });
+                    },
                   ),
                   const SizedBox(height: 20),
                   Row(
