@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               baseColor: Colors.grey[300]!,
                                               highlightColor: Colors.grey[100]!,
                                               child: Text(
-                                                "Loading...", // Placeholder text
+                                                "Loading...", 
                                                 style: TextStyles
                                                     .ubuntu32blue86w700,
                                               ),
@@ -127,34 +127,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Positioned(
-                    left: 20, // Padding on the left
-                    right: 20, // Padding on the right
-                    top: 180, // Position from the top
+                    left: 20, 
+                    right: 20,
+                    top: 180, 
                     child: LayoutBuilder(
                       builder: (context, constraints) {
                         double containerWidth = constraints.maxWidth -
-                            40; // Total width minus padding on both sides
+                            40; 
                         return GestureDetector(
                           onTap: () async {
                             openLocationSearchDelegate(context);
                           },
                           child: Container(
                             width: containerWidth,
-                            height: 45, // Fixed height
+                            height: 45,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(
-                                      0.2), // Shadow color with transparency
-                                  spreadRadius: 0.4, // Spread the shadow evenly
-                                  blurRadius: 4, // Softness of the shadow
+                                      0.2), 
+                                  spreadRadius: 0.4, 
+                                  blurRadius: 4,
                                   offset: Offset(0,
-                                      0), // No offset for shadow on all sides
+                                      0), 
                                 ),
                               ],
                               borderRadius: BorderRadius.circular(
-                                  25), // Optional: Rounded corners
+                                  25), 
                             ),
                             child: Row(
                               children: [

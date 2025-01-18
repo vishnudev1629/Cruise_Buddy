@@ -1,4 +1,6 @@
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:cruise_buddy/core/model/featured_boats_model/package.dart';
+import 'package:cruise_buddy/core/view_model/addItemToFavourites/add_item_to_favourites_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -120,8 +122,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
   @override
   void initState() {
     super.initState();
-    _scales =
-        List.generate(10, (index) => 1.0); // Adjust for the number of items
+    _scales = List.generate(10, (index) => 1.0);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       BlocProvider.of<GetFeaturedBoatsBloc>(context)
           .add(GetFeaturedBoatsEvent.getFeaturedBoats());
@@ -590,206 +591,227 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                     child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: value.featuredBoats.data?.length,
+                      itemCount: value.featuredBoats.data?.fold(
+                              0,
+                              (sum, data) =>
+                                  sum! + (data.packages?.length ?? 0)) ??
+                          0,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.only(
-                            left: index == 0 ? 30 : 10,
-                          ),
-                          child: GestureDetector(
-                            onTapDown: (details) => onTapDown(index, details),
-                            onTapUp: (details) => onTapUp(index, details),
-                            onTapCancel: () => onTapCancel(index),
-                            onTap: () => handleTap(index),
-                            child: AnimatedScale(
-                              scale: _scales[index],
-                              duration: const Duration(milliseconds: 150),
-                              curve: Curves.easeInOut,
-                              child: Container(
-                                width: 240,
-                                height: 300,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(13),
-                                  border: Border.all(
-                                    color: const Color(0xFFE2E2E2),
-                                    width: 1.5,
+                        final boat = value.featuredBoats.data?[index];
+                        for (Package package in boat?.packages ?? []) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              left: index == 0 ? 30 : 10,
+                            ),
+                            child: GestureDetector(
+                              onTapDown: (details) => onTapDown(index, details),
+                              onTapUp: (details) => onTapUp(index, details),
+                              onTapCancel: () => onTapCancel(index),
+                              onTap: () => handleTap(index),
+                              child: AnimatedScale(
+                                scale: _scales[index],
+                                duration: const Duration(milliseconds: 150),
+                                curve: Curves.easeInOut,
+                                child: Container(
+                                  width: 240,
+                                  height: 300,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(13),
+                                    border: Border.all(
+                                      color: const Color(0xFFE2E2E2),
+                                      width: 1.5,
+                                    ),
                                   ),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 100,
-                                          child: Stack(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                  topLeft: Radius.circular(13),
-                                                  topRight: Radius.circular(13),
-                                                ),
-                                                child: Image.network(
-                                                  "${value.featuredBoats.data?[index].cruisesImages?[0].cruiseImg}",
-                                                  width: double.infinity,
-                                                  height: 100,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                top: 60,
-                                                right: 8,
-                                                child: Container(
-                                                  width: 68,
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            24),
-                                                  ),
-                                                  child: Row(
-                                                    children: [
-                                                      const SizedBox(width: 10),
-                                                      const Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 24,
-                                                      ),
-                                                      const Text("4.3"),
-                                                      const SizedBox(width: 10),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          color: const Color.fromARGB(
-                                              0, 255, 214, 64),
-                                          height: 195,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 12),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                  child: Stack(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: 100,
+                                            child: Stack(
                                               children: [
-                                                const SizedBox(height: 10),
-                                                Row(
-                                                  children: [
-                                                    PillWidget(
-                                                      image:
-                                                          'assets/icons/wifi.svg',
-                                                      text: 'Wifi',
-                                                    ),
-                                                    const SizedBox(width: 5),
-                                                    PillWidget(
-                                                      image:
-                                                          'assets/icons/heater.svg',
-                                                      text: 'Heater',
-                                                    ),
-                                                  ],
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(13),
+                                                    topRight:
+                                                        Radius.circular(13),
+                                                  ),
+                                                  child: Image.network(
+                                                    "https://khaki-cheetah-745520.hostingersite.com/storage/packages/images/WKEgTu41O0Z5FC4n/8dc52bf09dfd64c8fd1955edadce9084.png",
+                                                    width: double.infinity,
+                                                    height: 100,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
-                                                Text(
-                                                  value
-                                                                  .featuredBoats
-                                                                  .data?[index]
-                                                                  .name !=
-                                                              null &&
-                                                          value
-                                                                  .featuredBoats
-                                                                  .data![index]
-                                                                  .name!
-                                                                  .length >
-                                                              34
-                                                      ? "${value.featuredBoats.data?[index].name!.substring(0, 34)}..."
-                                                      : "${value.featuredBoats.data?[index].name}",
-                                                  style: TextStyles
-                                                      .ubuntu16black15w500,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      "₹5000",
-                                                      style: TextStyles
-                                                          .ubuntu18bluew700,
+                                                Positioned(
+                                                  top: 60,
+                                                  right: 8,
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      BlocProvider.of<
+                                                                  AddItemToFavouritesBloc>(
+                                                              context)
+                                                          .add(
+                                                        AddItemToFavouritesEvent
+                                                            .added(
+                                                          packageId: '44',
+                                                          // packageId:
+                                                          //     '${value.featuredBoats.data?[index].id.toString()}',
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      width: 68,
+                                                      height: 30,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                      ),
+                                                      child: Row(
+                                                        children: [
+                                                          const SizedBox(
+                                                              width: 10),
+                                                          const Icon(
+                                                            Icons.star,
+                                                            color: Colors.amber,
+                                                            size: 24,
+                                                          ),
+                                                          const Text("4.3"),
+                                                          const SizedBox(
+                                                              width: 10),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    const Spacer(),
-                                                  ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    // Positioned items
-                                    Positioned(
-                                      top: 8,
-                                      right: 8,
-                                      child: InkWell(
-                                        onTap: () {},
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
+                                          Container(
+                                            color: const Color.fromARGB(
+                                                0, 255, 214, 64),
+                                            height: 195,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const SizedBox(height: 10),
+                                                  Row(
+                                                    children: [
+                                                      PillWidget(
+                                                        image:
+                                                            'assets/icons/wifi.svg',
+                                                        text: 'Wifi',
+                                                      ),
+                                                      const SizedBox(width: 5),
+                                                      PillWidget(
+                                                        image:
+                                                            'assets/icons/heater.svg',
+                                                        text: 'Heater',
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Text(
+                                                    (package.name != null &&
+                                                            package.name!
+                                                                    .length >
+                                                                34)
+                                                        ? "${package.name!.substring(0, 34)}..."
+                                                        : "${package.name}",
+                                                    style: TextStyles
+                                                        .ubuntu16black15w500,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        "₹5000",
+                                                        style: TextStyles
+                                                            .ubuntu18bluew700,
+                                                      ),
+                                                      const Spacer(),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(5.0),
-                                              child: Icon(
-                                                Icons.favorite,
-                                                color: Color(0XFF4FC2C5),
-                                                size: 20,
+                                          ),
+                                        ],
+                                      ),
+                                      // Positioned items
+                                      Positioned(
+                                        top: 8,
+                                        right: 8,
+                                        child: InkWell(
+                                          onTap: () {},
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                              ),
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(5.0),
+                                                child: Icon(
+                                                  Icons.favorite,
+                                                  color: Color(0XFF4FC2C5),
+                                                  size: 20,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Positioned(
-                                      bottom: 35,
-                                      right: 8,
-                                      child: SizedBox(
-                                        height: 45,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            // Your book now logic
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0XFF1F8386),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
+                                      Positioned(
+                                        bottom: 35,
+                                        right: 8,
+                                        child: SizedBox(
+                                          height: 45,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              // Your book now logic
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  const Color(0XFF1F8386),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 16,
+                                                vertical: 12,
+                                              ),
                                             ),
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 16,
-                                              vertical: 12,
+                                            child: Text(
+                                              "Book Now",
+                                              style: TextStyles
+                                                  .ubuntu12whiteFFw400,
                                             ),
-                                          ),
-                                          child: Text(
-                                            "Book Now",
-                                            style:
-                                                TextStyles.ubuntu12whiteFFw400,
                                           ),
                                         ),
-                                      ),
-                                    )
-                                  ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
+                          );
+                        }
                       },
                     ),
                   );
