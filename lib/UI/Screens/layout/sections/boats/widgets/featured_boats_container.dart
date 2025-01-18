@@ -1,4 +1,5 @@
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:cruise_buddy/core/model/featured_boats_model/cruises_image.dart';
 import 'package:cruise_buddy/core/model/featured_boats_model/package.dart';
 import 'package:cruise_buddy/core/view_model/addItemToFavourites/add_item_to_favourites_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
@@ -564,9 +565,11 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
             );
           },
           getFeaturedBoats: (value) {
-            final allPackages = value.featuredBoats.data
-                ?.expand((datum) => datum.packages ?? [])
+            final List<Package> allPackages = value.featuredBoats.data!
+                .expand((datum) => datum.packages ?? [])
+                .cast<Package>() // Cast the result to List<Package>
                 .toList();
+
             return value.featuredBoats.data?.isEmpty ?? true
                 ? Center(
                     child: Column(
@@ -594,18 +597,15 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                     height: 300,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: allPackages?.length ?? 0,
+                      itemCount: allPackages.length,
                       itemBuilder: (context, index) {
-                        final package = allPackages?[index];
+                        Package package = allPackages[index];
 
                         // Return the UI for each package.
                         return Padding(
                           padding: EdgeInsets.only(
                             left: index == 0 ? 30 : 10,
-                            right: (allPackages != null &&
-                                    index == allPackages.length - 1)
-                                ? 20
-                                : 0,
+                            right: (index == allPackages.length - 1) ? 20 : 0,
                           ),
                           child: GestureDetector(
                             onTapDown: (details) => onTapDown(index, details),
@@ -644,7 +644,9 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                   topRight: Radius.circular(13),
                                                 ),
                                                 child: Image.network(
-                                                  "https://khaki-cheetah-745520.hostingersite.com/storage/packages/images/WKEgTu41O0Z5FC4n/8dc52bf09dfd64c8fd1955edadce9084.png",
+                                                  package.packageImages?[0]
+                                                          .packageImg ??
+                                                      "https://khaki-cheetah-745520.hostingersite.com/storage/packages/images/WKEgTu41O0Z5FC4n/8dc52bf09dfd64c8fd1955edadce9084.png",
                                                   width: double.infinity,
                                                   height: 100,
                                                   fit: BoxFit.cover,
@@ -872,5 +874,43 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
         );
       },
     );
+  }
+}
+
+class BuildCruiseImage extends StatelessWidget {
+  final List<CruisesImage> cruiseImages;
+
+  const BuildCruiseImage({super.key, required this.cruiseImages});
+
+  @override
+  Widget build(BuildContext context) {
+    if (cruiseImages.isNotEmpty) {
+      return Image.network(
+        cruiseImages[0].cruiseImg ?? '', // Ensure cruiseImg is not null
+        width: double.infinity,
+        height: 100,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          // Fallback widget in case of image load failure
+          return Container(
+            color: Colors.grey,
+            alignment: Alignment.center,
+            child: Icon(Icons.error, color: Colors.red),
+          );
+        },
+      );
+    } else {
+      // Display a placeholder if no images are available
+      return Container(
+        width: double.infinity,
+        height: 100,
+        color: Colors.grey.shade300,
+        alignment: Alignment.center,
+        child: Text(
+          'No Image Available',
+          style: TextStyle(color: Colors.black54),
+        ),
+      );
+    }
   }
 }
