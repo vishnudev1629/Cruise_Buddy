@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:cruise_buddy/UI/Screens/Auth/login_screens.dart';
+import 'package:cruise_buddy/UI/Screens/misc/privacy_policy.dart';
+import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/core/services/auth/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,164 +38,152 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
-        title: const Text('Profile',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        actions: [
-          if (isEditing)
-            IconButton(
-              icon: const Icon(Icons.check, color: Colors.teal),
-              onPressed: () {
-                setState(() {
-                  isEditing = false;
-                });
-              },
-            ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 30),
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              if (!isEditing) ...[
-                CustomPaint(
-                  size: const Size(120, 120),
-                  painter: DottedBorderPainter(),
-                ),
-              ],
-              CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.transparent,
-                backgroundImage: _pickedImage != null
-                    ? FileImage(File(_pickedImage!.path))
-                    : null,
-                child: _pickedImage == null
-                    ? ClipOval(
-                        child: SvgPicture.asset(
-                          'assets/bottomNav/profile.svg',
-                          fit: BoxFit.cover,
-                        ),
-                      )
-                    : null,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(height: 30),
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            if (!isEditing) ...[
+              CustomPaint(
+                size: const Size(120, 120),
+                painter: DottedBorderPainter(),
               ),
-              Positioned(
-                bottom: 0,
-                right: 5,
-                child: GestureDetector(
-                  onTap: () {
-                    if (isEditing) {
-                      _pickImage();
-                    } else {
-                      setState(() {
-                        isEditing = !isEditing;
-                      });
-                    }
-                  },
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                      shape: BoxShape.circle,
-                    ),
-                    padding: const EdgeInsets.all(4),
-                    child: isEditing
-                        ? SvgPicture.asset(
-                            'assets/image/profile/profile_pic_edit.svg')
-                        : SvgPicture.asset(
-                            'assets/image/profile/profile_pic_edit.svg'),
+            ],
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.transparent,
+              backgroundImage: _pickedImage != null
+                  ? FileImage(File(_pickedImage!.path))
+                  : null,
+              child: _pickedImage == null
+                  ? ClipOval(
+                      child: SvgPicture.asset(
+                        'assets/bottomNav/profile.svg',
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : null,
+            ),
+            Positioned(
+              bottom: 0,
+              right: 5,
+              child: GestureDetector(
+                onTap: () {
+                  if (isEditing) {
+                    _pickImage();
+                  } else {
+                    setState(() {
+                      isEditing = !isEditing;
+                    });
+                  }
+                },
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
                   ),
+                  padding: const EdgeInsets.all(4),
+                  child: isEditing
+                      ? SvgPicture.asset(
+                          'assets/image/profile/profile_pic_edit.svg')
+                      : SvgPicture.asset(
+                          'assets/image/profile/profile_pic_edit.svg'),
                 ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 20),
+        if (isEditing) ...[
+          _buildEditableField(nameController),
+          _buildEditableField(emailController),
+          _buildEditableField(phoneController),
+        ] else ...[
+          Text(nameController.text,
+              style:
+                  const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 5),
+          Text(emailController.text,
+              style: const TextStyle(fontSize: 14, color: Colors.black54)),
+          const SizedBox(height: 5),
+          Text(phoneController.text,
+              style: const TextStyle(fontSize: 14, color: Colors.black54)),
+        ],
+        const SizedBox(height: 30),
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            children: [
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/image/profile/payment_method.svg',
+                ),
+                title: const Text('Payment Methods'),
+                trailing: SvgPicture.asset(
+                  'assets/image/profile/arrow_right.svg',
+                ),
+                onTap: () {},
+              ),
+              const Divider(),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/image/profile/change_password.svg',
+                ),
+                title: const Text('Change Password'),
+                trailing: SvgPicture.asset(
+                  'assets/image/profile/arrow_right.svg',
+                ),
+                onTap: () {},
+              ),
+              const Divider(),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/image/profile/privacy_policy.svg',
+                ),
+                title: const Text('Privacy Policy'),
+                trailing: SvgPicture.asset(
+                  'assets/image/profile/arrow_right.svg',
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return PrivacyPolicyScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
+              const Divider(),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/image/profile/logout.svg',
+                ),
+                title: const Text('Logout',
+                    style: TextStyle(color: Color(0xff1F8386))),
+                trailing: SvgPicture.asset(
+                  'assets/image/profile/arrow_right.svg',
+                ),
+                onTap: () async {
+                  await AuthServices().logout();
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  await prefs.remove('accessToken');
+
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                    (route) => false,
+                  );
+                },
               ),
             ],
           ),
-          const SizedBox(height: 20),
-          if (isEditing) ...[
-            _buildEditableField(nameController),
-            _buildEditableField(emailController),
-            _buildEditableField(phoneController),
-          ] else ...[
-            Text(nameController.text,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 5),
-            Text(emailController.text,
-                style: const TextStyle(fontSize: 14, color: Colors.black54)),
-            const SizedBox(height: 5),
-            Text(phoneController.text,
-                style: const TextStyle(fontSize: 14, color: Colors.black54)),
-          ],
-          const SizedBox(height: 30),
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              children: [
-                ListTile(
-                  leading: SvgPicture.asset(
-                    'assets/image/profile/payment_method.svg',
-                  ),
-                  title: const Text('Payment Methods'),
-                  trailing: SvgPicture.asset(
-                    'assets/image/profile/arrow_right.svg',
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(),
-                ListTile(
-                  leading: SvgPicture.asset(
-                    'assets/image/profile/change_password.svg',
-                  ),
-                  title: const Text('Change Password'),
-                  trailing: SvgPicture.asset(
-                    'assets/image/profile/arrow_right.svg',
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(),
-                ListTile(
-                  leading: SvgPicture.asset(
-                    'assets/image/profile/privacy_policy.svg',
-                  ),
-                  title: const Text('Privacy Policy'),
-                  trailing: SvgPicture.asset(
-                    'assets/image/profile/arrow_right.svg',
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(),
-                ListTile(
-                  leading: SvgPicture.asset(
-                    'assets/image/profile/logout.svg',
-                  ),
-                  title: const Text('Logout',
-                      style: TextStyle(color: Color(0xff1F8386))),
-                  trailing: SvgPicture.asset(
-                    'assets/image/profile/arrow_right.svg',
-                  ),
-                  onTap: () async {
-                    await AuthServices().logout();
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    await prefs.remove('accessToken');
-
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                      (route) => false,
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

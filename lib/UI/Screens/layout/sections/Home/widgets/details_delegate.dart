@@ -27,7 +27,9 @@ class _DetailsDelegateState extends State<DetailsDelegate> {
           children: [
             const SizedBox(height: 10),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
               icon: Icon(Icons.arrow_back_ios_new_sharp),
             ),
             const SizedBox(height: 10),

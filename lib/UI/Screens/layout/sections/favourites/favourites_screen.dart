@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:cruise_buddy/UI/Screens/layout/sections/boats/widgets/featured_boats_container.dart';
 import 'package:cruise_buddy/core/view_model/getFavouritesList/get_favourites_list_bloc.dart';
 import 'package:flutter/material.dart';
@@ -25,65 +24,58 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 22.0),
-              child: Text("Favorites", style: TextStyles.ubuntu16black23w700),
-            ),
-            SizedBox(height: 8),
-            BlocBuilder<GetFavouritesListBloc, GetFavouritesListState>(
-              builder: (context, state) {
-                return state.map(initial: (value) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      top: 100,
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BlocBuilder<GetFavouritesListBloc, GetFavouritesListState>(
+            builder: (context, state) {
+              return state.map(initial: (value) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    top: 100,
+                  ),
+                  child: Center(
+                    child: SpinKitWave(
+                      color: Colors.blue,
+                      size: 50.0,
                     ),
-                    child: Center(
-                      child: SpinKitWave(
-                        color: Colors.blue,
-                        size: 50.0,
-                      ),
+                  ),
+                );
+              }, loading: (value) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    top: 100,
+                  ),
+                  child: Center(
+                    child: SpinKitWave(
+                      color: Colors.blue,
+                      size: 50.0,
                     ),
-                  );
-                }, loading: (value) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      top: 100,
-                    ),
-                    child: Center(
-                      child: SpinKitWave(
-                        color: Colors.blue,
-                        size: 50.0,
-                      ),
-                    ),
-                  );
-                }, getfavouritesBoats: (value) {
-                  return Expanded(
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      itemCount: value.favourites.data?.length,
-                      itemBuilder: (context, index) {
-                        return BuildFavouritesCard(
-                          name: value.favourites.data![index].package!.name
-                              .toString(),
-                        );
-                      },
-                    ),
-                  );
-                }, getfavouritesFailure: (value) {
-                  return Text("Oops something went wrong");
-                }, noInternet: (value) {
-                  return Text("No Internet");
-                });
-              },
-            ),
-          ],
-        ),
+                  ),
+                );
+              }, getfavouritesBoats: (value) {
+                return Expanded(
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    itemCount: value.favourites.data?.length,
+                    itemBuilder: (context, index) {
+                      return BuildFavouritesCard(
+                        name: value.favourites.data![index].package!.name
+                            .toString(),
+                      );
+                    },
+                  ),
+                );
+              }, getfavouritesFailure: (value) {
+                return Text("Oops something went wrong");
+              }, noInternet: (value) {
+                return Text("No Internet");
+              });
+            },
+          ),
+        ],
       ),
     );
   }

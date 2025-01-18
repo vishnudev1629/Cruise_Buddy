@@ -174,6 +174,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                   return Padding(
                     padding: EdgeInsets.only(
                       left: index == 0 ? 30 : 10,
+                      right: index == exploreDestination.length - 1 ? 10 : 0,
                     ),
                     child: GestureDetector(
                       onTapDown: (details) => onTapDown(index, details),
@@ -603,7 +604,12 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                           return Padding(
                             padding: EdgeInsets.only(
                               left: index == 0 ? 30 : 10,
-                            ),
+                              right: (value.featuredBoats.data != null &&
+                                    index ==
+                                        value.featuredBoats.data!.length - 1)
+                                ? 20
+                                : 0,
+                          ),
                             child: GestureDetector(
                               onTapDown: (details) => onTapDown(index, details),
                               onTapUp: (details) => onTapUp(index, details),

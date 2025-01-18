@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:async';
 
-
 class LocationSearchDelegate extends StatefulWidget {
   const LocationSearchDelegate({super.key});
 
@@ -16,7 +15,7 @@ class LocationSearchDelegate extends StatefulWidget {
 
 class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
   final List<String> locations = [
-    "Kochifffffffffff",
+    "Kochi",
     "Thrissur",
     "Trivandrum",
     "Calicut",
@@ -28,21 +27,26 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
   String query = "";
   List<String> filteredLocations = [];
   Timer? _debounce;
-  // Controller to manage the TextField input
   TextEditingController _controller = TextEditingController();
+  bool isItemSelected = false; // Add this flag
 
   @override
   void initState() {
     super.initState();
     filteredLocations = locations;
+
     _controller.addListener(() {
       if (_debounce?.isActive ?? false) _debounce?.cancel();
       _debounce = Timer(const Duration(milliseconds: 300), () {
         final currentQuery = _controller.text.trim();
-        if (currentQuery.isNotEmpty) {
+        if (currentQuery.isNotEmpty && !isItemSelected) {
+          // Only call API if no item is selected
           BlocProvider.of<GetLocationDetailsBloc>(context).add(
             GetLocationDetailsEvent.getLocation(locationName: currentQuery),
           );
+        } else if (isItemSelected) {
+          // Reset the flag after the text is updated
+          isItemSelected = false;
         }
       });
     });
@@ -55,6 +59,8 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
     super.dispose();
   }
 
+  String? selectedLocation; // Add this variable
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,26 +71,21 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
           children: [
             const SizedBox(height: 10),
             IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.arrow_back_ios_new_sharp),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(Icons.arrow_back_ios_new_sharp),
             ),
             const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
                   SizedBox(
                     height: 55,
                     child: TextField(
                       style: TextStyles.ubuntu14black55w400,
-                      controller: _controller, // Attach the controller
-                      onChanged: (value) {
-                        BlocProvider.of<GetLocationDetailsBloc>(context).add(
-                            GetLocationDetailsEvent.getLocation(
-                                locationName: _controller.text.toLowerCase()));
-                      },
+                      controller: _controller,
                       decoration: InputDecoration(
                         prefixIcon: Padding(
                           padding: const EdgeInsets.only(left: 4),
@@ -97,14 +98,17 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
                             ? IconButton(
                                 icon: const Icon(Icons.close),
                                 onPressed: () {
-                                  _controller.clear(); // Clear the text field
+                                  _controller.clear();
+                                  setState(() {
+                                    query = "";
+                                    filteredLocations = locations; // Reset list
+                                    selectedLocation = null; // Reset selection
+                                  });
                                 },
                               )
                             : null,
                         hintText: "Search location...",
                         hintStyle: TextStyles.ubuntu14black55w400,
-                        labelStyle: TextStyles.ubuntu14black55w400,
-                        prefixStyle: TextStyles.ubuntu14black55w400,
                         contentPadding:
                             const EdgeInsets.symmetric(horizontal: 16),
                         border: OutlineInputBorder(
@@ -114,194 +118,52 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                    ),
-                    child: Row(
+                  if (selectedLocation != null) ...[
+                    Row(
                       children: [
                         SvgPicture.asset('assets/icons/location.svg'),
                         const SizedBox(width: 10),
                         Text(
-                          "Choose Your Current Location",
+                          "Selected Location: $selectedLocation",
                           style: TextStyles.ubuntu14black55w400,
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  Divider(),
-                  SizedBox(height: 5),
+                    const SizedBox(height: 10),
+                    const Divider(),
+                    const SizedBox(height: 5),
+                  ],
                   BlocBuilder<GetLocationDetailsBloc, GetLocationDetailsState>(
                     builder: (context, state) {
                       return state.map(
-                        initial: (value) {
-                          return SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.5,
-                              child: ListView.builder(
-                                physics: BouncingScrollPhysics(),
-                                itemCount: filteredLocations.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    leading: SvgPicture.asset(
-                                        'assets/icons/map.svg'),
-                                    title: Text(
-                                      filteredLocations[index],
-                                      style: TextStyles.ubuntu14black55w400,
-                                    ),
-                                    onTap: () {
-                                      setState(() {
-                                        _controller.text = filteredLocations[
-                                            index]; // Update text field with selected location
-                                        query = filteredLocations[
-                                            index]; // Update query for filtering
-                                        filteredLocations =
-                                            locations; // Reset filtered locations
-                                      });
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                              "Selected: ${filteredLocations[index]}"),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ));
-                        },
-                        loading: (value) {
-                          return CircularProgressIndicator();
-                        },
-                        getLocationDetails: (value) {
-                          return SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.5,
-                              child: ListView.builder(
-                                physics: BouncingScrollPhysics(),
-                                itemCount: value.locationmodel.data?.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    leading: SvgPicture.asset(
-                                        'assets/icons/map.svg'),
-                                    title: Text(
-                                      value.locationmodel.data![index].name
-                                          .toString(),
-                                      style: TextStyles.ubuntu14black55w400,
-                                    ),
-                                    onTap: () {
-                                      setState(() {
-                                        // Update based on the Bloc state data instead of always using filteredLocations
-
-                                        _controller.text = value
-                                            .locationmodel.data![index].name
-                                            .toString();
-                                        query = value
-                                            .locationmodel.data![index].name
-                                            .toString();
-
-                                        // Reset filteredLocations only if necessary
-                                        filteredLocations =
-                                            locations; // Reset filtered locations
-                                      });
-
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                              "Selected: ${_controller.text}"),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ));
-                        },
-                        getlocationsFailure: (value) {
-                          return SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.5,
-                              child: ListView.builder(
-                                physics: BouncingScrollPhysics(),
-                                itemCount: filteredLocations.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    leading: SvgPicture.asset(
-                                        'assets/icons/map.svg'),
-                                    title: Text(
-                                      filteredLocations[index],
-                                      style: TextStyles.ubuntu14black55w400,
-                                    ),
-                                    onTap: () {
-                                      setState(() {
-                                        _controller.text =
-                                            filteredLocations[index];
-                                        query = filteredLocations[index];
-                                        filteredLocations = locations;
-                                      });
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                              "Selected: ${filteredLocations[index]}"),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ));
-                        },
-                        noInternet: (value) {
-                          return SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.5,
-                              child: ListView.builder(
-                                physics: BouncingScrollPhysics(),
-                                itemCount: filteredLocations.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    leading: SvgPicture.asset(
-                                        'assets/icons/map.svg'),
-                                    title: Text(
-                                      filteredLocations[index],
-                                      style: TextStyles.ubuntu14black55w400,
-                                    ),
-                                    onTap: () {
-                                      setState(() {
-                                        _controller.text = filteredLocations[
-                                            index]; // Update text field with selected location
-                                        query = filteredLocations[
-                                            index]; // Update query for filtering
-                                        filteredLocations =
-                                            locations; // Reset filtered locations
-                                      });
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                              "Selected: ${filteredLocations[index]}"),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ));
-                        },
+                        initial: (value) =>
+                            buildLocationList(filteredLocations),
+                        loading: (value) => const CircularProgressIndicator(),
+                        getLocationDetails: (value) => buildLocationList(value
+                                .locationmodel.data
+                                ?.map((data) => data.name.toString())
+                                .toList() ??
+                            []),
+                        getlocationsFailure: (value) =>
+                            buildLocationList(filteredLocations),
+                        noInternet: (value) =>
+                            buildLocationList(filteredLocations),
                       );
                     },
                   ),
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: SizedBox(
                 width: double.infinity,
                 height: 45,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(
-                      Color(0XFF1F8386),
+                    backgroundColor: MaterialStateProperty.all(
+                      const Color(0XFF1F8386),
                     ),
                   ),
                   onPressed: () {
@@ -314,9 +176,40 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildLocationList(List<String> locations) {
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height * 0.5,
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        itemCount: locations.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: SvgPicture.asset('assets/icons/map.svg'),
+            title: Text(
+              locations[index],
+              style: TextStyles.ubuntu14black55w400,
+            ),
+            onTap: () {
+              setState(
+                () {
+                  isItemSelected = true;
+                  _controller.text = locations[index];
+                  query = locations[index];
+                  filteredLocations = this.locations;
+                  filteredLocations = locations;
+                  selectedLocation = locations[index];
+                },
+              );
+            },
+          );
+        },
       ),
     );
   }

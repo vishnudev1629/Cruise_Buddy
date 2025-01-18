@@ -117,6 +117,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                   return Padding(
                     padding: EdgeInsets.only(
                       left: index == 0 ? 30 : 10,
+                      right: index == exploreDestination.length - 1 ? 10 : 0,
                     ),
                     child: GestureDetector(
                       onTapDown: (details) => onTapDown(index, details),
@@ -237,6 +238,10 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                   return Padding(
                     padding: EdgeInsets.only(
                       left: index == 0 ? 30 : 10,
+                      right: (value.cruisetypemodel.data != null &&
+                              index == value.cruisetypemodel.data!.length - 1)
+                          ? 20
+                          : 0,
                     ),
                     child: GestureDetector(
                       onTapDown: (details) => onTapDown(index, details),
