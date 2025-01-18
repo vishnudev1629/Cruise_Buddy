@@ -95,11 +95,10 @@ class PillWidget extends StatelessWidget {
             width: 14,
             height: 14,
           ),
-
-          SizedBox(width: 8), // Spacing between icon and text
+          SizedBox(width: 8),
           Text(
             text,
-            style: TextStyle(color: Colors.black, fontSize: 14), // Text style
+            style: TextStyle(color: Colors.black, fontSize: 14),
           ),
           SizedBox(width: 10),
         ],
@@ -596,6 +595,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                 : SizedBox(
                     height: 300,
                     child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemCount: allPackages.length,
                       itemBuilder: (context, index) {

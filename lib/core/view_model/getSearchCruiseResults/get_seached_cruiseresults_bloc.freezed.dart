@@ -664,10 +664,10 @@ class __$$GetSeachedCruiseresultsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? packagesearchresults = freezed,
+    Object? packagesearchresults = null,
   }) {
     return _then(_$GetSeachedCruiseresultsImpl(
-      packagesearchresults: freezed == packagesearchresults
+      packagesearchresults: null == packagesearchresults
           ? _value.packagesearchresults
           : packagesearchresults // ignore: cast_nullable_to_non_nullable
               as PackageSearchResultsModel,
@@ -693,13 +693,12 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetSeachedCruiseresultsImpl &&
-            const DeepCollectionEquality()
-                .equals(other.packagesearchresults, packagesearchresults));
+            (identical(other.packagesearchresults, packagesearchresults) ||
+                other.packagesearchresults == packagesearchresults));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(packagesearchresults));
+  int get hashCode => Object.hash(runtimeType, packagesearchresults);
 
   /// Create a copy of GetSeachedCruiseresultsState
   /// with the given fields replaced by the non-null parameter values.

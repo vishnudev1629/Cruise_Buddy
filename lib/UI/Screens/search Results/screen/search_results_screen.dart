@@ -3,11 +3,28 @@ import 'package:cruise_buddy/UI/Screens/search%20Results/widgets/boat_category_p
 import 'package:cruise_buddy/UI/Screens/search%20Results/widgets/search_results_container.dart';
 import 'package:cruise_buddy/core/constants/colors/app_colors.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:cruise_buddy/core/view_model/getSearchCruiseResults/get_seached_cruiseresults_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SearchResultsScreen extends StatelessWidget {
+class SearchResultsScreen extends StatefulWidget {
   const SearchResultsScreen({super.key});
+
+  @override
+  State<SearchResultsScreen> createState() => _SearchResultsScreenState();
+}
+
+class _SearchResultsScreenState extends State<SearchResultsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      BlocProvider.of<GetSeachedCruiseresultsBloc>(context)
+          .add(GetSeachedCruiseresultsEvent.SeachedCruise());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +47,9 @@ class SearchResultsScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
                         icon: const Icon(Icons.arrow_back_ios_new_rounded),
                       ),
                       const SizedBox(width: 5),
@@ -64,15 +83,76 @@ class SearchResultsScreen extends StatelessWidget {
                   height: availableHeight,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
-                      itemCount: 12,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(
-                            bottom: 15,
-                          ),
-                          child: const SearchResultsContainer(),
+                    child: BlocBuilder<GetSeachedCruiseresultsBloc,
+                        GetSeachedCruiseresultsState>(
+                      builder: (context, state) {
+                        return state.map(
+                          initial: (value) {
+                            return ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount: 12,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                    bottom: 15,
+                                  ),
+                                  child: const SearchResultsContainer(),
+                                );
+                              },
+                            );
+                          },
+                          loading: (value) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                top: 100,
+                              ),
+                              child: Center(
+                                child: SpinKitWave(
+                                  color: Colors.blue,
+                                  size: 50.0,
+                                ),
+                              ),
+                            );
+                          },
+                          getuseruccess: (value) {
+                            return ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount: value.packagesearchresults.data.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                    bottom: 15,
+                                  ),
+                                  child: SearchResultsContainer(
+                                    cruisename:
+                                        '${value.packagesearchresults.data[index].name}',
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          getuserFailure: (value) {
+                            return ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount: 12,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                    bottom: 15,
+                                  ),
+                                  child: const SearchResultsContainer(),
+                                );
+                              },
+                            );
+                          },
+                          noInternet: (value) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                top: 100,
+                              ),
+                              child: Center(child: Text("No Internet")),
+                            );
+                          },
                         );
                       },
                     ),

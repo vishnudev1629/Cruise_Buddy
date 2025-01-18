@@ -4,6 +4,7 @@ import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/booking_sel
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/counter_pill.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/cruise_selection_widget.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/passengers_pill.dart';
+import 'package:cruise_buddy/UI/Screens/search%20Results/screen/search_results_screen.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -94,7 +95,13 @@ class _DetailsDelegateState extends State<DetailsDelegate> {
                           Color(0XFF1F8386),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) {
+                            return SearchResultsScreen();
+                          },
+                        ));
+                      },
                       child: Text(
                         "Continue",
                         style: TextStyles.ubuntu16whiteFFw500,
