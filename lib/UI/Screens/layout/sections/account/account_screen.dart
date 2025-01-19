@@ -129,12 +129,12 @@ class _AccountScreenState extends State<AccountScreen> {
                   var options = {
                     'key': 'rzp_live_ILgsfZCZoFIKMb',
                     'amount': 100,
-                    'name': 'Acme Corp.',
-                    'description': 'Fine T-Shirt',
+                    'name': 'Cruise Buddy',
+                    'description': 'Premium House Boat',
                     'retry': {'enabled': true, 'max_count': 1},
                     'send_sms_hash': true,
                     'prefill': {
-                      'contact': '8888888888',
+                      'contact': '8848055651',
                       'email': 'test@razorpay.com'
                     },
                     'external': {
