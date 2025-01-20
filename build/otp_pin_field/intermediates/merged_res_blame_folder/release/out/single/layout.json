@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "com.shivam.otp_pin_field-merged_res-28:/layout/notification_template_icon_group.xml",
+        "source": "com.shivam.otp_pin_field-core-1.13.1-4:/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "com.shivam.otp_pin_field-merged_res-28:/layout/notification_template_part_time.xml",
+        "source": "com.shivam.otp_pin_field-core-1.13.1-4:/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "com.shivam.otp_pin_field-merged_res-28:/layout/notification_template_custom_big.xml",
+        "source": "com.shivam.otp_pin_field-core-1.13.1-4:/layout/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "com.shivam.otp_pin_field-merged_res-28:/layout/notification_action_tombstone.xml",
+        "source": "com.shivam.otp_pin_field-core-1.13.1-4:/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "com.shivam.otp_pin_field-merged_res-28:/layout/ime_base_split_test_activity.xml",
+        "source": "com.shivam.otp_pin_field-core-1.13.1-4:/layout/ime_base_split_test_activity.xml"
+    },
+    {
+        "merged": "com.shivam.otp_pin_field-merged_res-28:/layout/custom_dialog.xml",
+        "source": "com.shivam.otp_pin_field-core-1.13.1-4:/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "com.shivam.otp_pin_field-merged_res-28:/layout/notification_action.xml",
+        "source": "com.shivam.otp_pin_field-core-1.13.1-4:/layout/notification_action.xml"
+    },
+    {
+        "merged": "com.shivam.otp_pin_field-merged_res-28:/layout/ime_secondary_split_test_activity.xml",
+        "source": "com.shivam.otp_pin_field-core-1.13.1-4:/layout/ime_secondary_split_test_activity.xml"
+    },
+    {
+        "merged": "com.shivam.otp_pin_field-merged_res-28:/layout/notification_template_part_chronometer.xml",
+        "source": "com.shivam.otp_pin_field-core-1.13.1-4:/layout/notification_template_part_chronometer.xml"
+    }
+]

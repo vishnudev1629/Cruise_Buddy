@@ -1,4 +1,5 @@
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:cruise_buddy/core/routes/app_routes.dart';
 import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -768,7 +769,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                         height: 45,
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            // Your book now logic
+                                            AppRoutes.navigateToBoatdetailScreen(context);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor:
