@@ -1,4 +1,5 @@
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:cruise_buddy/core/routes/app_routes.dart';
 import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,10 +93,11 @@ class PillWidget extends StatelessWidget {
             width: 14,
             height: 14,
           ),
-          SizedBox(width: 8),
+
+          SizedBox(width: 8), // Spacing between icon and text
           Text(
             text,
-            style: TextStyle(color: Colors.black, fontSize: 14),
+            style: TextStyle(color: Colors.black, fontSize: 14), // Text style
           ),
           SizedBox(width: 10),
         ],
@@ -119,7 +121,8 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
   @override
   void initState() {
     super.initState();
-    _scales = List.generate(10, (index) => 1.0);
+    _scales =
+        List.generate(10, (index) => 1.0); // Adjust for the number of items
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       BlocProvider.of<GetFeaturedBoatsBloc>(context)
           .add(GetFeaturedBoatsEvent.getFeaturedBoats());
@@ -561,11 +564,6 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
             );
           },
           getFeaturedBoats: (value) {
-            final List<Package> allPackages = value.featuredBoats.data!
-                .expand((datum) => datum.packages ?? [])
-                .cast<Package>() // Cast the result to List<Package>
-                .toList();
-
             return value.featuredBoats.data?.isEmpty ?? true
                 ? Center(
                     child: Column(
@@ -592,17 +590,19 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                 : SizedBox(
                     height: 300,
                     child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: value.featuredBoats.data?.length,
                       scrollDirection: Axis.horizontal,
-                      itemCount: allPackages.length,
                       itemBuilder: (context, index) {
-                        Package package = allPackages[index];
-
-                        // Return the UI for each package.
                         return Padding(
                           padding: EdgeInsets.only(
                             left: index == 0 ? 30 : 10,
-                            right: (index == allPackages.length - 1) ? 20 : 0,
+                            right: (value.featuredBoats.data != null &&
+                                    index ==
+                                        value.featuredBoats.data!.length - 1)
+                                ? 20
+                                : 0,
                           ),
                           child: GestureDetector(
                             onTapDown: (details) => onTapDown(index, details),
@@ -641,9 +641,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                   topRight: Radius.circular(13),
                                                 ),
                                                 child: Image.network(
-                                                  package.packageImages?[0]
-                                                          .packageImg ??
-                                                      "https://khaki-cheetah-745520.hostingersite.com/storage/packages/images/WKEgTu41O0Z5FC4n/8dc52bf09dfd64c8fd1955edadce9084.png",
+                                                  "${value.featuredBoats.data?[index].cruisesImages?[0].cruiseImg}",
                                                   width: double.infinity,
                                                   height: 100,
                                                   fit: BoxFit.cover,
@@ -652,43 +650,26 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                               Positioned(
                                                 top: 60,
                                                 right: 8,
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    BlocProvider.of<
-                                                        AddItemToFavouritesBloc>(
-                                                      context,
-                                                    ).add(
-                                                      AddItemToFavouritesEvent
-                                                          .added(
-                                                        packageId: package?.id
-                                                                .toString() ??
-                                                            '0',
+                                                child: Container(
+                                                  width: 68,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            24),
+                                                  ),
+                                                  child: Row(
+                                                    children: [
+                                                      const SizedBox(width: 10),
+                                                      const Icon(
+                                                        Icons.star,
+                                                        color: Colors.amber,
+                                                        size: 24,
                                                       ),
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    width: 68,
-                                                    height: 30,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
-                                                    ),
-                                                    child: Row(
-                                                      children: [
-                                                        const SizedBox(
-                                                            width: 10),
-                                                        const Icon(
-                                                          Icons.star,
-                                                          color: Colors.amber,
-                                                          size: 24,
-                                                        ),
-                                                        const Text("4.3"),
-                                                        const SizedBox(
-                                                            width: 10),
-                                                      ],
-                                                    ),
+                                                      const Text("4.3"),
+                                                      const SizedBox(width: 10),
+                                                    ],
                                                   ),
                                                 ),
                                               ),
@@ -723,12 +704,19 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                   ],
                                                 ),
                                                 Text(
-                                                  (package?.name != null &&
-                                                          package!.name!
+                                                  value
+                                                                  .featuredBoats
+                                                                  .data?[index]
+                                                                  .name !=
+                                                              null &&
+                                                          value
+                                                                  .featuredBoats
+                                                                  .data![index]
+                                                                  .name!
                                                                   .length >
-                                                              34)
-                                                      ? "${package.name!.substring(0, 34)}..."
-                                                      : "${package?.name ?? 'N/A'}",
+                                                              34
+                                                      ? "${value.featuredBoats.data?[index].name!.substring(0, 34)}..."
+                                                      : "${value.featuredBoats.data?[index].name}",
                                                   style: TextStyles
                                                       .ubuntu16black15w500,
                                                 ),
@@ -748,6 +736,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                         ),
                                       ],
                                     ),
+                                    // Positioned items
                                     Positioned(
                                       top: 8,
                                       right: 8,
