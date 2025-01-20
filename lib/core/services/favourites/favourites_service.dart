@@ -4,6 +4,7 @@ import 'package:cruise_buddy/core/constants/functions/connection/connectivity_ch
 import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:cruise_buddy/core/model/favourites_list_model/favourites_list_model.dart';
 import 'package:cruise_buddy/core/model/location_model/location_model.dart';
+import 'package:cruise_buddy/core/model/posted_favouritem_item_model/posted_favouritem_item_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
@@ -27,8 +28,8 @@ class FavouritesService {
         return const Left('No internet connection');
       }
 
-       final token = await GetSharedPreferences.getAccessToken();
-     
+      final token = await GetSharedPreferences.getAccessToken();
+
       if (token == null) {
         print('No access token found.');
         return const Left('No access token found.');
@@ -54,6 +55,67 @@ class FavouritesService {
         final data = json.decode(response.body);
         final locationDetails = FavouritesListModel.fromJson(data);
         print(locationDetails.data?[0].package?.id);
+        return Right(locationDetails);
+      } else {
+        print('Request failed with status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        return Left('Failed to fetch location details: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error occurred: $e');
+      return Left('Error: $e');
+    }
+  }
+
+  Future<Either<String, PostedFavouritemItemModel>> addItemToFavourites({
+    required String packageId,
+  }) async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+
+      if (!hasInternet) {
+        print("No internet");
+        return const Left('No internet');
+      }
+
+      final token = await GetSharedPreferences.getAccessToken();
+      if (token == null) {
+        print('No access token found.');
+        return const Left('No access token found.');
+      }
+
+      // Add headers
+      _headers['Authorization'] = 'Bearer $token';
+      _headers['CRUISE_AUTH_KEY'] =
+          '16|OJfQtxaw6r4MBeEQ4JLzIT1m4UClhdUhvK3zNVJ7e01d3d19';
+      _headers['Accept'] = 'application/json';
+
+      // Build URL
+      final uri = Uri.parse('$url/favorite');
+
+      // Create request body
+      final body = {
+        'packageId': packageId,
+      };
+
+      // Make POST request
+      final response = await http
+          .post(
+        uri,
+        headers: _headers,
+        body: body,
+      )
+          .timeout(
+        Duration(seconds: 10),
+        onTimeout: () {
+          throw TimeoutException('The request timed out.');
+        },
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final data = json.decode(response.body);
+        final locationDetails = PostedFavouritemItemModel.fromJson(data);
+        print('${data}');
         return Right(locationDetails);
       } else {
         print('Request failed with status: ${response.statusCode}');

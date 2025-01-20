@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'get_seached_cruiseresults_bloc.dart';
+part of 'add_item_to_favourites_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,69 +15,66 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$GetSeachedCruiseresultsEvent {
+mixin _$AddItemToFavouritesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() SeachedCruise,
+    required TResult Function(String packageId) added,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? SeachedCruise,
+    TResult? Function(String packageId)? added,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? SeachedCruise,
+    TResult Function(String packageId)? added,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetSeachedCruiseresultsEvent value)
-        SeachedCruise,
+    required TResult Function(_AddItemToFavourites value) added,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetSeachedCruiseresultsEvent value)? SeachedCruise,
+    TResult? Function(_AddItemToFavourites value)? added,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetSeachedCruiseresultsEvent value)? SeachedCruise,
+    TResult Function(_AddItemToFavourites value)? added,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetSeachedCruiseresultsEventCopyWith<$Res> {
-  factory $GetSeachedCruiseresultsEventCopyWith(
-          GetSeachedCruiseresultsEvent value,
-          $Res Function(GetSeachedCruiseresultsEvent) then) =
-      _$GetSeachedCruiseresultsEventCopyWithImpl<$Res,
-          GetSeachedCruiseresultsEvent>;
+abstract class $AddItemToFavouritesEventCopyWith<$Res> {
+  factory $AddItemToFavouritesEventCopyWith(AddItemToFavouritesEvent value,
+          $Res Function(AddItemToFavouritesEvent) then) =
+      _$AddItemToFavouritesEventCopyWithImpl<$Res, AddItemToFavouritesEvent>;
 }
 
 /// @nodoc
-class _$GetSeachedCruiseresultsEventCopyWithImpl<$Res,
-        $Val extends GetSeachedCruiseresultsEvent>
-    implements $GetSeachedCruiseresultsEventCopyWith<$Res> {
-  _$GetSeachedCruiseresultsEventCopyWithImpl(this._value, this._then);
+class _$AddItemToFavouritesEventCopyWithImpl<$Res,
+        $Val extends AddItemToFavouritesEvent>
+    implements $AddItemToFavouritesEventCopyWith<$Res> {
+  _$AddItemToFavouritesEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GetSeachedCruiseresultsEvent
+  /// Create a copy of AddItemToFavouritesEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -90,13 +87,13 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$GetSeachedCruiseresultsEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$AddItemToFavouritesEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetSeachedCruiseresultsEvent
+  /// Create a copy of AddItemToFavouritesEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -107,7 +104,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'GetSeachedCruiseresultsEvent.started()';
+    return 'AddItemToFavouritesEvent.started()';
   }
 
   @override
@@ -123,7 +120,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() SeachedCruise,
+    required TResult Function(String packageId) added,
   }) {
     return started();
   }
@@ -132,7 +129,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? SeachedCruise,
+    TResult? Function(String packageId)? added,
   }) {
     return started?.call();
   }
@@ -141,7 +138,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? SeachedCruise,
+    TResult Function(String packageId)? added,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -154,8 +151,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetSeachedCruiseresultsEvent value)
-        SeachedCruise,
+    required TResult Function(_AddItemToFavourites value) added,
   }) {
     return started(this);
   }
@@ -164,7 +160,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetSeachedCruiseresultsEvent value)? SeachedCruise,
+    TResult? Function(_AddItemToFavourites value)? added,
   }) {
     return started?.call(this);
   }
@@ -173,7 +169,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetSeachedCruiseresultsEvent value)? SeachedCruise,
+    TResult Function(_AddItemToFavourites value)? added,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -183,80 +179,105 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements GetSeachedCruiseresultsEvent {
+abstract class _Started implements AddItemToFavouritesEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$GetSeachedCruiseresultsEventImplCopyWith<$Res> {
-  factory _$$GetSeachedCruiseresultsEventImplCopyWith(
-          _$GetSeachedCruiseresultsEventImpl value,
-          $Res Function(_$GetSeachedCruiseresultsEventImpl) then) =
-      __$$GetSeachedCruiseresultsEventImplCopyWithImpl<$Res>;
+abstract class _$$AddItemToFavouritesImplCopyWith<$Res> {
+  factory _$$AddItemToFavouritesImplCopyWith(_$AddItemToFavouritesImpl value,
+          $Res Function(_$AddItemToFavouritesImpl) then) =
+      __$$AddItemToFavouritesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String packageId});
 }
 
 /// @nodoc
-class __$$GetSeachedCruiseresultsEventImplCopyWithImpl<$Res>
-    extends _$GetSeachedCruiseresultsEventCopyWithImpl<$Res,
-        _$GetSeachedCruiseresultsEventImpl>
-    implements _$$GetSeachedCruiseresultsEventImplCopyWith<$Res> {
-  __$$GetSeachedCruiseresultsEventImplCopyWithImpl(
-      _$GetSeachedCruiseresultsEventImpl _value,
-      $Res Function(_$GetSeachedCruiseresultsEventImpl) _then)
+class __$$AddItemToFavouritesImplCopyWithImpl<$Res>
+    extends _$AddItemToFavouritesEventCopyWithImpl<$Res,
+        _$AddItemToFavouritesImpl>
+    implements _$$AddItemToFavouritesImplCopyWith<$Res> {
+  __$$AddItemToFavouritesImplCopyWithImpl(_$AddItemToFavouritesImpl _value,
+      $Res Function(_$AddItemToFavouritesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetSeachedCruiseresultsEvent
+  /// Create a copy of AddItemToFavouritesEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? packageId = null,
+  }) {
+    return _then(_$AddItemToFavouritesImpl(
+      packageId: null == packageId
+          ? _value.packageId
+          : packageId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$GetSeachedCruiseresultsEventImpl
-    implements _GetSeachedCruiseresultsEvent {
-  const _$GetSeachedCruiseresultsEventImpl();
+class _$AddItemToFavouritesImpl implements _AddItemToFavourites {
+  const _$AddItemToFavouritesImpl({required this.packageId});
+
+  @override
+  final String packageId;
 
   @override
   String toString() {
-    return 'GetSeachedCruiseresultsEvent.SeachedCruise()';
+    return 'AddItemToFavouritesEvent.added(packageId: $packageId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetSeachedCruiseresultsEventImpl);
+            other is _$AddItemToFavouritesImpl &&
+            (identical(other.packageId, packageId) ||
+                other.packageId == packageId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, packageId);
+
+  /// Create a copy of AddItemToFavouritesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddItemToFavouritesImplCopyWith<_$AddItemToFavouritesImpl> get copyWith =>
+      __$$AddItemToFavouritesImplCopyWithImpl<_$AddItemToFavouritesImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() SeachedCruise,
+    required TResult Function(String packageId) added,
   }) {
-    return SeachedCruise();
+    return added(packageId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? SeachedCruise,
+    TResult? Function(String packageId)? added,
   }) {
-    return SeachedCruise?.call();
+    return added?.call(packageId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? SeachedCruise,
+    TResult Function(String packageId)? added,
     required TResult orElse(),
   }) {
-    if (SeachedCruise != null) {
-      return SeachedCruise();
+    if (added != null) {
+      return added(packageId);
     }
     return orElse();
   }
@@ -265,50 +286,57 @@ class _$GetSeachedCruiseresultsEventImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetSeachedCruiseresultsEvent value)
-        SeachedCruise,
+    required TResult Function(_AddItemToFavourites value) added,
   }) {
-    return SeachedCruise(this);
+    return added(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetSeachedCruiseresultsEvent value)? SeachedCruise,
+    TResult? Function(_AddItemToFavourites value)? added,
   }) {
-    return SeachedCruise?.call(this);
+    return added?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetSeachedCruiseresultsEvent value)? SeachedCruise,
+    TResult Function(_AddItemToFavourites value)? added,
     required TResult orElse(),
   }) {
-    if (SeachedCruise != null) {
-      return SeachedCruise(this);
+    if (added != null) {
+      return added(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetSeachedCruiseresultsEvent
-    implements GetSeachedCruiseresultsEvent {
-  const factory _GetSeachedCruiseresultsEvent() =
-      _$GetSeachedCruiseresultsEventImpl;
+abstract class _AddItemToFavourites implements AddItemToFavouritesEvent {
+  const factory _AddItemToFavourites({required final String packageId}) =
+      _$AddItemToFavouritesImpl;
+
+  String get packageId;
+
+  /// Create a copy of AddItemToFavouritesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddItemToFavouritesImplCopyWith<_$AddItemToFavouritesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$GetSeachedCruiseresultsState {
+mixin _$AddItemToFavouritesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
-        getuseruccess,
-    required TResult Function(String error) getuserFailure,
+    required TResult Function(
+            PostedFavouritemItemModel postedfavouritemitemodel)
+        addedSuccess,
+    required TResult Function(String error) addedFailure,
     required TResult Function() noInternet,
   }) =>
       throw _privateConstructorUsedError;
@@ -316,9 +344,9 @@ mixin _$GetSeachedCruiseresultsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult? Function(String error)? getuserFailure,
+    TResult? Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult? Function(String error)? addedFailure,
     TResult? Function()? noInternet,
   }) =>
       throw _privateConstructorUsedError;
@@ -326,9 +354,9 @@ mixin _$GetSeachedCruiseresultsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult Function(String error)? getuserFailure,
+    TResult Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult Function(String error)? addedFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) =>
@@ -337,8 +365,8 @@ mixin _$GetSeachedCruiseresultsState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_GetSeachedCruiseresults value) getuseruccess,
-    required TResult Function(GetSeachedCruiseFailure value) getuserFailure,
+    required TResult Function(_PostedFavouritemItemSuccess value) addedSuccess,
+    required TResult Function(AddItemToFavouritesFailure value) addedFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) =>
       throw _privateConstructorUsedError;
@@ -346,8 +374,8 @@ mixin _$GetSeachedCruiseresultsState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult? Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult? Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult? Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) =>
       throw _privateConstructorUsedError;
@@ -355,8 +383,8 @@ mixin _$GetSeachedCruiseresultsState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) =>
@@ -364,26 +392,24 @@ mixin _$GetSeachedCruiseresultsState {
 }
 
 /// @nodoc
-abstract class $GetSeachedCruiseresultsStateCopyWith<$Res> {
-  factory $GetSeachedCruiseresultsStateCopyWith(
-          GetSeachedCruiseresultsState value,
-          $Res Function(GetSeachedCruiseresultsState) then) =
-      _$GetSeachedCruiseresultsStateCopyWithImpl<$Res,
-          GetSeachedCruiseresultsState>;
+abstract class $AddItemToFavouritesStateCopyWith<$Res> {
+  factory $AddItemToFavouritesStateCopyWith(AddItemToFavouritesState value,
+          $Res Function(AddItemToFavouritesState) then) =
+      _$AddItemToFavouritesStateCopyWithImpl<$Res, AddItemToFavouritesState>;
 }
 
 /// @nodoc
-class _$GetSeachedCruiseresultsStateCopyWithImpl<$Res,
-        $Val extends GetSeachedCruiseresultsState>
-    implements $GetSeachedCruiseresultsStateCopyWith<$Res> {
-  _$GetSeachedCruiseresultsStateCopyWithImpl(this._value, this._then);
+class _$AddItemToFavouritesStateCopyWithImpl<$Res,
+        $Val extends AddItemToFavouritesState>
+    implements $AddItemToFavouritesStateCopyWith<$Res> {
+  _$AddItemToFavouritesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -396,13 +422,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$GetSeachedCruiseresultsStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$AddItemToFavouritesStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -413,7 +439,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'GetSeachedCruiseresultsState.initial()';
+    return 'AddItemToFavouritesState.initial()';
   }
 
   @override
@@ -430,9 +456,10 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
-        getuseruccess,
-    required TResult Function(String error) getuserFailure,
+    required TResult Function(
+            PostedFavouritemItemModel postedfavouritemitemodel)
+        addedSuccess,
+    required TResult Function(String error) addedFailure,
     required TResult Function() noInternet,
   }) {
     return initial();
@@ -443,9 +470,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult? Function(String error)? getuserFailure,
+    TResult? Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult? Function(String error)? addedFailure,
     TResult? Function()? noInternet,
   }) {
     return initial?.call();
@@ -456,9 +483,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult Function(String error)? getuserFailure,
+    TResult Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult Function(String error)? addedFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
@@ -473,8 +500,8 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_GetSeachedCruiseresults value) getuseruccess,
-    required TResult Function(GetSeachedCruiseFailure value) getuserFailure,
+    required TResult Function(_PostedFavouritemItemSuccess value) addedSuccess,
+    required TResult Function(AddItemToFavouritesFailure value) addedFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
     return initial(this);
@@ -485,8 +512,8 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult? Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult? Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult? Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
     return initial?.call(this);
@@ -497,8 +524,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
@@ -509,7 +536,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements GetSeachedCruiseresultsState {
+abstract class _Initial implements AddItemToFavouritesState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -522,13 +549,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$GetSeachedCruiseresultsStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$AddItemToFavouritesStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -539,7 +566,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'GetSeachedCruiseresultsState.loading()';
+    return 'AddItemToFavouritesState.loading()';
   }
 
   @override
@@ -556,9 +583,10 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
-        getuseruccess,
-    required TResult Function(String error) getuserFailure,
+    required TResult Function(
+            PostedFavouritemItemModel postedfavouritemitemodel)
+        addedSuccess,
+    required TResult Function(String error) addedFailure,
     required TResult Function() noInternet,
   }) {
     return loading();
@@ -569,9 +597,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult? Function(String error)? getuserFailure,
+    TResult? Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult? Function(String error)? addedFailure,
     TResult? Function()? noInternet,
   }) {
     return loading?.call();
@@ -582,9 +610,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult Function(String error)? getuserFailure,
+    TResult Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult Function(String error)? addedFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
@@ -599,8 +627,8 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_GetSeachedCruiseresults value) getuseruccess,
-    required TResult Function(GetSeachedCruiseFailure value) getuserFailure,
+    required TResult Function(_PostedFavouritemItemSuccess value) addedSuccess,
+    required TResult Function(AddItemToFavouritesFailure value) addedFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
     return loading(this);
@@ -611,8 +639,8 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult? Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult? Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult? Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
     return loading?.call(this);
@@ -623,8 +651,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
@@ -635,91 +663,95 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements GetSeachedCruiseresultsState {
+abstract class _Loading implements AddItemToFavouritesState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$GetSeachedCruiseresultsImplCopyWith<$Res> {
-  factory _$$GetSeachedCruiseresultsImplCopyWith(
-          _$GetSeachedCruiseresultsImpl value,
-          $Res Function(_$GetSeachedCruiseresultsImpl) then) =
-      __$$GetSeachedCruiseresultsImplCopyWithImpl<$Res>;
+abstract class _$$PostedFavouritemItemSuccessImplCopyWith<$Res> {
+  factory _$$PostedFavouritemItemSuccessImplCopyWith(
+          _$PostedFavouritemItemSuccessImpl value,
+          $Res Function(_$PostedFavouritemItemSuccessImpl) then) =
+      __$$PostedFavouritemItemSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PackageSearchResultsModel packagesearchresults});
+  $Res call({PostedFavouritemItemModel postedfavouritemitemodel});
 }
 
 /// @nodoc
-class __$$GetSeachedCruiseresultsImplCopyWithImpl<$Res>
-    extends _$GetSeachedCruiseresultsStateCopyWithImpl<$Res,
-        _$GetSeachedCruiseresultsImpl>
-    implements _$$GetSeachedCruiseresultsImplCopyWith<$Res> {
-  __$$GetSeachedCruiseresultsImplCopyWithImpl(
-      _$GetSeachedCruiseresultsImpl _value,
-      $Res Function(_$GetSeachedCruiseresultsImpl) _then)
+class __$$PostedFavouritemItemSuccessImplCopyWithImpl<$Res>
+    extends _$AddItemToFavouritesStateCopyWithImpl<$Res,
+        _$PostedFavouritemItemSuccessImpl>
+    implements _$$PostedFavouritemItemSuccessImplCopyWith<$Res> {
+  __$$PostedFavouritemItemSuccessImplCopyWithImpl(
+      _$PostedFavouritemItemSuccessImpl _value,
+      $Res Function(_$PostedFavouritemItemSuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? packagesearchresults = null,
+    Object? postedfavouritemitemodel = null,
   }) {
-    return _then(_$GetSeachedCruiseresultsImpl(
-      packagesearchresults: null == packagesearchresults
-          ? _value.packagesearchresults
-          : packagesearchresults // ignore: cast_nullable_to_non_nullable
-              as PackageSearchResultsModel,
+    return _then(_$PostedFavouritemItemSuccessImpl(
+      postedfavouritemitemodel: null == postedfavouritemitemodel
+          ? _value.postedfavouritemitemodel
+          : postedfavouritemitemodel // ignore: cast_nullable_to_non_nullable
+              as PostedFavouritemItemModel,
     ));
   }
 }
 
 /// @nodoc
 
-class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
-  const _$GetSeachedCruiseresultsImpl({required this.packagesearchresults});
+class _$PostedFavouritemItemSuccessImpl
+    implements _PostedFavouritemItemSuccess {
+  const _$PostedFavouritemItemSuccessImpl(
+      {required this.postedfavouritemitemodel});
 
   @override
-  final PackageSearchResultsModel packagesearchresults;
+  final PostedFavouritemItemModel postedfavouritemitemodel;
 
   @override
   String toString() {
-    return 'GetSeachedCruiseresultsState.getuseruccess(packagesearchresults: $packagesearchresults)';
+    return 'AddItemToFavouritesState.addedSuccess(postedfavouritemitemodel: $postedfavouritemitemodel)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetSeachedCruiseresultsImpl &&
-            (identical(other.packagesearchresults, packagesearchresults) ||
-                other.packagesearchresults == packagesearchresults));
+            other is _$PostedFavouritemItemSuccessImpl &&
+            (identical(
+                    other.postedfavouritemitemodel, postedfavouritemitemodel) ||
+                other.postedfavouritemitemodel == postedfavouritemitemodel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, packagesearchresults);
+  int get hashCode => Object.hash(runtimeType, postedfavouritemitemodel);
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetSeachedCruiseresultsImplCopyWith<_$GetSeachedCruiseresultsImpl>
-      get copyWith => __$$GetSeachedCruiseresultsImplCopyWithImpl<
-          _$GetSeachedCruiseresultsImpl>(this, _$identity);
+  _$$PostedFavouritemItemSuccessImplCopyWith<_$PostedFavouritemItemSuccessImpl>
+      get copyWith => __$$PostedFavouritemItemSuccessImplCopyWithImpl<
+          _$PostedFavouritemItemSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
-        getuseruccess,
-    required TResult Function(String error) getuserFailure,
+    required TResult Function(
+            PostedFavouritemItemModel postedfavouritemitemodel)
+        addedSuccess,
+    required TResult Function(String error) addedFailure,
     required TResult Function() noInternet,
   }) {
-    return getuseruccess(packagesearchresults);
+    return addedSuccess(postedfavouritemitemodel);
   }
 
   @override
@@ -727,12 +759,12 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult? Function(String error)? getuserFailure,
+    TResult? Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult? Function(String error)? addedFailure,
     TResult? Function()? noInternet,
   }) {
-    return getuseruccess?.call(packagesearchresults);
+    return addedSuccess?.call(postedfavouritemitemodel);
   }
 
   @override
@@ -740,14 +772,14 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult Function(String error)? getuserFailure,
+    TResult Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult Function(String error)? addedFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
-    if (getuseruccess != null) {
-      return getuseruccess(packagesearchresults);
+    if (addedSuccess != null) {
+      return addedSuccess(postedfavouritemitemodel);
     }
     return orElse();
   }
@@ -757,11 +789,11 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_GetSeachedCruiseresults value) getuseruccess,
-    required TResult Function(GetSeachedCruiseFailure value) getuserFailure,
+    required TResult Function(_PostedFavouritemItemSuccess value) addedSuccess,
+    required TResult Function(AddItemToFavouritesFailure value) addedFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
-    return getuseruccess(this);
+    return addedSuccess(this);
   }
 
   @override
@@ -769,11 +801,11 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult? Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult? Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult? Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
-    return getuseruccess?.call(this);
+    return addedSuccess?.call(this);
   }
 
   @override
@@ -781,61 +813,61 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
-    if (getuseruccess != null) {
-      return getuseruccess(this);
+    if (addedSuccess != null) {
+      return addedSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetSeachedCruiseresults
-    implements GetSeachedCruiseresultsState {
-  const factory _GetSeachedCruiseresults(
-          {required final PackageSearchResultsModel packagesearchresults}) =
-      _$GetSeachedCruiseresultsImpl;
+abstract class _PostedFavouritemItemSuccess
+    implements AddItemToFavouritesState {
+  const factory _PostedFavouritemItemSuccess(
+          {required final PostedFavouritemItemModel postedfavouritemitemodel}) =
+      _$PostedFavouritemItemSuccessImpl;
 
-  PackageSearchResultsModel get packagesearchresults;
+  PostedFavouritemItemModel get postedfavouritemitemodel;
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetSeachedCruiseresultsImplCopyWith<_$GetSeachedCruiseresultsImpl>
+  _$$PostedFavouritemItemSuccessImplCopyWith<_$PostedFavouritemItemSuccessImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GetSeachedCruiseFailureImplCopyWith<$Res> {
-  factory _$$GetSeachedCruiseFailureImplCopyWith(
-          _$GetSeachedCruiseFailureImpl value,
-          $Res Function(_$GetSeachedCruiseFailureImpl) then) =
-      __$$GetSeachedCruiseFailureImplCopyWithImpl<$Res>;
+abstract class _$$AddItemToFavouritesFailureImplCopyWith<$Res> {
+  factory _$$AddItemToFavouritesFailureImplCopyWith(
+          _$AddItemToFavouritesFailureImpl value,
+          $Res Function(_$AddItemToFavouritesFailureImpl) then) =
+      __$$AddItemToFavouritesFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$GetSeachedCruiseFailureImplCopyWithImpl<$Res>
-    extends _$GetSeachedCruiseresultsStateCopyWithImpl<$Res,
-        _$GetSeachedCruiseFailureImpl>
-    implements _$$GetSeachedCruiseFailureImplCopyWith<$Res> {
-  __$$GetSeachedCruiseFailureImplCopyWithImpl(
-      _$GetSeachedCruiseFailureImpl _value,
-      $Res Function(_$GetSeachedCruiseFailureImpl) _then)
+class __$$AddItemToFavouritesFailureImplCopyWithImpl<$Res>
+    extends _$AddItemToFavouritesStateCopyWithImpl<$Res,
+        _$AddItemToFavouritesFailureImpl>
+    implements _$$AddItemToFavouritesFailureImplCopyWith<$Res> {
+  __$$AddItemToFavouritesFailureImplCopyWithImpl(
+      _$AddItemToFavouritesFailureImpl _value,
+      $Res Function(_$AddItemToFavouritesFailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$GetSeachedCruiseFailureImpl(
+    return _then(_$AddItemToFavouritesFailureImpl(
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -846,48 +878,49 @@ class __$$GetSeachedCruiseFailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
-  const _$GetSeachedCruiseFailureImpl({required this.error});
+class _$AddItemToFavouritesFailureImpl implements AddItemToFavouritesFailure {
+  const _$AddItemToFavouritesFailureImpl({required this.error});
 
   @override
   final String error;
 
   @override
   String toString() {
-    return 'GetSeachedCruiseresultsState.getuserFailure(error: $error)';
+    return 'AddItemToFavouritesState.addedFailure(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetSeachedCruiseFailureImpl &&
+            other is _$AddItemToFavouritesFailureImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetSeachedCruiseFailureImplCopyWith<_$GetSeachedCruiseFailureImpl>
-      get copyWith => __$$GetSeachedCruiseFailureImplCopyWithImpl<
-          _$GetSeachedCruiseFailureImpl>(this, _$identity);
+  _$$AddItemToFavouritesFailureImplCopyWith<_$AddItemToFavouritesFailureImpl>
+      get copyWith => __$$AddItemToFavouritesFailureImplCopyWithImpl<
+          _$AddItemToFavouritesFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
-        getuseruccess,
-    required TResult Function(String error) getuserFailure,
+    required TResult Function(
+            PostedFavouritemItemModel postedfavouritemitemodel)
+        addedSuccess,
+    required TResult Function(String error) addedFailure,
     required TResult Function() noInternet,
   }) {
-    return getuserFailure(error);
+    return addedFailure(error);
   }
 
   @override
@@ -895,12 +928,12 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult? Function(String error)? getuserFailure,
+    TResult? Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult? Function(String error)? addedFailure,
     TResult? Function()? noInternet,
   }) {
-    return getuserFailure?.call(error);
+    return addedFailure?.call(error);
   }
 
   @override
@@ -908,14 +941,14 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult Function(String error)? getuserFailure,
+    TResult Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult Function(String error)? addedFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
-    if (getuserFailure != null) {
-      return getuserFailure(error);
+    if (addedFailure != null) {
+      return addedFailure(error);
     }
     return orElse();
   }
@@ -925,11 +958,11 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_GetSeachedCruiseresults value) getuseruccess,
-    required TResult Function(GetSeachedCruiseFailure value) getuserFailure,
+    required TResult Function(_PostedFavouritemItemSuccess value) addedSuccess,
+    required TResult Function(AddItemToFavouritesFailure value) addedFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
-    return getuserFailure(this);
+    return addedFailure(this);
   }
 
   @override
@@ -937,11 +970,11 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult? Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult? Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult? Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
-    return getuserFailure?.call(this);
+    return addedFailure?.call(this);
   }
 
   @override
@@ -949,28 +982,28 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
-    if (getuserFailure != null) {
-      return getuserFailure(this);
+    if (addedFailure != null) {
+      return addedFailure(this);
     }
     return orElse();
   }
 }
 
-abstract class GetSeachedCruiseFailure implements GetSeachedCruiseresultsState {
-  const factory GetSeachedCruiseFailure({required final String error}) =
-      _$GetSeachedCruiseFailureImpl;
+abstract class AddItemToFavouritesFailure implements AddItemToFavouritesState {
+  const factory AddItemToFavouritesFailure({required final String error}) =
+      _$AddItemToFavouritesFailureImpl;
 
   String get error;
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetSeachedCruiseFailureImplCopyWith<_$GetSeachedCruiseFailureImpl>
+  _$$AddItemToFavouritesFailureImplCopyWith<_$AddItemToFavouritesFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -983,13 +1016,13 @@ abstract class _$$NoInternetImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoInternetImplCopyWithImpl<$Res>
-    extends _$GetSeachedCruiseresultsStateCopyWithImpl<$Res, _$NoInternetImpl>
+    extends _$AddItemToFavouritesStateCopyWithImpl<$Res, _$NoInternetImpl>
     implements _$$NoInternetImplCopyWith<$Res> {
   __$$NoInternetImplCopyWithImpl(
       _$NoInternetImpl _value, $Res Function(_$NoInternetImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetSeachedCruiseresultsState
+  /// Create a copy of AddItemToFavouritesState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -1000,7 +1033,7 @@ class _$NoInternetImpl implements _NoInternet {
 
   @override
   String toString() {
-    return 'GetSeachedCruiseresultsState.noInternet()';
+    return 'AddItemToFavouritesState.noInternet()';
   }
 
   @override
@@ -1017,9 +1050,10 @@ class _$NoInternetImpl implements _NoInternet {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
-        getuseruccess,
-    required TResult Function(String error) getuserFailure,
+    required TResult Function(
+            PostedFavouritemItemModel postedfavouritemitemodel)
+        addedSuccess,
+    required TResult Function(String error) addedFailure,
     required TResult Function() noInternet,
   }) {
     return noInternet();
@@ -1030,9 +1064,9 @@ class _$NoInternetImpl implements _NoInternet {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult? Function(String error)? getuserFailure,
+    TResult? Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult? Function(String error)? addedFailure,
     TResult? Function()? noInternet,
   }) {
     return noInternet?.call();
@@ -1043,9 +1077,9 @@ class _$NoInternetImpl implements _NoInternet {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
-        getuseruccess,
-    TResult Function(String error)? getuserFailure,
+    TResult Function(PostedFavouritemItemModel postedfavouritemitemodel)?
+        addedSuccess,
+    TResult Function(String error)? addedFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
   }) {
@@ -1060,8 +1094,8 @@ class _$NoInternetImpl implements _NoInternet {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_GetSeachedCruiseresults value) getuseruccess,
-    required TResult Function(GetSeachedCruiseFailure value) getuserFailure,
+    required TResult Function(_PostedFavouritemItemSuccess value) addedSuccess,
+    required TResult Function(AddItemToFavouritesFailure value) addedFailure,
     required TResult Function(_NoInternet value) noInternet,
   }) {
     return noInternet(this);
@@ -1072,8 +1106,8 @@ class _$NoInternetImpl implements _NoInternet {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult? Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult? Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult? Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult? Function(_NoInternet value)? noInternet,
   }) {
     return noInternet?.call(this);
@@ -1084,8 +1118,8 @@ class _$NoInternetImpl implements _NoInternet {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_GetSeachedCruiseresults value)? getuseruccess,
-    TResult Function(GetSeachedCruiseFailure value)? getuserFailure,
+    TResult Function(_PostedFavouritemItemSuccess value)? addedSuccess,
+    TResult Function(AddItemToFavouritesFailure value)? addedFailure,
     TResult Function(_NoInternet value)? noInternet,
     required TResult orElse(),
   }) {
@@ -1096,6 +1130,6 @@ class _$NoInternetImpl implements _NoInternet {
   }
 }
 
-abstract class _NoInternet implements GetSeachedCruiseresultsState {
+abstract class _NoInternet implements AddItemToFavouritesState {
   const factory _NoInternet() = _$NoInternetImpl;
 }
