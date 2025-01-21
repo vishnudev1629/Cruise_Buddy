@@ -658,14 +658,13 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                 child: GestureDetector(
                                                   onTap: () {
                                                     BlocProvider.of<
-                                                        AddItemToFavouritesBloc>(
-                                                      context,
-                                                    ).add(
+                                                                AddItemToFavouritesBloc>(
+                                                            context)
+                                                        .add(
                                                       AddItemToFavouritesEvent
                                                           .added(
-                                                        packageId: package?.id
-                                                                .toString() ??
-                                                            '0',
+                                                        packageId: package.id
+                                                            .toString(),
                                                       ),
                                                     );
                                                   },

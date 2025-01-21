@@ -131,4 +131,42 @@ class CruiseService {
       return Left('Error: $e');
     }
   }
+
+  Future<Either<String, FeaturedBoatsModel>> getAllCruise() async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        print("No internet");
+        return const Left('No internet');
+      }
+
+      final token = await GetSharedPreferences.getAccessToken();
+
+      if (token == null) {
+        print('No access token found.');
+        return const Left('No access token found.');
+      }
+
+      _headers['Authorization'] = 'Bearer $token';
+
+      final response = await http.get(
+        Uri.parse(
+            '$url/featured/cruise?include=cruisesImages,packages.packageImages'),
+        headers: _headers,
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final data = json.decode(response.body);
+
+        final locationdetails = FeaturedBoatsModel.fromJson(data);
+
+        return Right(locationdetails);
+      } else {
+        print('Request failed: ${response.body.toLowerCase()}');
+        return Left('Failed to get cruise type: ${response.statusCode}');
+      }
+    } catch (e) {
+      return Left('Error: $e');
+    }
+  }
 }

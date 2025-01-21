@@ -7,6 +7,7 @@ import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats
 import 'package:cruise_buddy/core/view_model/getLocationDetails/get_location_details_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getSearchCruiseResults/get_seached_cruiseresults_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_bloc.dart';
+import 'package:cruise_buddy/core/view_model/listCruiseonLocation/list_cruiseon_location_bloc.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
 import 'package:cruise_buddy/core/view_model/regsiter/register_bloc.dart';
 import 'package:cruise_buddy/test_folder/api_test.dart';
@@ -51,6 +52,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetSeachedCruiseresultsBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AddItemToFavouritesBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ListCruiseonLocationBloc(),
         ),
       ],
       child: MaterialApp(

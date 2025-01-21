@@ -1,3 +1,4 @@
+import 'package:cruise_buddy/UI/Screens/misc/locations_based_cruise.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/core/view_model/getLocationDetails/get_location_details_bloc.dart';
 import 'package:flutter/material.dart';
@@ -189,10 +190,20 @@ class _ExploreDestinationWidgetState extends State<ExploreDestinationWidget> {
               ),
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTapDown: (details) => onTapDown(index, details),
-                  onTapUp: (details) => onTapUp(index, details),
-                  onTap: () => handleTap(index),
-                  onTapCancel: () => onTapCancel(index),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return LocationsBasedCruiseScreen(
+                          location:
+                              value.locationmodel.data![index].name.toString(),
+                        );
+                      },
+                    ));
+                  },
+                  // onTapDown: (details) => onTapDown(index, details),
+                  // onTapUp: (details) => onTapUp(index, details),
+                  // onTap: () => handleTap(index),
+                  // onTapCancel: () => onTapCancel(index),
                   child: AnimatedScale(
                     scale: _scales[index],
                     duration: const Duration(milliseconds: 150),
