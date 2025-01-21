@@ -650,18 +650,6 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                               Positioned(
                                                 top: 60,
                                                 right: 8,
-<<<<<<< HEAD
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    BlocProvider.of<
-                                                                AddItemToFavouritesBloc>(
-                                                            context)
-                                                        .add(
-                                                      AddItemToFavouritesEvent
-                                                          .added(
-                                                        packageId: package.id
-                                                            .toString(),
-=======
                                                 child: Container(
                                                   width: 68,
                                                   height: 30,
@@ -678,7 +666,6 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                         Icons.star,
                                                         color: Colors.amber,
                                                         size: 24,
->>>>>>> 62a3ce25aa160fa2323d550815f5018220a47e13
                                                       ),
                                                       const Text("4.3"),
                                                       const SizedBox(width: 10),
