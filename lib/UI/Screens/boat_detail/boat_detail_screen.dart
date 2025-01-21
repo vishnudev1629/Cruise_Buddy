@@ -39,7 +39,9 @@ class _BoatDetailScreenState extends State<BoatDetailScreen> {
     return Scaffold(
       backgroundColor: Color(0XFFFFFFFF),
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+        leading: IconButton(onPressed: () {
+          Navigator.pop(context);
+        }, icon: Icon(Icons.arrow_back_ios)),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),

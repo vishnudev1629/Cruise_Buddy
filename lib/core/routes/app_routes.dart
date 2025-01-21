@@ -4,6 +4,7 @@ import 'package:cruise_buddy/UI/Screens/Auth/signup_screen.dart';
 import 'package:cruise_buddy/UI/Screens/On%20Boarding/onboardingscreen_one.dart';
 import 'package:cruise_buddy/UI/Screens/On%20Boarding/onboardingscreen_three.dart';
 import 'package:cruise_buddy/UI/Screens/On%20Boarding/onboardingscreen_two.dart';
+import 'package:cruise_buddy/UI/Screens/boat_detail/boat_detail_screen.dart';
 import 'package:cruise_buddy/UI/Screens/layout/main_layout/main_layout.dart';
 import 'package:flutter/material.dart';
 
@@ -60,4 +61,10 @@ class AppRoutes {
     );
   }
 
+  static navigateToBoatdetailScreen(BuildContext context) {
+    return Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const BoatDetailScreen()),
+    );
+  }
 }
