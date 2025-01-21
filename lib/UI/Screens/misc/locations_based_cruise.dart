@@ -101,26 +101,30 @@ class _LocationsBasedCruiseScreenState
 
                 if (cruiseData == null || cruiseData.isEmpty) {
                   // When there's no data, display a "No data available" message
-                  return Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset('assets/icons/not_available_404.svg'),
-                        Text(
-                          "No Cruise Available",
-                          style: TextStyles.ubuntu18bluew700,
-                        ),
-                        Center(
-                          child: Text(
-                            "It looks like no cruises are available in the ${widget.location} location.",
-                            textAlign: TextAlign
-                                .center, // Ensures multi-line text is centered
-                            style: TextStyles
-                                .ubuntu14black55w400, // Optional: Adjust font size or style
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                              'assets/icons/not_available_404.svg'),
+                          Text(
+                            "No Cruise Available",
+                            style: TextStyles.ubuntu18bluew700,
                           ),
-                        ),
-                      ],
+                          Center(
+                            child: Text(
+                              "It looks like no cruises are available in the ${widget.location} location.",
+                              textAlign: TextAlign
+                                  .center, // Ensures multi-line text is centered
+                              style: TextStyles
+                                  .ubuntu14black55w400, // Optional: Adjust font size or style
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }
