@@ -190,7 +190,9 @@ class _ExploreDestinationWidgetState extends State<ExploreDestinationWidget> {
               ),
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () {
+                  onTapDown: (details) => onTapDown(index, details),
+                  onTapUp: (details) {
+                    onTapUp(index, details); // Reset the scale
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) {
                         return LocationsBasedCruiseScreen(
@@ -200,10 +202,7 @@ class _ExploreDestinationWidgetState extends State<ExploreDestinationWidget> {
                       },
                     ));
                   },
-                  // onTapDown: (details) => onTapDown(index, details),
-                  // onTapUp: (details) => onTapUp(index, details),
-                  // onTap: () => handleTap(index),
-                  // onTapCancel: () => onTapCancel(index),
+                  onTapCancel: () => onTapCancel(index),
                   child: AnimatedScale(
                     scale: _scales[index],
                     duration: const Duration(milliseconds: 150),
