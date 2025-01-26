@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CruiseSelectionWidget extends StatefulWidget {
-  const CruiseSelectionWidget({super.key});
+  final ValueChanged<String> onCruiseSelected;
+  const CruiseSelectionWidget({super.key, required this.onCruiseSelected});
 
   @override
   State<CruiseSelectionWidget> createState() => _CruiseSelectionWidgetState();
@@ -44,6 +45,7 @@ class _CruiseSelectionWidgetState extends State<CruiseSelectionWidget> {
           setState(() {
             selectedCruise = "Day Cruise";
           });
+          widget.onCruiseSelected(selectedCruise);
         },
         child: Container(
           height: 48,
@@ -88,6 +90,7 @@ class _CruiseSelectionWidgetState extends State<CruiseSelectionWidget> {
           setState(() {
             selectedCruise = "Full Cruise";
           });
+          widget.onCruiseSelected(selectedCruise);
         },
         child: Container(
           height: 48,

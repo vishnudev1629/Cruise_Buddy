@@ -1,13 +1,13 @@
-import 'package:cruise_buddy/UI/Screens/layout/main_layout/main_layout.dart';
-import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/booking_dateSelection.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/booking_selection_widget.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/counter_pill.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/cruise_selection_widget.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/passengers_pill.dart';
 import 'package:cruise_buddy/UI/Screens/search%20Results/screen/search_results_screen.dart';
+import 'package:cruise_buddy/UI/Widgets/dateSelection/multiple_date_selection.dart';
+import 'package:cruise_buddy/UI/Widgets/dateSelection/single_date_selection.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 
 class DetailsDelegate extends StatefulWidget {
   const DetailsDelegate({super.key});
@@ -17,6 +17,7 @@ class DetailsDelegate extends StatefulWidget {
 }
 
 class _DetailsDelegateState extends State<DetailsDelegate> {
+  String selectedCruise = "Day Cruise";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,14 +47,23 @@ class _DetailsDelegateState extends State<DetailsDelegate> {
                     style: TextStyles.ubuntu16black23w500,
                   ),
                   SizedBox(height: 10),
-                  BookingDateselection(),
+                 if (selectedCruise == "Day Cruise")
+                    SingleBookingDateselection(),
+                  if (selectedCruise == "Full Cruise")
+                    MultiplebookingDateselection(),
                   SizedBox(height: 15),
                   Text(
                     "Type of cruise",
                     style: TextStyles.ubuntu16black23w500,
                   ),
                   SizedBox(height: 10),
-                  CruiseSelectionWidget(),
+                  CruiseSelectionWidget(
+                    onCruiseSelected: (cruise) {
+                      setState(() {
+                        selectedCruise = cruise;
+                      });
+                    },
+                  ),
                   SizedBox(height: 15),
                   Text(
                     "Numbers of passengers",
