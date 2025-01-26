@@ -1,7 +1,6 @@
 import 'package:cruise_buddy/UI/Screens/misc/categories_list_resultscreen.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/core/view_model/getCruiseTypes/get_cruise_types_bloc.dart';
-import 'package:cruise_buddy/core/view_model/getSearchCruiseResults/get_seached_cruiseresults_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
@@ -90,13 +89,12 @@ class _CategoriesSectionState extends State<CategoriesSection> {
     });
   }
 
-// Handle the tap without parameters for `onTap`
   void handleTap(int index) {
-    onTapDown(index, TapDownDetails()); // Handle tap down with no details
-    // You can reset the scale after a delay if needed
+    onTapDown(index, TapDownDetails());
+
     Future.delayed(const Duration(milliseconds: 150), () {
       setState(() {
-        _scales[index] = 1.0; // Reset the scale after the animation duration
+        _scales[index] = 1.0;
       });
     });
   }
@@ -150,7 +148,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  "sss",
+                                  "",
                                   style: TextStyles.ubuntu16blue86w500,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
@@ -245,19 +243,33 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                           : 0,
                     ),
                     child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return CategoriesListResultscreen(
-                                category:
-                                    '${value.cruisetypemodel.data?[index].modelName}');
-                          },
-                        ));
+                      onTapDown: (_) {
+                        setState(() {
+                          _scales[index] = 0.94;
+                        });
                       },
-                      // onTapDown: (details) => onTapDown(index, details),
-                      // onTapUp: (details) => onTapUp(index, details),
-                      // onTapCancel: () => onTapCancel(index),
-                      // onTap: () => handleTap(index),
+                      onTapUp: (_) {
+                        Future.delayed(const Duration(milliseconds: 150), () {
+                          setState(() {
+                            _scales[index] = 1.0;
+                          });
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CategoriesListResultscreen(
+                                category:
+                                    '${value.cruisetypemodel.data?[index].modelName}',
+                              ),
+                            ),
+                          );
+                        });
+                      },
+                      onTapCancel: () {
+                        setState(() {
+                          _scales[index] = 1.0;
+                        });
+                      },
                       child: AnimatedScale(
                         scale: _scales[index],
                         duration: const Duration(milliseconds: 150),
