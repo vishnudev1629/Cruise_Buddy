@@ -32,7 +32,7 @@ class PackageData {
   final String description;
   final bool isActive;
   final int cruiseId;
-  final Cruise cruise;
+  final Cruise? cruise;
 
   PackageData({
     required this.id,
@@ -40,7 +40,7 @@ class PackageData {
     required this.description,
     required this.isActive,
     required this.cruiseId,
-    required this.cruise,
+    this.cruise,
   });
 
   factory PackageData.fromJson(Map<String, dynamic> json) {
@@ -50,7 +50,7 @@ class PackageData {
       description: json['description'],
       isActive: json['isActive'],
       cruiseId: json['cruiseId'],
-      cruise: Cruise.fromJson(json['cruise']),
+    cruise: json['cruise'] != null ? Cruise.fromJson(json['cruise']) : null,
     );
   }
 
@@ -61,7 +61,7 @@ class PackageData {
       'description': description,
       'isActive': isActive,
       'cruiseId': cruiseId,
-      'cruise': cruise.toJson(),
+      'cruise': cruise?.toJson(),
     };
   }
 }

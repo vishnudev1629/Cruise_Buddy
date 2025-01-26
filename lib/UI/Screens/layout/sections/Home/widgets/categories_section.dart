@@ -1,5 +1,7 @@
+import 'package:cruise_buddy/UI/Screens/misc/categories_list_resultscreen.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/core/view_model/getCruiseTypes/get_cruise_types_bloc.dart';
+import 'package:cruise_buddy/core/view_model/getSearchCruiseResults/get_seached_cruiseresults_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
@@ -57,7 +59,6 @@ class CategoriesSection extends StatefulWidget {
 }
 
 class _CategoriesSectionState extends State<CategoriesSection> {
-  // List to hold the scale for each image container
   List<double> _scales = [];
 
   @override
@@ -244,10 +245,19 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                           : 0,
                     ),
                     child: GestureDetector(
-                      onTapDown: (details) => onTapDown(index, details),
-                      onTapUp: (details) => onTapUp(index, details),
-                      onTapCancel: () => onTapCancel(index),
-                      onTap: () => handleTap(index),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return CategoriesListResultscreen(
+                                category:
+                                    '${value.cruisetypemodel.data?[index].modelName}');
+                          },
+                        ));
+                      },
+                      // onTapDown: (details) => onTapDown(index, details),
+                      // onTapUp: (details) => onTapUp(index, details),
+                      // onTapCancel: () => onTapCancel(index),
+                      // onTap: () => handleTap(index),
                       child: AnimatedScale(
                         scale: _scales[index],
                         duration: const Duration(milliseconds: 150),

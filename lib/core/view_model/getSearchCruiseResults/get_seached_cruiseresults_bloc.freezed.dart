@@ -19,19 +19,19 @@ mixin _$GetSeachedCruiseresultsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() SeachedCruise,
+    required TResult Function(String filterCriteria) SeachedCruise,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? SeachedCruise,
+    TResult? Function(String filterCriteria)? SeachedCruise,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? SeachedCruise,
+    TResult Function(String filterCriteria)? SeachedCruise,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,7 +123,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() SeachedCruise,
+    required TResult Function(String filterCriteria) SeachedCruise,
   }) {
     return started();
   }
@@ -132,7 +132,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? SeachedCruise,
+    TResult? Function(String filterCriteria)? SeachedCruise,
   }) {
     return started?.call();
   }
@@ -141,7 +141,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? SeachedCruise,
+    TResult Function(String filterCriteria)? SeachedCruise,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -193,6 +193,8 @@ abstract class _$$GetSeachedCruiseresultsEventImplCopyWith<$Res> {
           _$GetSeachedCruiseresultsEventImpl value,
           $Res Function(_$GetSeachedCruiseresultsEventImpl) then) =
       __$$GetSeachedCruiseresultsEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String filterCriteria});
 }
 
 /// @nodoc
@@ -207,56 +209,83 @@ class __$$GetSeachedCruiseresultsEventImplCopyWithImpl<$Res>
 
   /// Create a copy of GetSeachedCruiseresultsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filterCriteria = null,
+  }) {
+    return _then(_$GetSeachedCruiseresultsEventImpl(
+      filterCriteria: null == filterCriteria
+          ? _value.filterCriteria
+          : filterCriteria // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetSeachedCruiseresultsEventImpl
     implements _GetSeachedCruiseresultsEvent {
-  const _$GetSeachedCruiseresultsEventImpl();
+  const _$GetSeachedCruiseresultsEventImpl({required this.filterCriteria});
+
+  @override
+  final String filterCriteria;
 
   @override
   String toString() {
-    return 'GetSeachedCruiseresultsEvent.SeachedCruise()';
+    return 'GetSeachedCruiseresultsEvent.SeachedCruise(filterCriteria: $filterCriteria)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetSeachedCruiseresultsEventImpl);
+            other is _$GetSeachedCruiseresultsEventImpl &&
+            (identical(other.filterCriteria, filterCriteria) ||
+                other.filterCriteria == filterCriteria));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, filterCriteria);
+
+  /// Create a copy of GetSeachedCruiseresultsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSeachedCruiseresultsEventImplCopyWith<
+          _$GetSeachedCruiseresultsEventImpl>
+      get copyWith => __$$GetSeachedCruiseresultsEventImplCopyWithImpl<
+          _$GetSeachedCruiseresultsEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() SeachedCruise,
+    required TResult Function(String filterCriteria) SeachedCruise,
   }) {
-    return SeachedCruise();
+    return SeachedCruise(filterCriteria);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? SeachedCruise,
+    TResult? Function(String filterCriteria)? SeachedCruise,
   }) {
-    return SeachedCruise?.call();
+    return SeachedCruise?.call(filterCriteria);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? SeachedCruise,
+    TResult Function(String filterCriteria)? SeachedCruise,
     required TResult orElse(),
   }) {
     if (SeachedCruise != null) {
-      return SeachedCruise();
+      return SeachedCruise(filterCriteria);
     }
     return orElse();
   }
@@ -296,8 +325,18 @@ class _$GetSeachedCruiseresultsEventImpl
 
 abstract class _GetSeachedCruiseresultsEvent
     implements GetSeachedCruiseresultsEvent {
-  const factory _GetSeachedCruiseresultsEvent() =
+  const factory _GetSeachedCruiseresultsEvent(
+          {required final String filterCriteria}) =
       _$GetSeachedCruiseresultsEventImpl;
+
+  String get filterCriteria;
+
+  /// Create a copy of GetSeachedCruiseresultsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetSeachedCruiseresultsEventImplCopyWith<
+          _$GetSeachedCruiseresultsEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

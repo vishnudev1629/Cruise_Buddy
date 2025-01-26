@@ -1,31 +1,35 @@
+import 'package:cruise_buddy/core/view_model/getSearchCruiseResults/get_seached_cruiseresults_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cruise_buddy/UI/Screens/search%20Results/widgets/amenities_pill.dart';
 import 'package:cruise_buddy/UI/Screens/search%20Results/widgets/boat_category_pill.dart';
 import 'package:cruise_buddy/UI/Screens/search%20Results/widgets/search_results_container.dart';
 import 'package:cruise_buddy/core/constants/colors/app_colors.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
-import 'package:cruise_buddy/core/view_model/getSearchCruiseResults/get_seached_cruiseresults_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SearchResultsScreen extends StatefulWidget {
-  const SearchResultsScreen({super.key});
+class CategoriesListResultscreen extends StatefulWidget {
+  final String category;
+  const CategoriesListResultscreen({
+    super.key,
+    required this.category,
+  });
 
   @override
-  State<SearchResultsScreen> createState() => _SearchResultsScreenState();
+  State<CategoriesListResultscreen> createState() =>
+      _CategoriesListResultscreenState();
 }
 
-class _SearchResultsScreenState extends State<SearchResultsScreen> {
+class _CategoriesListResultscreenState
+    extends State<CategoriesListResultscreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      BlocProvider.of<GetSeachedCruiseresultsBloc>(context).add(
-          GetSeachedCruiseresultsEvent.SeachedCruise(
-              filterCriteria:
-                  'filter[dateRange][start]=2025-01-10&include=cruise.cruiseType%2Ccruise.ratings&filter[dateRange][end]=2025-02-10'));
-    });
+
+    BlocProvider.of<GetSeachedCruiseresultsBloc>(context).add(
+        GetSeachedCruiseresultsEvent.SeachedCruise(
+            filterCriteria: widget.category));
   }
 
   @override
@@ -55,10 +59,9 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                         icon: const Icon(Icons.arrow_back_ios_new_rounded),
                       ),
                       const SizedBox(width: 5),
-                      SvgPicture.asset('assets/icons/map.svg'),
                       const SizedBox(width: 5),
                       Text(
-                        "Kumarakom",
+                        widget.category,
                         style: TextStyles.ubuntu14black55w400,
                       ),
                       const Spacer(),

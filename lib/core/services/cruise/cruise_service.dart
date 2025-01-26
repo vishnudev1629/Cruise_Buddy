@@ -96,8 +96,8 @@ class CruiseService {
     }
   }
 
-  Future<Either<String, PackageSearchResultsModel>>
-      getSearchResultsList() async {
+  Future<Either<String, PackageSearchResultsModel>> getSearchResultsList(
+      {required String filterCriteria}) async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {
@@ -113,21 +113,24 @@ class CruiseService {
       _headers['Authorization'] = 'Bearer $token';
 
       final response = await http.get(
-        Uri.parse(
-            '$url/package?filter[dateRange][start]=2025-01-10&include=cruise.cruiseType%2Ccruise.ratings&filter[dateRange][end]=2025-02-10'),
+        Uri.parse('$url/package?${filterCriteria}'),
+        // Uri.parse(
+        //     '$url/package?filter[dateRange][start]=2025-01-10&include=cruise.cruiseType%2Ccruise.ratings&filter[dateRange][end]=2025-02-10'),
         headers: _headers,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = json.decode(response.body);
-
+        print('data ');
         final locationdetails = PackageSearchResultsModel.fromJson(data);
 
         return Right(locationdetails);
       } else {
+        print('Left');
         return Left('Failed to get cruise type: ${response.statusCode}');
       }
     } catch (e) {
+      print('e ${e}');
       return Left('Error: $e');
     }
   }

@@ -15,19 +15,24 @@ class GetSeachedCruiseresultsBloc
       emit(const GetSeachedCruiseresultsState.loading());
 
       try {
-        final result = await userService.getSearchResultsList();
+        final result = await userService.getSearchResultsList(
+          filterCriteria: event.filterCriteria,
+        );
 
         await result.fold((failure) async {
           if (failure == "No internet") {
+            print('No interne');
             emit(const GetSeachedCruiseresultsState.noInternet());
           } else {
             emit(GetSeachedCruiseresultsState.getuserFailure(error: failure));
           }
         }, (success) async {
+          print('Sucees ${success.data[0].name}');
           emit(GetSeachedCruiseresultsState.getuseruccess(
               packagesearchresults: success));
         });
       } catch (e) {
+        print('catch');
         emit(GetSeachedCruiseresultsState.getuserFailure(
             error: 'An error occurred: $e'));
       }
