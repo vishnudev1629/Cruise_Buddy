@@ -1,3 +1,4 @@
+import 'package:cruise_buddy/UI/Screens/payment_steps_screen/payment_confirmation.dart';
 import 'package:cruise_buddy/UI/Widgets/Button/full_width_bluebutton.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Center(
+                  child: SvgPicture.asset(
+                      'assets/image/payment_screen/Billing.svg')),
+              SizedBox(
+                height: 20,
+              ),
               Text(
                 "Credit or Debit Card",
                 style: TextStyles.ubuntu20black15w600,
@@ -307,7 +314,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
               SizedBox(
                 height: 25,
               ),
-              FullWidthBlueButton(text: 'Pay', onPressed: () {}),
+              FullWidthBlueButton(
+                  text: 'Pay',
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PaymentConfirmationSCreen()));
+                  }),
               SizedBox(
                 height: 25,
               ),

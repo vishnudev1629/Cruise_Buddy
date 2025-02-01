@@ -1,0 +1,371 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.cruisebuddy.app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:2:1-62
+15-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:2:18-60
+16    <!--
+17     Required to query activities that can process text, see:
+18         https://developer.android.com/training/package-visibility and
+19         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+20
+21         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
+22    -->
+23    <queries>
+23-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:40:5-45:15
+24        <intent>
+24-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:41:9-44:18
+25            <action android:name="android.intent.action.PROCESS_TEXT" />
+25-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:42:13-72
+25-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:42:21-70
+26
+27            <data android:mimeType="text/plain" />
+27-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:43:13-50
+27-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:43:19-48
+28        </intent>
+29        <intent>
+29-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:11:9-17:18
+30            <action android:name="android.intent.action.VIEW" />
+30-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:12:13-65
+30-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:12:21-62
+31
+32            <data
+32-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:43:13-50
+33                android:mimeType="*/*"
+33-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:43:19-48
+34                android:scheme="*" />
+35        </intent>
+36        <intent>
+36-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:18:9-27:18
+37            <action android:name="android.intent.action.VIEW" />
+37-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:12:13-65
+37-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:12:21-62
+38
+39            <category android:name="android.intent.category.BROWSABLE" />
+39-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:21:13-74
+39-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:21:23-71
+40
+41            <data
+41-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:43:13-50
+42                android:host="pay"
+43                android:mimeType="*/*"
+43-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:43:19-48
+44                android:scheme="upi" />
+45        </intent>
+46        <intent>
+46-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:28:9-30:18
+47            <action android:name="android.intent.action.MAIN" />
+47-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:29:13-65
+47-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:29:21-62
+48        </intent>
+49        <intent>
+49-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:31:9-35:18
+50            <action android:name="android.intent.action.SEND" />
+50-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:32:13-65
+50-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:32:21-62
+51
+52            <data android:mimeType="*/*" />
+52-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:43:13-50
+52-->E:\CAC\Cruise_Buddy\android\app\src\main\AndroidManifest.xml:43:19-48
+53        </intent>
+54        <intent>
+54-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:36:9-38:18
+55            <action android:name="rzp.device_token.share" />
+55-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:37:13-61
+55-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:37:21-58
+56        </intent>
+57    </queries>
+58
+59    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+59-->[:connectivity_plus] E:\CAC\Cruise_Buddy\build\connectivity_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-79
+59-->[:connectivity_plus] E:\CAC\Cruise_Buddy\build\connectivity_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:7:22-76
+60
+61    <uses-feature
+61-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\8355813bf48a46082a5f92e0525bb24a\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+62        android:glEsVersion="0x00020000"
+62-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\8355813bf48a46082a5f92e0525bb24a\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+63        android:required="true" />
+63-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\8355813bf48a46082a5f92e0525bb24a\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+64
+65    <permission
+65-->[androidx.core:core:1.13.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\25303bfa731ad2ab17d3513b6410954f\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+66        android:name="com.cruisebuddy.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+66-->[androidx.core:core:1.13.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\25303bfa731ad2ab17d3513b6410954f\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+67        android:protectionLevel="signature" />
+67-->[androidx.core:core:1.13.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\25303bfa731ad2ab17d3513b6410954f\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+68
+69    <uses-permission android:name="com.cruisebuddy.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+69-->[androidx.core:core:1.13.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\25303bfa731ad2ab17d3513b6410954f\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+69-->[androidx.core:core:1.13.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\25303bfa731ad2ab17d3513b6410954f\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+70
+71    <application
+72        android:name="android.app.Application"
+73        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+73-->[androidx.core:core:1.13.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\25303bfa731ad2ab17d3513b6410954f\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+74        android:debuggable="true"
+75        android:extractNativeLibs="true"
+76        android:icon="@mipmap/ic_launcher"
+77        android:label="Cruise Buddy" >
+78        <activity
+79            android:name="com.cruisebuddy.app.MainActivity"
+80            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+81            android:exported="true"
+82            android:hardwareAccelerated="true"
+83            android:launchMode="singleTop"
+84            android:taskAffinity=""
+85            android:theme="@style/LaunchTheme"
+86            android:windowSoftInputMode="adjustResize" >
+87
+88            <!--
+89                 Specifies an Android theme to apply to this Activity as soon as
+90                 the Android process has started. This theme is visible to the user
+91                 while the Flutter UI initializes. After that, this theme continues
+92                 to determine the Window background behind the Flutter UI.
+93            -->
+94            <meta-data
+95                android:name="io.flutter.embedding.android.NormalTheme"
+96                android:resource="@style/NormalTheme" />
+97
+98            <intent-filter>
+99                <action android:name="android.intent.action.MAIN" />
+99-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:29:13-65
+99-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:29:21-62
+100
+101                <category android:name="android.intent.category.LAUNCHER" />
+102            </intent-filter>
+103        </activity>
+104        <!--
+105             Don't delete the meta-data below.
+106             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+107        -->
+108        <meta-data
+109            android:name="flutterEmbedding"
+110            android:value="2" />
+111
+112        <provider
+112-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:9-17:20
+113            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+113-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-82
+114            android:authorities="com.cruisebuddy.app.flutter.image_provider"
+114-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
+115            android:exported="false"
+115-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
+116            android:grantUriPermissions="true" >
+116-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-47
+117            <meta-data
+117-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-16:75
+118                android:name="android.support.FILE_PROVIDER_PATHS"
+118-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-67
+119                android:resource="@xml/flutter_image_picker_file_paths" />
+119-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-72
+120        </provider> <!-- Trigger Google Play services to install the backported photo picker module. -->
+121        <service
+121-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:19:9-31:19
+122            android:name="com.google.android.gms.metadata.ModuleDependencies"
+122-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-78
+123            android:enabled="false"
+123-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-36
+124            android:exported="false" >
+124-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-37
+125            <intent-filter>
+125-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-26:29
+126                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+126-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:25:17-94
+126-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:25:25-91
+127            </intent-filter>
+128
+129            <meta-data
+129-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:28:13-30:36
+130                android:name="photopicker_activity:0:required"
+130-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:29:17-63
+131                android:value="" />
+131-->[:image_picker_android] E:\CAC\Cruise_Buddy\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:17-33
+132        </service>
+133
+134        <receiver
+134-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:42:9-49:20
+135            android:name="com.razorpay.RzpTokenReceiver"
+135-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:43:13-57
+136            android:exported="true" >
+136-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:44:13-36
+137            <intent-filter>
+137-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:46:13-48:29
+138                <action android:name="rzp.device_token.share" />
+138-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:37:13-61
+138-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:37:21-58
+139            </intent-filter>
+140        </receiver>
+141
+142        <activity
+142-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:51:9-59:20
+143            android:name="com.razorpay.CheckoutActivity"
+143-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:52:13-57
+144            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+144-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:53:13-83
+145            android:exported="false"
+145-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:54:13-37
+146            android:theme="@style/CheckoutTheme" >
+146-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:55:13-49
+147            <intent-filter>
+147-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:56:13-58:29
+148                <action android:name="android.intent.action.MAIN" />
+148-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:29:13-65
+148-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:29:21-62
+149            </intent-filter>
+150        </activity>
+151
+152        <provider
+152-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:61:9-69:20
+153            android:name="androidx.startup.InitializationProvider"
+153-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:62:13-67
+154            android:authorities="com.cruisebuddy.app.androidx-startup"
+154-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:63:13-68
+155            android:exported="false" >
+155-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:64:13-37
+156            <meta-data
+156-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:66:13-68:52
+157                android:name="com.razorpay.RazorpayInitializer"
+157-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:67:17-64
+158                android:value="androidx.startup" />
+158-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:68:17-49
+159            <meta-data
+159-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\ae61ab4d014edf7aa82827a5683af671\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+160                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+160-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\ae61ab4d014edf7aa82827a5683af671\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+161                android:value="androidx.startup" />
+161-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\ae61ab4d014edf7aa82827a5683af671\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+162            <meta-data
+162-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+163                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+163-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+164                android:value="androidx.startup" />
+164-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+165        </provider>
+166
+167        <activity
+167-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:71:9-74:75
+168            android:name="com.razorpay.MagicXActivity"
+168-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:72:13-55
+169            android:exported="false"
+169-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:73:13-37
+170            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+170-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:74:13-72
+171
+172        <meta-data
+172-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:76:9-78:58
+173            android:name="com.razorpay.plugin.googlepay_all"
+173-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:77:13-61
+174            android:value="com.razorpay.RzpGpayMerged" />
+174-->[com.razorpay:standard-core:1.6.45] C:\Users\Cyber Fort\.gradle\caches\transforms-3\2088e1a0630b33281f3575b1987ed200\transformed\jetified-standard-core-1.6.45\AndroidManifest.xml:78:13-55
+175
+176        <activity
+176-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:23:9-27:75
+177            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+177-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:24:13-93
+178            android:excludeFromRecents="true"
+178-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:25:13-46
+179            android:exported="false"
+179-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:26:13-37
+180            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+180-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:27:13-72
+181        <!--
+182            Service handling Google Sign-In user revocation. For apps that do not integrate with
+183            Google Sign-In, this service will never be started.
+184        -->
+185        <service
+185-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:33:9-37:51
+186            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+186-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:34:13-89
+187            android:exported="true"
+187-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:35:13-36
+188            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+188-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:36:13-107
+189            android:visibleToInstantApps="true" /> <!-- Needs to be explicitly declared on P+ -->
+189-->[com.google.android.gms:play-services-auth:21.1.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\306f6a9beec808a8a71df6fe20b9bf45\transformed\jetified-play-services-auth-21.1.0\AndroidManifest.xml:37:13-48
+190        <uses-library
+190-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\8355813bf48a46082a5f92e0525bb24a\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+191            android:name="org.apache.http.legacy"
+191-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\8355813bf48a46082a5f92e0525bb24a\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+192            android:required="false" />
+192-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\8355813bf48a46082a5f92e0525bb24a\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+193
+194        <activity
+194-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\69c62fd927db6c21028fb331b212d767\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:20:9-22:45
+195            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+195-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\69c62fd927db6c21028fb331b212d767\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:20:19-85
+196            android:exported="false"
+196-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\69c62fd927db6c21028fb331b212d767\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:22:19-43
+197            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+197-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\69c62fd927db6c21028fb331b212d767\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:21:19-78
+198
+199        <meta-data
+199-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\c0acdb96f3544722b4ad61ef1c790068\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
+200            android:name="com.google.android.gms.version"
+200-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\c0acdb96f3544722b4ad61ef1c790068\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
+201            android:value="@integer/google_play_services_version" />
+201-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\c0acdb96f3544722b4ad61ef1c790068\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
+202
+203        <uses-library
+203-->[androidx.window:window:1.2.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\aefb9ac74908ffdd3c190cdd84606721\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
+204            android:name="androidx.window.extensions"
+204-->[androidx.window:window:1.2.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\aefb9ac74908ffdd3c190cdd84606721\transformed\jetified-window-1.2.0\AndroidManifest.xml:24:13-54
+205            android:required="false" />
+205-->[androidx.window:window:1.2.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\aefb9ac74908ffdd3c190cdd84606721\transformed\jetified-window-1.2.0\AndroidManifest.xml:25:13-37
+206        <uses-library
+206-->[androidx.window:window:1.2.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\aefb9ac74908ffdd3c190cdd84606721\transformed\jetified-window-1.2.0\AndroidManifest.xml:26:9-28:40
+207            android:name="androidx.window.sidecar"
+207-->[androidx.window:window:1.2.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\aefb9ac74908ffdd3c190cdd84606721\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
+208            android:required="false" />
+208-->[androidx.window:window:1.2.0] C:\Users\Cyber Fort\.gradle\caches\transforms-3\aefb9ac74908ffdd3c190cdd84606721\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
+209
+210        <receiver
+210-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+211            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+211-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+212            android:directBootAware="false"
+212-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+213            android:enabled="true"
+213-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+214            android:exported="true"
+214-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+215            android:permission="android.permission.DUMP" >
+215-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+216            <intent-filter>
+216-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+217                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+217-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+217-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+218            </intent-filter>
+219            <intent-filter>
+219-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+220                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+220-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+220-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+221            </intent-filter>
+222            <intent-filter>
+222-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+223                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+223-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+223-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+224            </intent-filter>
+225            <intent-filter>
+225-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+226                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+226-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+226-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Cyber Fort\.gradle\caches\transforms-3\90a73ae9e6e8f559121f9ee864303eeb\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+227            </intent-filter>
+228        </receiver>
+229    </application>
+230
+231</manifest>

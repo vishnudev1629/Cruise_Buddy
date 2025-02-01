@@ -20,6 +20,16 @@ class _PaymentConfirmationSCreenState extends State<PaymentConfirmationSCreen> {
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
-        body: Center(child: Text('Payment Confirmation Screen')));
+        body: Column(
+          children: [
+            Center(
+                child:
+                    SvgPicture.asset('assets/image/payment_screen/Payed.svg')),
+            SizedBox(
+              height: 20,
+            ),
+            Text('Payment Confirmation Screen'),
+          ],
+        ));
   }
 }
