@@ -59,7 +59,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                   child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: value.favourites.data?.length,
+                    itemCount: 2,
                     itemBuilder: (context, index) {
                       return BuildFavouritesCard(
                         name: value.favourites.data![index].package!.name
