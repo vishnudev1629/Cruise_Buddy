@@ -57,14 +57,19 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               }, getfavouritesBoats: (value) {
                 return Expanded(
                   child: ListView.builder(
-                    physics:  BouncingScrollPhysics(),
-                    padding:  EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: value.favourites.data?.length,
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    itemCount: value.favourites.data
+                            ?.where((item) => item.package != null)
+                            .length ??
+                        0,
                     itemBuilder: (context, index) {
+                      var favourite = value.favourites.data
+                          ?.where((item) => item.package != null)
+                          .toList()[index];
+
                       return BuildFavouritesCard(
-                        name: value.favourites.data?[index].package?.name
-                                .toString() ??
-                            'N/A',
+                        name: favourite?.package?.name?.toString() ?? 'N/A',
                       );
                     },
                   ),
