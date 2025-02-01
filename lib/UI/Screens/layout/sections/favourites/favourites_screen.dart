@@ -57,13 +57,14 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               }, getfavouritesBoats: (value) {
                 return Expanded(
                   child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: 2,
+                    physics:  BouncingScrollPhysics(),
+                    padding:  EdgeInsets.symmetric(horizontal: 20),
+                    itemCount: value.favourites.data?.length,
                     itemBuilder: (context, index) {
                       return BuildFavouritesCard(
-                        name: value.favourites.data![index].package!.name
-                            .toString(),
+                        name: value.favourites.data?[index].package?.name
+                                .toString() ??
+                            'N/A',
                       );
                     },
                   ),
