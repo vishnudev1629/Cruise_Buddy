@@ -1,4 +1,5 @@
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/booking_selection_widget.dart';
+import 'package:cruise_buddy/UI/Screens/payment_steps_screen/booking_confirmation_screen.dart';
 import 'package:cruise_buddy/UI/Widgets/Button/full_width_bluebutton.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -39,9 +40,11 @@ class _BoatDetailScreenState extends State<BoatDetailScreen> {
     return Scaffold(
       backgroundColor: Color(0XFFFFFFFF),
       appBar: AppBar(
-        leading: IconButton(onPressed: () {
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back_ios)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios)),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -51,7 +54,6 @@ class _BoatDetailScreenState extends State<BoatDetailScreen> {
               onTap: () {},
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: GestureDetector(
@@ -60,14 +62,13 @@ class _BoatDetailScreenState extends State<BoatDetailScreen> {
               onTap: () {},
             ),
           ),
-          // IconButton(onPressed: () {}, icon: Icon(Icons.share)),
-          // IconButton(onPressed: () {}, icon: Icon(Icons.heart_broken)),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+           
             Stack(
               children: [
                 SizedBox(
@@ -286,7 +287,13 @@ class _BoatDetailScreenState extends State<BoatDetailScreen> {
                     height: 17,
                   ),
                   FullWidthBlueButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  BookingconfirmationScreen()));
+                    },
                     text: 'Book Now',
                   ),
                   SizedBox(

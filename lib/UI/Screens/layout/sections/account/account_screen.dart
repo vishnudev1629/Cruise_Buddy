@@ -59,8 +59,10 @@ class _AccountScreenState extends State<AccountScreen> {
                   : null,
               child: _pickedImage == null
                   ? ClipOval(
-                      child: SvgPicture.asset(
-                        'assets/bottomNav/profile.svg',
+                      child: Image.asset(
+                        'assets/image/profile/profile_img.png',
+                        width: 100,
+                        height: 100,
                         fit: BoxFit.cover,
                       ),
                     )

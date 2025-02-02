@@ -1,4 +1,4 @@
-
+import 'package:cruise_buddy/UI/Screens/payment_steps_screen/select_payment_method.dart';
 import 'package:cruise_buddy/UI/Widgets/Button/full_width_bluebutton.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +54,12 @@ class _BookingconfirmationScreenState extends State<BookingconfirmationScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
+          Center(
+              child:
+                  SvgPicture.asset('assets/image/payment_screen/Confirm.svg')),
+          SizedBox(
+            height: 20,
+          ),
           Stack(
             children: [
               SizedBox(
@@ -262,7 +268,14 @@ class _BookingconfirmationScreenState extends State<BookingconfirmationScreen> {
 
                 const SizedBox(height: 20),
 
-                FullWidthBlueButton(text: 'Continue', onPressed: () {})
+                FullWidthBlueButton(
+                    text: 'Continue',
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PaymentScreen()));
+                    })
               ],
             ),
           ),
