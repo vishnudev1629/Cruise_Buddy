@@ -24,65 +24,63 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          BlocBuilder<GetFavouritesListBloc, GetFavouritesListState>(
-            builder: (context, state) {
-              return state.map(initial: (value) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    top: 100,
-                  ),
-                  child: Center(
-                    child: SpinKitWave(
-                      color: Colors.blue,
-                      size: 50.0,
-                    ),
-                  ),
-                );
-              }, loading: (value) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    top: 100,
-                  ),
-                  child: Center(
-                    child: SpinKitWave(
-                      color: Colors.blue,
-                      size: 50.0,
-                    ),
-                  ),
-                );
-              }, getfavouritesBoats: (value) {
-                return Expanded(
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: value.favourites.data
-                            ?.where((item) => item.package != null)
-                            .length ??
-                        0,
-                    itemBuilder: (context, index) {
-                      var favourite = value.favourites.data
-                          ?.where((item) => item.package != null)
-                          .toList()[index];
+    return BlocBuilder<GetFavouritesListBloc, GetFavouritesListState>(
+      builder: (context, state) {
+        return state.map(initial: (value) {
+          return Padding(
+            padding: const EdgeInsets.only(
+              top: 100,
+            ),
+            child: Center(
+              child: SpinKitWave(
+                color: Colors.blue,
+                size: 50.0,
+              ),
+            ),
+          );
+        }, loading: (value) {
+          return Padding(
+            padding: const EdgeInsets.only(
+              top: 100,
+            ),
+            child: Center(
+              child: SpinKitWave(
+                color: Colors.blue,
+                size: 50.0,
+              ),
+            ),
+          );
+        }, getfavouritesBoats: (value) {
+          return Expanded(
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              itemCount: value.favourites.data
+                      ?.where((item) => item.package != null)
+                      .length ??
+                  0,
+              itemBuilder: (context, index) {
+                var favourite = value.favourites.data
+                    ?.where((item) => item.package != null)
+                    .toList()[index];
 
-                      return BuildFavouritesCard(
-                        name: favourite?.package?.name?.toString() ?? 'N/A',
-                      );
-                    },
-                  ),
+                return BuildFavouritesCard(
+                  name: favourite?.package?.name?.toString() ?? 'N/A',
                 );
-              }, getfavouritesFailure: (value) {
-                return Text("Oops something went wrong");
-              }, noInternet: (value) {
-                return Text("No Internet");
-              });
-            },
-          ),
-        ],
-      ),
+              },
+            ),
+          );
+        }, getfavouritesFailure: (value) {
+          return ListView(
+            physics: AlwaysScrollableScrollPhysics(),
+            children: [
+              Text("Oops something went wrong"),
+            ],
+          );
+        }, noInternet: (value) {
+          return Text("No Internet");
+        });
+      },
     );
   }
 }
