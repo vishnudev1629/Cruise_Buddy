@@ -4,8 +4,14 @@ import 'package:cruise_buddy/UI/Screens/layout/sections/boats/boats_screen.dart'
 import 'package:cruise_buddy/UI/Screens/layout/sections/favourites/favourites_screen.dart';
 import 'package:cruise_buddy/core/constants/colors/app_colors.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:cruise_buddy/core/view_model/getCruiseTypes/get_cruise_types_bloc.dart';
+import 'package:cruise_buddy/core/view_model/getFavouritesList/get_favourites_list_bloc.dart';
+import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
+import 'package:cruise_buddy/core/view_model/getLocationDetails/get_location_details_bloc.dart';
+import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MainLayout extends StatefulWidget {
@@ -42,6 +48,27 @@ class _MainLayoutState extends State<MainLayout> {
     FavouritesScreen(),
     AccountScreen(),
   ];
+  Future<void> _refresh() async {
+    if (_selectedIndex == 0) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        BlocProvider.of<GetUserProfileBloc>(context)
+            .add(GetUserProfileEvent.getUserProfile());
+        BlocProvider.of<GetFeaturedBoatsBloc>(context)
+            .add(GetFeaturedBoatsEvent.getFeaturedBoats());
+        BlocProvider.of<GetCruiseTypesBloc>(context)
+            .add(GetCruiseTypesEvent.getCruiseTypes());
+        BlocProvider.of<GetLocationDetailsBloc>(context)
+            .add(GetLocationDetailsEvent.getLocation());
+      });
+    }
+    if (_selectedIndex == 1) {}
+    if (_selectedIndex == 2) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        BlocProvider.of<GetFavouritesListBloc>(context)
+            .add(GetFavouritesListEvent.getFavouriteboats());
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +111,10 @@ class _MainLayoutState extends State<MainLayout> {
                     style: TextStyles.ubuntu32black15w700),
               )
             : null,
-        body: _screens[_selectedIndex],
+        body: RefreshIndicator(
+          onRefresh: _refresh,
+          child: _screens[_selectedIndex],
+        ),
         bottomNavigationBar: SizedBox(
           height: 82.0,
           child: BottomNavigationBar(
