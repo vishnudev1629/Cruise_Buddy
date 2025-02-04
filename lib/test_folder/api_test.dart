@@ -8,7 +8,6 @@ import 'package:cruise_buddy/core/view_model/getSearchCruiseResults/get_seached_
 import 'package:cruise_buddy/core/view_model/listCruiseonLocation/list_cruiseon_location_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 class JanTest extends StatefulWidget {
   const JanTest({super.key});
 

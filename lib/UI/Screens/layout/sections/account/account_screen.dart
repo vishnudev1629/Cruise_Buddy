@@ -166,7 +166,7 @@ class _AccountScreenState extends State<AccountScreen> {
               const Divider(),
               ListTile(
                 leading: SvgPicture.asset(
-                  'assets/image/profile/privacy_policy.svg',
+                  'assets/image/profile/privacy_policy.svg',           
                 ),
                 title: const Text('Privacy Policy'),
                 trailing: SvgPicture.asset(

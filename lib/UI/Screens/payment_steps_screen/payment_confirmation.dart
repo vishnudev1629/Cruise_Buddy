@@ -26,6 +26,10 @@ class _PaymentConfirmationSCreenState extends State<PaymentConfirmationSCreen> {
             SizedBox(
               height: 20,
             ),
+            SvgPicture.asset('assets/image/payment_screen/Payed.svg'),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 25,
