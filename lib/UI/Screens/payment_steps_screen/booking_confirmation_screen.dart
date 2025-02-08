@@ -1,5 +1,5 @@
 import 'package:cruise_buddy/UI/Screens/payment_steps_screen/select_payment_method.dart';
-import 'package:cruise_buddy/UI/Widgets/Button/full_width_bluebutton.dart';
+import 'package:cruise_buddy/UI/Widgets/Button/fullwidth_rectangle_bluebutton.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -268,7 +268,7 @@ class _BookingconfirmationScreenState extends State<BookingconfirmationScreen> {
 
                 const SizedBox(height: 20),
 
-                FullWidthBlueButton(
+                FullWidthRectangleBlueButton(
                     text: 'Continue',
                     onPressed: () {
                       Navigator.push(

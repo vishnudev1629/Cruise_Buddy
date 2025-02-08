@@ -62,7 +62,7 @@ class _CategoriesListResultscreenState
                       const SizedBox(width: 5),
                       Text(
                         widget.category,
-                        style: TextStyles.ubuntu14black55w400,
+                        style: TextStyles.ubuntu20black15w600,
                       ),
                       const Spacer(),
                       Material(

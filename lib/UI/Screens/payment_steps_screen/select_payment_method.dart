@@ -1,5 +1,5 @@
 import 'package:cruise_buddy/UI/Screens/payment_steps_screen/payment_confirmation.dart';
-import 'package:cruise_buddy/UI/Widgets/Button/full_width_bluebutton.dart';
+import 'package:cruise_buddy/UI/Widgets/Button/fullwidth_rectangle_bluebutton.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -314,7 +314,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               SizedBox(
                 height: 25,
               ),
-              FullWidthBlueButton(
+              FullWidthRectangleBlueButton(
                   text: 'Pay',
                   onPressed: () {
                     Navigator.push(

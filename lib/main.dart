@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cruise_buddy/UI/Screens/Splash/splash_screen.dart';
 import 'package:cruise_buddy/core/constants/functions/error/custom_error.dart';
 import 'package:cruise_buddy/core/view_model/addItemToFavourites/add_item_to_favourites_bloc.dart';
@@ -84,40 +82,6 @@ class MyApp extends StatelessWidget {
         ),
         home: SplashScreen(),
         //   home: SearchResultsScreen(),
-      ),
-    );
-  }
-}
-
-class SubjectsCard extends StatelessWidget {
-  const SubjectsCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: 10,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Card(
-                color: Colors.black26,
-              ),
-              Text("Not eligibled"),
-              Card(
-                color: Colors.black26,
-              ),
-              Card(
-                color: Colors.black26,
-              ),
-              ElevatedButton(
-                onPressed: () async {},
-                child: Text("Data"),
-              ),
-            ],
-          );
-        },
       ),
     );
   }

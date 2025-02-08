@@ -1,3 +1,4 @@
+import 'package:cruise_buddy/UI/Screens/boat_detail/boat_detail_screen.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/test_folder/ui_test.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class SearchResultsContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 100,
+            height: 150,
             child: Stack(
               children: [
                 ClipRRect(
@@ -38,7 +39,7 @@ class SearchResultsContainer extends StatelessWidget {
                   child: Image.asset(
                     "assets/image/onboarding_img/onboarding_one.png",
                     width: double.infinity,
-                    height: 100,
+                    height: 160,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -60,7 +61,7 @@ class SearchResultsContainer extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 60,
+                  top: 110,
                   right: 8,
                   child: Container(
                     width: 68,
@@ -120,7 +121,12 @@ class SearchResultsContainer extends StatelessWidget {
                     SizedBox(
                       height: 45,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BoatDetailScreen()));
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0XFF1F8386),
                           shape: RoundedRectangleBorder(
@@ -192,3 +198,4 @@ class PillWidget extends StatelessWidget {
     );
   }
 }
+//-------------test------------------
