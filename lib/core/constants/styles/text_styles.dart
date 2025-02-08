@@ -146,4 +146,9 @@ class TextStyles {
     fontWeight: FontWeight.bold,
     color: const Color(0xFF191D23),
   );
+  static final TextStyle ubuntu6grey555 = ubuntu.copyWith(
+    fontSize: 6,
+    fontWeight: FontWeight.bold,
+    color: const Color(0xFF555555),
+  );
 }

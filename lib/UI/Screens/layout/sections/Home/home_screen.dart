@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               baseColor: Colors.grey[300]!,
                                               highlightColor: Colors.grey[100]!,
                                               child: Text(
-                                                "Loading...", 
+                                                "Loading...",
                                                 style: TextStyles
                                                     .ubuntu32blue86w700,
                                               ),
@@ -127,13 +127,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Positioned(
-                    left: 20, 
+                    left: 20,
                     right: 20,
-                    top: 180, 
+                    top: 180,
                     child: LayoutBuilder(
                       builder: (context, constraints) {
-                        double containerWidth = constraints.maxWidth -
-                            40; 
+                        double containerWidth = constraints.maxWidth - 40;
                         return GestureDetector(
                           onTap: () async {
                             openLocationSearchDelegate(context);
@@ -145,16 +144,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(
-                                      0.2), 
-                                  spreadRadius: 0.4, 
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 0.4,
                                   blurRadius: 4,
-                                  offset: Offset(0,
-                                      0), 
+                                  offset: Offset(0, 0),
                                 ),
                               ],
-                              borderRadius: BorderRadius.circular(
-                                  25), 
+                              borderRadius: BorderRadius.circular(25),
                             ),
                             child: Row(
                               children: [
