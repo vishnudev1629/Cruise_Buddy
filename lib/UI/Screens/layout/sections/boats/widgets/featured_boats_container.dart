@@ -491,3 +491,5 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
     );
   }
 }
+
+//----------
