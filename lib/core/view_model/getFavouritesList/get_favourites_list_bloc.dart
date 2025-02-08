@@ -7,7 +7,6 @@ part 'get_favourites_list_event.dart';
 part 'get_favourites_list_state.dart';
 part 'get_favourites_list_bloc.freezed.dart';
 
-
 class GetFavouritesListBloc
     extends Bloc<GetFavouritesListEvent, GetFavouritesListState> {
   GetFavouritesListBloc() : super(_Initial()) {
@@ -25,6 +24,7 @@ class GetFavouritesListBloc
             emit(GetFavouritesListState.getfavouritesFailure(error: failure));
           }
         }, (success) async {
+          print('succees ${success.data?.length}');
           emit(
             GetFavouritesListState.getfavouritesBoats(
               favourites: success,
@@ -38,4 +38,3 @@ class GetFavouritesListBloc
     });
   }
 }
-

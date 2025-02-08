@@ -5,7 +5,6 @@ import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shimmer/shimmer.dart';
 
 class PillWidget extends StatelessWidget {
   final String image;
@@ -41,11 +40,10 @@ class PillWidget extends StatelessWidget {
             width: 14,
             height: 14,
           ),
-
-          SizedBox(width: 8), // Spacing between icon and text
+          SizedBox(width: 8),
           Text(
             text,
-            style: TextStyle(color: Colors.black, fontSize: 14), // Text style
+            style: TextStyle(color: Colors.black, fontSize: 14),
           ),
           SizedBox(width: 10),
         ],
@@ -65,12 +63,12 @@ class FeaturedBoatsSection extends StatefulWidget {
 
 class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
   List<double> _scales = [];
+  List<bool> isFavoriteList = [];
 
   @override
   void initState() {
     super.initState();
-    _scales =
-        List.generate(10, (index) => 1.0); // Adjust for the number of items
+    _scales = List.generate(10, (index) => 1.0);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       BlocProvider.of<GetFeaturedBoatsBloc>(context)
           .add(GetFeaturedBoatsEvent.getFeaturedBoats());
@@ -95,12 +93,11 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
     });
   }
 
-  // Handle the tap without parameters for `onTap`
   void handleTap(int index) {
     onTapDown(index, TapDownDetails());
     Future.delayed(const Duration(milliseconds: 150), () {
       setState(() {
-        _scales[index] = 1.0; // Reset the scale after the animation duration
+        _scales[index] = 1.0;
       });
     });
   }
@@ -152,6 +149,12 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                       itemCount: value.featuredBoats.data?.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
+                        if (isFavoriteList.length <
+                            (value.featuredBoats.data?.length ?? 0)) {
+                          isFavoriteList = List.generate(
+                              value.featuredBoats.data!.length, (i) => false);
+                        }
+
                         return Padding(
                           padding: EdgeInsets.only(
                             left: index == 0 ? 30 : 10,
@@ -318,7 +321,12 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                       top: 8,
                                       right: 8,
                                       child: InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          setState(() {
+                                            isFavoriteList[index] =
+                                                !isFavoriteList[index];
+                                          });
+                                        },
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Container(
@@ -327,12 +335,29 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                               borderRadius:
                                                   BorderRadius.circular(25),
                                             ),
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(5.0),
-                                              child: Icon(
-                                                Icons.favorite,
-                                                color: Color(0XFF4FC2C5),
-                                                size: 20,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(5.0),
+                                              child: AnimatedSwitcher(
+                                                duration:
+                                                    Duration(milliseconds: 300),
+                                                transitionBuilder:
+                                                    (child, animation) {
+                                                  return ScaleTransition(
+                                                      scale: animation,
+                                                      child: child);
+                                                },
+                                                child: Icon(
+                                                  isFavoriteList[index]
+                                                      ? Icons.favorite
+                                                      : Icons.favorite_border,
+                                                  key: ValueKey<bool>(
+                                                      isFavoriteList[index]),
+                                                  color: isFavoriteList[index]
+                                                      ? Color(0XFF4FC2C5)
+                                                      : Color(0XFF4FC2C5),
+                                                  size: 20,
+                                                ),
                                               ),
                                             ),
                                           ),
