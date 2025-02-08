@@ -161,6 +161,10 @@ class _LocationsBasedCruiseScreenState
                     itemBuilder: (context, index) {
                       return BuildFavouritesCard(
                         name: value.cruisemodel.data![index].name.toString(),
+                        isFavorite: true,
+                        onToggleFavorite: () {
+                          setState(() {});
+                        },
                       );
                     },
                   ),

@@ -13,6 +13,7 @@ class FavouritesScreen extends StatefulWidget {
 }
 
 class _FavouritesScreenState extends State<FavouritesScreen> {
+  List<bool> isFavoriteList = [];
   @override
   void initState() {
     super.initState();
@@ -51,6 +52,10 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             ),
           );
         }, getfavouritesBoats: (value) {
+          if (isFavoriteList.isEmpty) {
+            isFavoriteList = List.generate(
+                (value.favourites.data?.length ?? 0), (index) => false);
+          }
           return Expanded(
             child: ListView.builder(
               physics: BouncingScrollPhysics(),
@@ -66,6 +71,12 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
 
                 return BuildFavouritesCard(
                   name: favourite?.package?.name?.toString() ?? 'N/A',
+                  isFavorite: isFavoriteList[index],
+                  onToggleFavorite: () {
+                    setState(() {
+                      isFavoriteList[index] = !isFavoriteList[index];
+                    });
+                  },
                 );
               },
             ),
@@ -85,13 +96,23 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   }
 }
 
-class BuildFavouritesCard extends StatelessWidget {
+class BuildFavouritesCard extends StatefulWidget {
   final String name;
+  final bool isFavorite;
+  final VoidCallback onToggleFavorite;
   const BuildFavouritesCard({
     super.key,
     required this.name,
+    required this.isFavorite,
+    required this.onToggleFavorite,
   });
 
+  @override
+  State<BuildFavouritesCard> createState() => _BuildFavouritesCardState();
+}
+
+class _BuildFavouritesCardState extends State<BuildFavouritesCard> {
+  List<bool> isFavoriteList = [];
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -121,20 +142,32 @@ class BuildFavouritesCard extends StatelessWidget {
                 Positioned(
                   top: 10,
                   right: 10,
-                  child: GestureDetector(
-                    //  onTap: () => _toggleFavorite(index),
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.favorite,
-                          color: const Color(0xff4FC2C5),
-                          size: 24,
+                  child: InkWell(
+                    onTap: widget.onToggleFavorite,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: AnimatedSwitcher(
+                            duration: Duration(milliseconds: 300),
+                            transitionBuilder: (child, animation) {
+                              return ScaleTransition(
+                                  scale: animation, child: child);
+                            },
+                            child: Icon(
+                              widget.isFavorite
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              key: ValueKey<bool>(widget.isFavorite),
+                              color: Color(0XFF4FC2C5),
+                              size: 20,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -185,7 +218,7 @@ class BuildFavouritesCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "${name}",
+                    widget.name,
                     style: TextStyles.ubuntu16black15w500,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
