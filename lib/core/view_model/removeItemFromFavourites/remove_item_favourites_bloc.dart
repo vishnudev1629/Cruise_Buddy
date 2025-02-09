@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:cruise_buddy/core/model/posted_favouritem_item_model/posted_favouritem_item_model.dart';
 import 'package:cruise_buddy/core/services/favourites/favourites_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

@@ -2,9 +2,6 @@ import 'dart:convert';
 import 'package:cruise_buddy/core/constants/functions/connection/connectivity_checker.dart';
 import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:cruise_buddy/core/model/cruise_model/cruise_model.dart';
-import 'package:cruise_buddy/core/model/cruise_type_model/cruise_type_model.dart';
-import 'package:cruise_buddy/core/model/featured_boats_model/featured_boats_model.dart';
-import 'package:cruise_buddy/core/model/packageSearchResults/package_search_results_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 

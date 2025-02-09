@@ -103,7 +103,7 @@ class Package {
         'description': description,
         'is_active': isActive,
         'cruise_id': cruiseId,
-        'images': images?.map((e) => e?.toJson()).toList(),
+        'images': images?.map((e) => e.toJson()).toList(),
         'cruise': cruise?.toJson(),
         'amenities': amenities?.map((e) => e.toJson()).toList(),
         'food': food?.map((e) => e.toJson()).toList(),
