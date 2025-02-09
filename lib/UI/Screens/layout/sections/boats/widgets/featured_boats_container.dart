@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cruise_buddy/UI/Widgets/toast/custom_toast.dart';
+import 'package:cruise_buddy/test_folder/gpay_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/featured_shimmer_card.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
@@ -74,7 +76,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
   final StreamController<FavouritesListModel> _favoritesController =
       StreamController<FavouritesListModel>();
 
-  Set<String> loadingFavorites = {}; 
+  Set<String> loadingFavorites = {};
   Map<String, String> favoritePackageMap = {};
 
   @override
@@ -106,14 +108,11 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
           FavouritesListModel.fromJson(decodedJson);
       _favoritesController.add(jsonResponse);
 
-
       favoritePackageMap = {
         for (var item in jsonResponse.data ?? [])
           if (item.package?.id != null && item.id != null)
             item.package!.id!.toString(): item.id!.toString()
       };
-
-    
     } else {
       _favoritesController.addError("Failed to load favorites");
     }
@@ -122,7 +121,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
   void toggleFavorite(
       {String? packageId, bool? isFavorite, String? favouriteId}) {
     setState(() {
-      loadingFavorites.add(packageId ?? ""); 
+      loadingFavorites.add(packageId ?? "");
     });
 
     if (isFavorite ?? false) {
@@ -172,66 +171,62 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
       stream: _favoritesController.stream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-         return FeaturedBoatsShimmer(
-                      isLoading: true,
-                    );
+          return FeaturedBoatsShimmer(
+            isLoading: true,
+          );
         }
         if (snapshot.hasError) {
-              return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.wifi_off,
-                            color: Colors.grey,
-                            size: 80,
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            "No Internet Connection",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey[700],
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            "Please check your network and try again.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          ElevatedButton(
-                            onPressed: () {
-                           
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.teal,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
-                            ),
-                            child: const Text(
-                              "Retry",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-               
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.wifi_off,
+                  color: Colors.grey,
+                  size: 80,
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "No Internet Connection",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[700],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  "Please check your network and try again.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                  ),
+                  child: const Text(
+                    "Retry",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
         }
 
-       
         if (snapshot.hasData) {
           favoritePackageMap = {
             for (var item in snapshot.data!.data ?? [])
@@ -242,17 +237,17 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
 
         return BlocListener<AddItemToFavouritesBloc, AddItemToFavouritesState>(
           listener: (context, state) {
-            
             state.map(
               initial: (value) {},
               loading: (value) {},
               addedSuccess: (value) {
+                CustomToast.itemAddedToast(context: context);
                 setState(() {
                   loadingFavorites.remove(value
                       .postedfavouritemitemodel.favorite?.package?.id
                       .toString());
                 });
-                fetchFavorites(); 
+                fetchFavorites();
               },
               addedFailure: (value) {
                 setState(() {
@@ -273,11 +268,11 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                 initial: (value) {},
                 loading: (value) {},
                 addedSuccess: (value) {
+                  CustomToast.itemRemovedFromToast(context: context);
                   setState(() {
                     loadingFavorites.clear();
                   });
                   fetchFavorites();
-                 
                 },
                 addedFailure: (value) {
                   setState(() {
@@ -286,7 +281,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                 },
                 noInternet: (value) {
                   setState(() {
-                    loadingFavorites.clear(); 
+                    loadingFavorites.clear();
                   });
                 },
               );
@@ -678,9 +673,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                           ),
                           const SizedBox(height: 20),
                           ElevatedButton(
-                            onPressed: () {
-                             
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.teal,
                               shape: RoundedRectangleBorder(
@@ -731,9 +724,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                           ),
                           const SizedBox(height: 20),
                           ElevatedButton(
-                            onPressed: () {
-                             
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.teal,
                               shape: RoundedRectangleBorder(
@@ -763,4 +754,3 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
     );
   }
 }
-
