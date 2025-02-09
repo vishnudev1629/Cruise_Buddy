@@ -226,19 +226,22 @@ class _CategoriesSectionState extends State<CategoriesSection> {
             );
           },
           getCruiseTypes: (value) {
+            var openCruiseTypes = value.cruisetypemodel.data
+                ?.where((cruise) => cruise.type == "Open")
+                .toList();
             return SizedBox(
               height: 210,
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: value.cruisetypemodel.data?.length,
+                itemCount: openCruiseTypes?.length ?? 0,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.only(
                       left: index == 0 ? 30 : 10,
-                      right: (value.cruisetypemodel.data != null &&
-                              index == value.cruisetypemodel.data!.length - 1)
+                      right: (openCruiseTypes != null &&
+                              index == openCruiseTypes.length - 1)
                           ? 20
                           : 0,
                     ),
@@ -259,7 +262,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                             MaterialPageRoute(
                               builder: (context) => CategoriesListResultscreen(
                                 category:
-                                    '${value.cruisetypemodel.data?[index].modelName}',
+                                    '${openCruiseTypes?[index].modelName}',
                               ),
                             ),
                           );
@@ -283,7 +286,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: Image.network(
-                                  "${value.cruisetypemodel.data?[index].image}",
+                                  "${openCruiseTypes?[index].image}",
                                   width: 200,
                                   height: 110,
                                   fit: BoxFit.cover,
@@ -291,7 +294,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                "${value.cruisetypemodel.data?[index].modelName}",
+                                "${openCruiseTypes?[index].modelName}",
                                 style: TextStyles.ubuntu16blue86w500,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
