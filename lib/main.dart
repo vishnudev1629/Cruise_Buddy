@@ -72,6 +72,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        
         builder: (context, child) {
           ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
             return CustomErrorWidget(errorDetails: errorDetails);

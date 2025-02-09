@@ -1,3 +1,4 @@
+import 'package:cruise_buddy/UI/Screens/layout/main_layout/main_layout.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/categories_section.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/explore_destination.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/location_search_delgate.dart';
@@ -10,8 +11,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
+  final VoidCallback changetab;
   const HomeScreen({
     super.key,
+    required this.changetab,
   });
 
   @override
@@ -21,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    // TODO: implement initState
+  
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       BlocProvider.of<GetUserProfileBloc>(context)
           .add(GetUserProfileEvent.getUserProfile());
@@ -186,7 +189,9 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 10,
             ),
-            FeaturedBoatsSection(),
+            FeaturedBoatsSection(
+              onChangeTab: widget.changetab,
+            ),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(

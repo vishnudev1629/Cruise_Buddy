@@ -60,8 +60,10 @@ class PillWidget extends StatelessWidget {
 }
 
 class FeaturedBoatsSection extends StatefulWidget {
+  final VoidCallback onChangeTab;
   const FeaturedBoatsSection({
     super.key,
+    required this.onChangeTab,
   });
 
   @override
@@ -166,8 +168,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    StreamBuilder<FavouritesListModel>(
+    return StreamBuilder<FavouritesListModel>(
       stream: _favoritesController.stream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -241,7 +242,8 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
               initial: (value) {},
               loading: (value) {},
               addedSuccess: (value) {
-                CustomToast.itemAddedToast(context: context);
+                CustomToast.itemAddedToast(
+                    context: context, onChangeTab: widget.onChangeTab);
                 setState(() {
                   loadingFavorites.remove(value
                       .postedfavouritemitemodel.favorite?.package?.id

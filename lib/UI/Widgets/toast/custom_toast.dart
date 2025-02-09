@@ -2,10 +2,10 @@ import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
 
-
 class CustomToast {
   static void itemAddedToast({
     required BuildContext context,
+    required VoidCallback onChangeTab,
   }) {
     toastification.showCustom(
       context: context,
@@ -33,9 +33,7 @@ class CustomToast {
               ),
               const Spacer(),
               TextButton(
-                onPressed: () {
-                 
-                },
+                onPressed: onChangeTab,
                 child: Text(
                   "Change",
                   style: TextStyles.ubuntu12greyFFw800,

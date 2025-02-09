@@ -18,10 +18,33 @@ class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
 
   @override
-  State<MainLayout> createState() => _MainLayoutState();
+  State<MainLayout> createState() => MainLayoutState();
 }
 
-class _MainLayoutState extends State<MainLayout> {
+class MainLayoutState extends State<MainLayout> {
+  int _selectedIndex = 0;
+  List<Widget> _screens = [];
+
+  @override
+  void initState() {
+    _screens = [
+      HomeScreen(changetab: () {
+        onItemTapped(2);
+      }),
+      BoatsScreen(),
+      FavouritesScreen(),
+      AccountScreen(),
+    ];
+    super.initState();
+  }
+
+  void onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final GlobalKey<MainLayoutState> mainLayoutKey = GlobalKey();
   String getTitle(int index) {
     switch (index) {
       case 1:
@@ -35,19 +58,6 @@ class _MainLayoutState extends State<MainLayout> {
     }
   }
 
-  int _selectedIndex = 0;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  final List _screens = [
-    HomeScreen(),
-    BoatsScreen(),
-    FavouritesScreen(),
-    AccountScreen(),
-  ];
   Future<void> _refresh() async {
     if (_selectedIndex == 0) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -211,7 +221,7 @@ class _MainLayoutState extends State<MainLayout> {
             ],
             currentIndex: _selectedIndex,
             selectedItemColor: ColorConstants.darkblue86,
-            onTap: _onItemTapped,
+            onTap: onItemTapped,
           ),
         ),
       ),
