@@ -26,8 +26,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
 
   List<bool> isFavoriteList = [];
   Set<String> loadingFavorites = {};
-  Set<String> clickedFavorites = {}; 
-  Set<String> removedFavorites = {}; 
+  Set<String> clickedFavorites = {};
+  Set<String> removedFavorites = {};
 
   Set<String> lastRemovedFavouriteId = {};
   Map<String, String> favoritePackageMap = {};
@@ -158,30 +158,28 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                 loading: (value) {},
                 addedSuccess: (value) {
                   setState(() {
-                    removedFavorites
-                        .addAll(clickedFavorites); 
-                    clickedFavorites.clear(); 
+                    removedFavorites.addAll(clickedFavorites);
+                    clickedFavorites.clear();
                   });
 
                   CustomToast.itemRemovedFromToast(context: context);
                   setState(() {
-                    loadingFavorites.removeWhere((id) => lastRemovedFavouriteId
-                        .contains(id)); 
-                    removedFavorites
-                        .addAll(lastRemovedFavouriteId); 
-                    lastRemovedFavouriteId.clear(); 
+                    loadingFavorites.removeWhere(
+                        (id) => lastRemovedFavouriteId.contains(id));
+                    removedFavorites.addAll(lastRemovedFavouriteId);
+                    lastRemovedFavouriteId.clear();
                   });
                   fetchFavorites();
                 },
                 addedFailure: (value) {
                   setState(() {
-                    clickedFavorites.clear(); 
+                    clickedFavorites.clear();
                   });
                 },
                 noInternet: (value) {
                   setState(() {
-                    loadingFavorites.removeWhere((id) => lastRemovedFavouriteId
-                        .contains(id)); 
+                    loadingFavorites.removeWhere(
+                        (id) => lastRemovedFavouriteId.contains(id));
                     lastRemovedFavouriteId.clear();
                   });
                 },
@@ -240,12 +238,9 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
 
                                 if (packageId.isNotEmpty) {
                                   setState(() {
-                                    clickedFavorites.add(
-                                        packageId); 
+                                    clickedFavorites.add(packageId);
                                   });
                                 }
-
-                             
 
                                 context.read<RemoveItemFavouritesBloc>().add(
                                       RemoveItemFavouritesEvent.added(
@@ -287,7 +282,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                         strokeWidth: 2),
                                               )
                                             : clickedFavorites.contains(
-                                                    favourite?.package?.id.toString() ??
+                                                    favourite?.package?.id
+                                                            .toString() ??
                                                         "")
                                                 ? SizedBox(
                                                     height: 20,
@@ -296,15 +292,15 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                         CircularProgressIndicator(
                                                       strokeWidth: 2,
                                                     ),
-                                                  ) 
+                                                  )
                                                 : removedFavorites.contains(
                                                         favourite?.package?.id
                                                                 .toString() ??
                                                             "")
                                                     ? Icon(
                                                         Icons.favorite_border,
-                                                        color: Color(
-                                                            0XFF4FC2C5)) 
+                                                        color:
+                                                            Color(0XFF4FC2C5))
                                                     : Icon(Icons.favorite,
                                                         color: Color(0XFF4FC2C5)),
                                       )),
@@ -357,7 +353,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              "name",
+                              "${snapshot.data?.data?[0].package?.name}",
                               style: TextStyles.ubuntu16black15w500,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -417,7 +413,6 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             ));
       },
     );
-
   }
 }
 
