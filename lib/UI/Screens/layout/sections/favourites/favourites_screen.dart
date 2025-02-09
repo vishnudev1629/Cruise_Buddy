@@ -146,8 +146,10 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                 item.package!.id!.toString(): item.id!.toString()
           };
         }
-        if (snapshot.data?.data == null || snapshot.data!.data!.isEmpty) {
-          return NoDataScreen(text: "No Data Available");
+        if ((snapshot.data?.data ?? []).isEmpty) {
+          return NoDataScreen(
+              text:
+                  "You haven't added any cruises to your favorites yet. Explore our collection and save your top picks for easy access!");
         }
 
         return BlocListener<RemoveItemFavouritesBloc,
