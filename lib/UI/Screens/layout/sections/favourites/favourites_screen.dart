@@ -174,11 +174,13 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                   fetchFavorites();
                 },
                 addedFailure: (value) {
+                  CustomToast.errorToast(context: context);
                   setState(() {
                     clickedFavorites.clear();
                   });
                 },
                 noInternet: (value) {
+                  CustomToast.intenetConnectionMissToast(context: context);
                   setState(() {
                     loadingFavorites.removeWhere(
                         (id) => lastRemovedFavouriteId.contains(id));

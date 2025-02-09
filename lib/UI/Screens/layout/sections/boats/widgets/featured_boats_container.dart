@@ -252,6 +252,8 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                 fetchFavorites();
               },
               addedFailure: (value) {
+                CustomToast.errorToast(context: context);
+
                 setState(() {
                   loadingFavorites.clear();
                 });
@@ -260,6 +262,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                 setState(() {
                   loadingFavorites.clear();
                 });
+                CustomToast.intenetConnectionMissToast(context: context);
               },
             );
           },
@@ -277,11 +280,13 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                   fetchFavorites();
                 },
                 addedFailure: (value) {
+                  CustomToast.errorToast(context: context);
                   setState(() {
                     loadingFavorites.clear();
                   });
                 },
                 noInternet: (value) {
+                  CustomToast.intenetConnectionMissToast(context: context);
                   setState(() {
                     loadingFavorites.clear();
                   });
