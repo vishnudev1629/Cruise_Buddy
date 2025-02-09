@@ -52,6 +52,10 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             ),
           );
         }, getfavouritesBoats: (value) {
+          if ((value.favourites?.data ?? []).isEmpty) {
+            return Center(child: Text("No Favourites data found"));
+          }
+
           return Expanded(
             child: ListView.builder(
               physics: BouncingScrollPhysics(),

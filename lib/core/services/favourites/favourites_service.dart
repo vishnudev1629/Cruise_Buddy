@@ -127,4 +127,56 @@ class FavouritesService {
       return Left('Error: $e');
     }
   }
+
+  Future<Either<String, String>> removeItemFromFavourites({
+    required String favouritesId,
+  }) async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        print("No internet");
+        return const Left('No internet');
+      }
+
+      final token = await GetSharedPreferences.getAccessToken();
+      if (token == null) {
+        print('No access token found.');
+        return const Left('No access token found.');
+      }
+
+      // Add headers
+      _headers['Authorization'] = 'Bearer $token';
+      _headers['CRUISE_AUTH_KEY'] =
+          '16|OJfQtxaw6r4MBeEQ4JLzIT1m4UClhdUhvK3zNVJ7e01d3d19';
+      _headers['Accept'] = 'application/json';
+
+      // Build URL (appending favouritesId)
+      final uri = Uri.parse('$url/favorite/$favouritesId');
+
+      // Make DELETE request
+      final response = await http
+          .delete(
+        uri,
+        headers: _headers,
+      )
+          .timeout(
+        Duration(seconds: 10),
+        onTimeout: () {
+          throw TimeoutException('The request timed out.');
+        },
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 204) {
+        print('Item removed successfully.');
+        return Right('Item removed successfully');
+      } else {
+        print('Request failed with status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        return Left('Failed to remove item: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error occurred: $e');
+      return Left('Error: $e');
+    }
+  }
 }

@@ -404,6 +404,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                       },
                     ),
                   );
+         
           },
           getFeaturedBoatsFailure: (value) {
             return Center(

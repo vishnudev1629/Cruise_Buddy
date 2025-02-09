@@ -10,8 +10,10 @@ import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_blo
 import 'package:cruise_buddy/core/view_model/listCruiseonLocation/list_cruiseon_location_bloc.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
 import 'package:cruise_buddy/core/view_model/regsiter/register_bloc.dart';
+import 'package:cruise_buddy/core/view_model/removeItemFromFavourites/remove_item_favourites_bloc.dart';
 import 'package:cruise_buddy/firebase_options.dart';
 import 'package:cruise_buddy/test_folder/api_test.dart';
+import 'package:cruise_buddy/test_folder/margret_test.dart';
 import 'package:cruise_buddy/test_folder/ui_test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +65,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ListCruiseonLocationBloc(),
+        ),
+        BlocProvider(
+          create: (context) => RemoveItemFavouritesBloc(),
         ),
       ],
       child: MaterialApp(

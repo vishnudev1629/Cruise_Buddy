@@ -52,7 +52,7 @@ class Package {
   final String? description;
   final bool? isActive;
   final int? cruiseId;
-  final List<Image>? images;
+  final List<ImageModel>? images;
   final Cruise? cruise;
   final List<Amenity>? amenities;
   final List<Food>? food;
@@ -80,7 +80,7 @@ class Package {
         isActive: json['is_active'] as bool?,
         cruiseId: json['cruise_id'] as int?,
         images: (json['images'] as List<dynamic>?)
-            ?.map((e) => Image.fromJson(e))
+            ?.map((e) => ImageModel.fromJson(e))
             .toList(),
         cruise: json['cruise'] != null ? Cruise.fromJson(json['cruise']) : null,
         amenities: (json['amenities'] as List<dynamic>?)
@@ -103,7 +103,7 @@ class Package {
         'description': description,
         'is_active': isActive,
         'cruise_id': cruiseId,
-        'images': images?.map((e) => e.toJson()).toList(),
+        'images': images?.map((e) => e?.toJson()).toList(),
         'cruise': cruise?.toJson(),
         'amenities': amenities?.map((e) => e.toJson()).toList(),
         'food': food?.map((e) => e.toJson()).toList(),
@@ -332,20 +332,20 @@ class Food {
       };
 }
 
-class Image {
+class ImageModel {
   final int? id;
   final int? packageId;
   final String? packageImg;
   final String? alt;
 
-  Image({
+  ImageModel({
     this.id,
     this.packageId,
     this.packageImg,
     this.alt,
   });
 
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
+  factory ImageModel.fromJson(Map<String, dynamic> json) => ImageModel(
         id: json['id'] as int?,
         packageId: json['package_id'] as int?,
         packageImg: json['package_img'] as String?,
