@@ -85,8 +85,8 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: SplashScreen(),
-        //   home: SearchResultsScreen(),
+        // home: MargretTest(),
+          home: SplashScreen(),
       ),
     );
   }

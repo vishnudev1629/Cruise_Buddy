@@ -166,7 +166,7 @@ class FavouritesService {
         },
       );
 
-      if (response.statusCode == 200 || response.statusCode == 204) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         print('Item removed successfully.');
         return Right('Item removed successfully');
       } else {

@@ -53,39 +53,38 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             ),
           );
         }, getfavouritesBoats: (value) {
-          if ((value.favourites?.data ?? []).isEmpty) {
+          if ((value.favourites.data ?? []).isEmpty) {
             return NoDataScreen(
               text:
                   "It looks like you haven’t added any favorites yet. Start exploring and save your favorite spots!",
             );
           }
 
-          return Expanded(
-            child: (value.favourites.data
-                        ?.where((item) => item.package != null)
-                        .isNotEmpty ??
-                    false)
-                ? ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: value.favourites.data
-                            ?.where((item) => item.package != null)
-                            .length ??
-                        0,
-                    itemBuilder: (context, index) {
-                      var favourite = value.favourites.data
+          return (value.favourites.data
+                      ?.where((item) => item.package != null)
+                      .isNotEmpty ??
+                  false)
+              ? ListView.builder(
+                shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: value.favourites.data
                           ?.where((item) => item.package != null)
-                          .toList()[index];
-
-                      return BuildFavouritesCard(
-                        name: favourite?.package?.name?.toString() ?? 'N/A',
-                      );
-                    },
-                  )
-                : NoDataScreen(
-                    text: "dsfdf",
-                  ),
-          );
+                          .length ??
+                      0,
+                  itemBuilder: (context, index) {
+                    var favourite = value.favourites.data
+                        ?.where((item) => item.package != null)
+                        .toList()[index];
+          
+                    return BuildFavouritesCard(
+                      name: favourite?.package?.name?.toString() ?? 'N/A',
+                    );
+                  },
+                )
+              : NoDataScreen(
+                  text: "dsfdf",
+                );
         }, getfavouritesFailure: (value) {
           return ListView(
             physics: AlwaysScrollableScrollPhysics(),
@@ -202,7 +201,7 @@ class BuildFavouritesCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "${name}",
+                    name,
                     style: TextStyles.ubuntu16black15w500,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

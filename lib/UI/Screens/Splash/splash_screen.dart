@@ -1,4 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
 
 import 'package:cruise_buddy/core/constants/colors/app_colors.dart';
 import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';

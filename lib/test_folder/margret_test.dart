@@ -1,13 +1,16 @@
-import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/featured_shimmer_card.dart';
-import 'package:cruise_buddy/core/model/favourites_list_model/favourites_list_model.dart';
+import 'dart:async';
+import 'dart:convert';
 import 'package:cruise_buddy/core/view_model/addItemToFavourites/add_item_to_favourites_bloc.dart';
-import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
 import 'package:cruise_buddy/core/view_model/removeItemFromFavourites/remove_item_favourites_bloc.dart';
+import 'package:http/http.dart' as http;
+import 'package:cruise_buddy/UI/Screens/layout/sections/boats/widgets/featured_boats_container.dart';
+import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
+import 'package:cruise_buddy/core/model/favourites_list_model/favourites_list_model.dart';
+import 'package:cruise_buddy/core/routes/app_routes.dart';
+import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'dart:async';
+import 'package:flutter_svg/svg.dart';
 
 class MargretTest extends StatefulWidget {
   const MargretTest({super.key});
@@ -17,18 +20,22 @@ class MargretTest extends StatefulWidget {
 }
 
 class _MargretTestState extends State<MargretTest> {
+ 
+
   final StreamController<FavouritesListModel> _favoritesController =
       StreamController<FavouritesListModel>();
 
+  Set<String> _loadingFavorites = {}; 
+  Map<String, String> _favoritePackageMap = {}; 
+
   @override
   void initState() {
-    super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       fetchFavorites();
       BlocProvider.of<GetFeaturedBoatsBloc>(context)
           .add(GetFeaturedBoatsEvent.getFeaturedBoats());
     });
+    super.initState();
   }
 
   Future<void> fetchFavorites() async {
@@ -43,299 +50,238 @@ class _MargretTestState extends State<MargretTest> {
       },
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201 || response.statusCode == 200) {
       final Map<String, dynamic> decodedJson = json.decode(response.body);
-
-      // Ensure FavouritesListModel has a fromJson method
       final FavouritesListModel jsonResponse =
           FavouritesListModel.fromJson(decodedJson);
-      print('dfdgdfgffdg ${jsonResponse.data?.length}');
       _favoritesController.add(jsonResponse);
+
+      // Extract favorite package IDs and filter out null values
+      _favoritePackageMap = {
+        for (var item in jsonResponse.data ?? [])
+          if (item.package?.id != null && item.id != null)
+            item.package!.id!.toString(): item.id!.toString()
+      };
+
+      print('Favorite Map: $_favoritePackageMap');
     } else {
       _favoritesController.addError("Failed to load favorites");
     }
   }
 
-  @override
-  void dispose() {
-    _favoritesController.close();
-    super.dispose();
+  void toggleFavorite(
+      {String? packageId, bool? isFavorite, String? favouriteId}) {
+    setState(() {
+      _loadingFavorites.add(packageId ?? ""); 
+    });
+
+    if (isFavorite ?? false) {
+      _removeFromFavorites(favouriteId: favouriteId.toString());
+    } else {
+      BlocProvider.of<AddItemToFavouritesBloc>(context)
+          .add(AddItemToFavouritesEvent.added(packageId: packageId ?? ""));
+    }
   }
 
-  List<bool> isFavoriteList = [];
+  void _removeFromFavorites({required String favouriteId}) {
+    context
+        .read<RemoveItemFavouritesBloc>()
+        .add(RemoveItemFavouritesEvent.added(favouritesId: favouriteId));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<FavouritesListModel>(
-        stream: _favoritesController.stream,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 30),
+            StreamBuilder<FavouritesListModel>(
+              stream: _favoritesController.stream,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.hasError) {
+                  return const Center(child: Text("Error fetching favorites"));
+                }
 
-          if (snapshot.hasError) {
-            return const Center(child: Text("Error fetching favorites"));
-          }
+           
+                if (snapshot.hasData) {
+                  _favoritePackageMap = {
+                    for (var item in snapshot.data!.data ?? [])
+                      if (item.package?.id != null && item.id != null)
+                        item.package!.id!.toString(): item.id!.toString()
+                  };
+                }
 
-          return BlocBuilder<GetFeaturedBoatsBloc, GetFeaturedBoatsState>(
-            builder: (context, state) {
-              return state.map(
-                initial: (value) {
-                  return FeaturedBoatsShimmer(
-                    isLoading: true,
-                  );
-                },
-                loading: (value) {
-                  return FeaturedBoatsShimmer(
-                    isLoading: true,
-                  );
-                },
-                getFeaturedBoats: (value) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 50,
-                      ),
-                      SizedBox(
-                        height: 50,
-                        child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 2,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            if (isFavoriteList.length <
-                                (value.featuredBoats.data?.length ??
-                                    0)) {
-                              isFavoriteList = List.generate(
-                                  value.featuredBoats.data!.length,
-                                  (i) => false);
-                            }
+                return BlocListener<AddItemToFavouritesBloc,
+                    AddItemToFavouritesState>(
+                  listener: (context, state) {
+                    // );
+                    state.map(
+                      initial: (value) {},
+                      loading: (value) {},
+                      addedSuccess: (value) {
+                        setState(() {
+                          _loadingFavorites.remove(value
+                              .postedfavouritemitemodel.favorite?.package?.id
+                              .toString());
+                        });
+                        fetchFavorites(); // Refresh favorite list
+                      },
+                      addedFailure: (value) {
+                        setState(() {
+                          _loadingFavorites.clear();
+                        });
+                      },
+                      noInternet: (value) {
+                        setState(() {
+                          _loadingFavorites.clear();
+                        });
+                      },
+                    );
+                  },
+                  child: BlocListener<RemoveItemFavouritesBloc,
+                      RemoveItemFavouritesState>(
+                    listener: (context, state) {
+                      state.map(
+                        initial: (value) {},
+                        loading: (value) {},
+                        addedSuccess: (value) {
+                          setState(() {
+                            _loadingFavorites.clear();
+                          });
+                          fetchFavorites();
+                        
+                        },
+                        addedFailure: (value) {
+                          setState(() {
+                            _loadingFavorites.clear();
+                          });
+                        },
+                        noInternet: (value) {
+                          setState(() {
+                            _loadingFavorites.clear(); 
+                          });
+                        },
+                      );
+                    },
+                    child: BlocBuilder<GetFeaturedBoatsBloc,
+                        GetFeaturedBoatsState>(
+                      builder: (context, state) {
+                        return state.map(
+                          initial: (value) => const Text("Initial"),
+                          loading: (value) => const CircularProgressIndicator(),
+                          getFeaturedBoats: (value) {
+                            return SizedBox(
+                              height: 300,
+                              child: ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: value.featuredBoats.data?.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  final packageId = value.featuredBoats
+                                      .data?[index].packages?[0].id
+                                      ?.toString();
 
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                left: index == 0 ? 30 : 10,
-                                right: 20,
-                              ),
-                              child: GestureDetector(
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius:
-                                        BorderRadius.circular(13),
-                                    border: Border.all(
-                                      color: const Color(0xFFE2E2E2),
-                                      width: 1.5,
+                                  final isFavorite = packageId != null &&
+                                      _favoritePackageMap
+                                          .containsKey(packageId);
+                                  final favouriteId = packageId != null
+                                      ? _favoritePackageMap[packageId]
+                                      : null;
+
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                      left: index == 0 ? 30 : 10,
+                                      right:
+                                          (value.featuredBoats.data != null &&
+                                                  index ==
+                                                      value.featuredBoats.data!
+                                                              .length -
+                                                          1)
+                                              ? 20
+                                              : 0,
                                     ),
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                      // setState(() {
-                                      //   isFavoriteList[index] =
-                                      //       isFavoriteList[index];
-                                      // });
-                                      // if (isFavoriteList[index]) {
-                                      //   // Call AddItemToFavourites if it's not in favorites
-                                      //   BlocProvider.of<
-                                      //               AddItemToFavouritesBloc>(
-                                      //           context)
-                                      //       .add(
-                                      //     AddItemToFavouritesEvent
-                                      //         .added(
-                                      //       packageId:
-                                      //           '${value.featuredBoats.data?[index].packages?[0].id}',
-                                      //     ),
-                                      //   );
-                                      // } else {
-                                      //   // Ensure data is not null
-                                      //   final dataList =
-                                      //       snapshot.data?.data ?? [];
-
-                                      //   // Find the index based on the list length
-                                      //   int itemIndex =
-                                      //       dataList.indexWhere(
-                                      //     (item) =>
-                                      //         item.id.toString() ==
-                                      //         snapshot
-                                      //             .data?.data?[index].id
-                                      //             .toString(),
-                                      //   );
-
-                                      //   // Pass it to the Bloc event
-                                      //   BlocProvider.of<
-                                      //               RemoveItemFavouritesBloc>(
-                                      //           context)
-                                      //       .add(
-                                      //     RemoveItemFavouritesEvent
-                                      //         .added(
-                                      //       favouritesId:
-                                      //           '${snapshot.data?.data?[index].id.toString()}',
-                                      //     ),
-                                      //   );
-                                      // }
-                                    },
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.all(5.0),
-                                          child: AnimatedSwitcher(
-                                            duration: Duration(
-                                                milliseconds: 300),
-                                            transitionBuilder:
-                                                (child, animation) {
-                                              return ScaleTransition(
-                                                  scale: animation,
-                                                  child: child);
-                                            },
-                                            child: Icon(
-                                              isFavoriteList[index]
-                                                  ? Icons.favorite
-                                                  : Icons
-                                                      .favorite_border,
-                                              key: ValueKey<bool>(
-                                                  isFavoriteList[
-                                                      index]),
-                                              color: isFavoriteList[
-                                                      index]
-                                                  ? Color(0XFF4FC2C5)
-                                                  : Color(0XFF4FC2C5),
-                                              size: 20,
+                                    child: Column(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            if (packageId != null) {
+                                              toggleFavorite(
+                                                packageId: packageId,
+                                                isFavorite: isFavorite,
+                                                favouriteId: favouriteId,
+                                              );
+                                            }
+                                          },
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(5.0),
+                                                child: AnimatedSwitcher(
+                                                  duration: const Duration(
+                                                      milliseconds: 300),
+                                                  transitionBuilder:
+                                                      (child, animation) {
+                                                    return ScaleTransition(
+                                                        scale: animation,
+                                                        child: child);
+                                                  },
+                                                  child: _loadingFavorites
+                                                          .contains(packageId)
+                                                      ? const SizedBox(
+                                                          height: 20,
+                                                          width: 20,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            strokeWidth: 2,
+                                                          ),
+                                                        )
+                                                      : Icon(
+                                                          isFavorite
+                                                              ? Icons.favorite
+                                                              : Icons
+                                                                  .favorite_border,
+                                                          color: const Color(
+                                                              0XFF4FC2C5),
+                                                          size: 20,
+                                                        ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
+                                        Text("Package id ${packageId}"),
+                                      ],
                                     ),
-                                  ),
-                                ),
+                                  );
+                                },
                               ),
                             );
-                            return Text("data");
                           },
-                        ),
-                      ),
-                    ],
-                  );
-                },
-                getFeaturedBoatsFailure: (value) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.wifi_off,
-                          color: Colors.grey,
-                          size: 80,
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          "No Internet Connection",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          "Please check your network and try again.",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: () {
-                            // Trigger retry logic here
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
-                          ),
-                          child: const Text(
-                            "Retry",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
+                          getFeaturedBoatsFailure: (value) =>
+                              const Text("Error fetching boats"),
+                          noInternet: (value) =>
+                              const Text("No Internet Connection"),
+                        );
+                      },
                     ),
-                  );
-                },
-                noInternet: (value) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.wifi_off,
-                          color: Colors.grey,
-                          size: 80,
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          "No Internet Connection",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          "Please check your network and try again.",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: () {
-                            // Trigger retry logic here
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
-                          ),
-                          child: const Text(
-                            "Retry",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-          );
-        },
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
