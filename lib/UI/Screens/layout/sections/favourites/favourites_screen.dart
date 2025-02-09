@@ -1,5 +1,6 @@
 import 'package:cruise_buddy/UI/Screens/boat_detail/boat_detail_screen.dart';
 import 'package:cruise_buddy/UI/Screens/layout/sections/boats/widgets/featured_boats_container.dart';
+import 'package:cruise_buddy/UI/Widgets/noDataCondition/no_data_screen.dart';
 import 'package:cruise_buddy/core/view_model/getFavouritesList/get_favourites_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
@@ -53,27 +54,37 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
           );
         }, getfavouritesBoats: (value) {
           if ((value.favourites?.data ?? []).isEmpty) {
-            return Center(child: Text("No Favourites data found"));
+            return NoDataScreen(
+              text:
+                  "It looks like you haven’t added any favorites yet. Start exploring and save your favorite spots!",
+            );
           }
 
           return Expanded(
-            child: ListView.builder(
-              physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              itemCount: value.favourites.data
-                      ?.where((item) => item.package != null)
-                      .length ??
-                  0,
-              itemBuilder: (context, index) {
-                var favourite = value.favourites.data
-                    ?.where((item) => item.package != null)
-                    .toList()[index];
+            child: (value.favourites.data
+                        ?.where((item) => item.package != null)
+                        .isNotEmpty ??
+                    false)
+                ? ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    itemCount: value.favourites.data
+                            ?.where((item) => item.package != null)
+                            .length ??
+                        0,
+                    itemBuilder: (context, index) {
+                      var favourite = value.favourites.data
+                          ?.where((item) => item.package != null)
+                          .toList()[index];
 
-                return BuildFavouritesCard(
-                  name: favourite?.package?.name?.toString() ?? 'N/A',
-                );
-              },
-            ),
+                      return BuildFavouritesCard(
+                        name: favourite?.package?.name?.toString() ?? 'N/A',
+                      );
+                    },
+                  )
+                : NoDataScreen(
+                    text: "dsfdf",
+                  ),
           );
         }, getfavouritesFailure: (value) {
           return ListView(
