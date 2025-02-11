@@ -2,10 +2,14 @@ import 'package:cruise_buddy/UI/Widgets/Button/full_width_bluebutton.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/core/routes/app_routes.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
+import 'package:cruise_buddy/core/view_model/postGoogleId/post_google_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +19,42 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String? userEmail;
+
+  // Google Sign-In Function
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return; // User canceled sign-in
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      final User? user = userCredential.user;
+
+      if (user != null) {
+        setState(() {
+          userEmail = user.email;
+        }); // Dispatch event to PostGoogleBloc after successful Google Sign-In
+        print("mobeeeeeeeeeeeeeeeeeeee");
+        BlocProvider.of<PostGoogleBloc>(context).add(
+          PostGoogleEvent.added(
+            UId: user.uid,
+            name: user.displayName.toString(),
+          ),
+        );
+      }
+    } catch (e) {
+      print("Google Sign-In Error: $e");
+    }
+  }
+
   TextEditingController emailController =
       TextEditingController(text: 'test@example.com');
   TextEditingController passwordController =
@@ -30,34 +70,67 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: BlocListener<LoginBloc, LoginState>(
-        listener: (context, state) {
-          state.map(
-            initial: (_) {
-              print('initial');
-            },
-            loading: (_) {
-              print('loading');
-            },
-            loginSuccess: (success) {
-              AppRoutes.navigateToMainLayoutScreen(context);
-            },
-            loginFailure: (failure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("${failure.error}"),
-                ),
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<LoginBloc, LoginState>(
+            listener: (context, state) {
+              state.map(
+                initial: (_) {
+                  print('initial');
+                },
+                loading: (_) {
+                  print('loading');
+                },
+                loginSuccess: (success) {
+                  AppRoutes.navigateToMainLayoutScreen(context);
+                },
+                loginFailure: (failure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("//${failure.error}"),
+                    ),
+                  );
+                },
+                noInternet: (value) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("No Internet please try again"),
+                    ),
+                  );
+                },
               );
             },
-            noInternet: (value) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("No Internet please try again"),
-                ),
+          ),
+          BlocListener<PostGoogleBloc, PostGoogleState>(
+            listener: (context, state) {
+              state.map(
+                initial: (_) {
+                  print('initial');
+                },
+                loading: (_) {
+                  print('loading');
+                },
+                addedSuccess: (success) {
+                  AppRoutes.navigateToMainLayoutScreen(context);
+                },
+                addedFailure: (failure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("//${failure.error}"),
+                    ),
+                  );
+                },
+                noInternet: (value) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("No Internet please try again"),
+                    ),
+                  );
+                },
               );
             },
-          );
-        },
+          ),
+        ],
         child: Scaffold(
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -212,41 +285,175 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 12),
                   BlocBuilder<LoginBloc, LoginState>(
-                    builder: (context, state) {
-                      return state.map(initial: (_) {
-                        return Center(
-                          child: Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
+                    builder: (context, loginState) {
+                      return loginState.map(
+                        initial: (_) {
+                          return BlocBuilder<PostGoogleBloc, PostGoogleState>(
+                            builder: (context, postGoogleState) {
+                              return postGoogleState.map(
+                                initial: (_) {
+                                  return GestureDetector(
+                                    onTap: signInWithGoogle,
+                                    child: Center(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: const Color.fromARGB(
+                                                255, 201, 201, 201),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child:
+                                              Image.asset("assets/Google.png"),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                loading: (_) {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                },
+                                addedSuccess: (_) {
+                                  return GestureDetector(
+                                    onTap: signInWithGoogle,
+                                    child: Center(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: const Color.fromARGB(
+                                                255, 201, 201, 201),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child:
+                                              Image.asset("assets/Google.png"),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                addedFailure: (_) {
+                                  return GestureDetector(
+                                    onTap: signInWithGoogle,
+                                    child: Center(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: const Color.fromARGB(
+                                                255, 201, 201, 201),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child:
+                                              Image.asset("assets/Google.png"),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                noInternet: (_) {
+                                  return GestureDetector(
+                                    onTap: signInWithGoogle,
+                                    child: Center(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: const Color.fromARGB(
+                                                255, 201, 201, 201),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child:
+                                              Image.asset("assets/Google.png"),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          );
+                        },
+                        loading: (_) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                        loginSuccess: (_) {
+                          return GestureDetector(
+                            onTap: signInWithGoogle,
+                            child: Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
                                     color: const Color.fromARGB(
-                                        255, 201, 201, 201)),
-                                borderRadius: BorderRadius.circular(30),
+                                        255, 201, 201, 201),
+                                  ),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset("assets/Google.png"),
+                                ),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.asset("assets/Google.png"),
-                              )),
-                        );
-                      }, loading: (_) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }, loginSuccess: (_) {
-                        return SizedBox(
-                          height: 10,
-                          width: 10,
-                        );
-                      }, loginFailure: (_) {
-                        return SizedBox(
-                          height: 10,
-                          width: 10,
-                        );
-                      }, noInternet: (_) {
-                        return SizedBox(
-                          height: 10,
-                          width: 10,
-                        );
-                      });
+                            ),
+                          );
+                        },
+                        loginFailure: (_) {
+                          return GestureDetector(
+                            onTap: signInWithGoogle,
+                            child: Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: const Color.fromARGB(
+                                        255, 201, 201, 201),
+                                  ),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset("assets/Google.png"),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        noInternet: (_) {
+                          return GestureDetector(
+                            onTap: signInWithGoogle,
+                            child: Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: const Color.fromARGB(
+                                        255, 201, 201, 201),
+                                  ),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset("assets/Google.png"),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
                     },
                   ),
                   const SizedBox(height: 20),

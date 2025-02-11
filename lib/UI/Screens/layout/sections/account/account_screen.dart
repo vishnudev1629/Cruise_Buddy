@@ -4,6 +4,7 @@ import 'package:cruise_buddy/UI/Screens/misc/privacy_policy.dart';
 import 'package:cruise_buddy/core/services/auth/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -166,7 +167,7 @@ class _AccountScreenState extends State<AccountScreen> {
               const Divider(),
               ListTile(
                 leading: SvgPicture.asset(
-                  'assets/image/profile/privacy_policy.svg',           
+                  'assets/image/profile/privacy_policy.svg',
                 ),
                 title: const Text('Privacy Policy'),
                 trailing: SvgPicture.asset(
@@ -188,22 +189,40 @@ class _AccountScreenState extends State<AccountScreen> {
                 leading: SvgPicture.asset(
                   'assets/image/profile/logout.svg',
                 ),
-                title: const Text('Logout',
-                    style: TextStyle(color: Color(0xff1F8386))),
+                title: const Text(
+                  'Logout',
+                  style: TextStyle(color: Color(0xff1F8386)),
+                ),
                 trailing: SvgPicture.asset(
                   'assets/image/profile/arrow_right.svg',
                 ),
                 onTap: () async {
-                  await AuthServices().logout();
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  await prefs.remove('accessToken');
+                  try {
+                    // Get instance of SharedPreferences
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
 
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                    (route) => false,
-                  );
+                    // Check if Google Sign-In is used
+                    GoogleSignIn googleSignIn = GoogleSignIn();
+                    if (await googleSignIn.isSignedIn()) {
+                      await googleSignIn.signOut();
+                    }
+
+                    // Logout from your authentication service
+                    await AuthServices().logout();
+
+                    // Remove access token from shared preferences
+                    await prefs.remove('accessToken');
+
+                    // Navigate to LoginScreen and remove previous routes
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      (route) => false,
+                    );
+                  } catch (e) {
+                    print("Logout Error: $e"); // Handle errors gracefully
+                  }
                 },
               ),
             ],

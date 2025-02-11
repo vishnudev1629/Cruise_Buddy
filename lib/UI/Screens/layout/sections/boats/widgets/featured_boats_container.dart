@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:cruise_buddy/UI/Widgets/toast/custom_toast.dart';
+import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:http/http.dart' as http;
 import 'package:cruise_buddy/UI/Screens/layout/sections/Home/widgets/featured_shimmer_card.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
@@ -92,6 +93,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
   }
 
   Future<void> fetchFavorites() async {
+     final token = await GetSharedPreferences.getAccessToken();
     final response = await http.get(
       Uri.parse(
           'https://khaki-cheetah-745520.hostingersite.com/api/v1/favorite?include=package.cruise'),
@@ -99,7 +101,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
         'Accept': 'application/json',
         'CRUISE_AUTH_KEY': '29B37-89DFC5E37A525891-FE788E23',
         'Authorization':
-            'Bearer 108|hnbzjAuwTKEAScZyLySd6zIZfTdwilLRBJBtgUa72d62549f',
+            'Bearer $token',
       },
     );
 
@@ -662,7 +664,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            "No Internet Connection",
+                            "No Internet Connection fdgfdg",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -713,7 +715,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            "No Internet Connection",
+                            "No Internet Connection--------------------",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

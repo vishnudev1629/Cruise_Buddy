@@ -9,6 +9,7 @@ import 'package:cruise_buddy/core/view_model/getSearchCruiseResults/get_seached_
 import 'package:cruise_buddy/core/view_model/getUserProfile/get_user_profile_bloc.dart';
 import 'package:cruise_buddy/core/view_model/listCruiseonLocation/list_cruiseon_location_bloc.dart';
 import 'package:cruise_buddy/core/view_model/login/login_bloc.dart';
+import 'package:cruise_buddy/core/view_model/postGoogleId/post_google_bloc.dart';
 import 'package:cruise_buddy/core/view_model/regsiter/register_bloc.dart';
 import 'package:cruise_buddy/core/view_model/removeItemFromFavourites/remove_item_favourites_bloc.dart';
 import 'package:cruise_buddy/firebase_options.dart';
@@ -70,9 +71,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => RemoveItemFavouritesBloc(),
         ),
+        BlocProvider(
+          create: (context) => PostGoogleBloc(),
+        ),
       ],
       child: MaterialApp(
-        
         builder: (context, child) {
           ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
             return CustomErrorWidget(errorDetails: errorDetails);
@@ -87,11 +90,11 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-      
-          home: SplashScreen(),
+        home: SplashScreen(),
       ),
     );
   }
 }
-//---------------------
 
+
+//---------------------

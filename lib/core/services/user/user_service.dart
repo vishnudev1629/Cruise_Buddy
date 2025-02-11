@@ -36,7 +36,7 @@ class UserService {
       _headers['Authorization'] = 'Bearer $token';
 
       final response = await http.get(
-        Uri.parse('$url/user/1'),
+        Uri.parse('$url/who-am-i'),
         headers: _headers,
       );
 

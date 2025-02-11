@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:cruise_buddy/core/constants/functions/connection/connectivity_checker.dart';
 import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:cruise_buddy/core/model/login_model/login_model.dart';
+import 'package:cruise_buddy/core/model/verifiedgoogle_id_model/verifiedgoogle_id_model.dart';
 import 'package:cruise_buddy/core/model/registration_model/registration_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:dartz/dartz.dart';
@@ -122,13 +123,50 @@ class AuthServices {
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-      
         return Right(1);
       } else {
         return Left(0);
       }
     } catch (e) {
       return Left(0);
+    }
+  }
+
+  Future<Either<String, VerifiedgoogleIdModel>> googleVerifyUid({
+    required String idToken,
+    required String name,
+  }) async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        return const Left('0');
+      }
+
+      final response = await http.post(
+        Uri.parse(
+            'https://khaki-cheetah-745520.hostingersite.com/api/v1/google-verify-uid'),
+        headers: {'Accept': 'application/json'},
+        body: {
+          'idToken': idToken,
+          'name': name,
+          'user_type': 'user',
+        },
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final data = json.decode(response.body);
+
+        final verifiedModel = VerifiedgoogleIdModel.fromJson(data);
+        print(verifiedModel.user?.name);
+        return Right(verifiedModel);
+      } else {
+        print('Left bject ${response.body}');
+        return Left('0');
+      }
+    } catch (e) {
+      print('Left bject ${e.toString()}');
+      print('Left bject ${e}');
+      return Left('0');
     }
   }
 }

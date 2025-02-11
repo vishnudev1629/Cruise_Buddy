@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "700263567498-3phtfhs977nkg22q0kpnufqmk52b54tl.apps.googleusercontent.com",
+          "client_id": "700263567498-4u555aihuf02h5o4vog1p5j0fhsb61cd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.cruisebuddy.app",
-            "certificate_hash": "3ab4e0463100aaf1d96a62573466a1aafa45e203"
+            "certificate_hash": "b6f4f21bb329007ecf0df4e5a9344ae67b3532d8"
           }
         },
         {
@@ -39,10 +39,190 @@
               "client_type": 3
             },
             {
-              "client_id": "700263567498-pcdjseggratokpjt1427ph8cs8dovtpb.apps.googleusercontent.com",
+              "client_id": "700263567498-5i2tf3gum006fsoahqt645s2oa76tm2v.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.pokemon.app"
+                "bundle_id": "com.example.firebaseauthapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700263567498:android:64ed70edd52e3862791d73",
+        "android_client_info": {
+          "package_name": "com.example.firebase_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGzdo0KLGQ3YZpPN1h686jj8dKVaHl8vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700263567498-5i2tf3gum006fsoahqt645s2oa76tm2v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseauthapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700263567498:android:0c2d75c951843360791d73",
+        "android_client_info": {
+          "package_name": "com.example.firebaseauthapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGzdo0KLGQ3YZpPN1h686jj8dKVaHl8vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700263567498-5i2tf3gum006fsoahqt645s2oa76tm2v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseauthapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700263567498:android:d0665388e704ecc6791d73",
+        "android_client_info": {
+          "package_name": "com.example.glogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGzdo0KLGQ3YZpPN1h686jj8dKVaHl8vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700263567498-5i2tf3gum006fsoahqt645s2oa76tm2v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseauthapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700263567498:android:a8d25eb01ecfda27791d73",
+        "android_client_info": {
+          "package_name": "com.example.gmailsetup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGzdo0KLGQ3YZpPN1h686jj8dKVaHl8vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700263567498-5i2tf3gum006fsoahqt645s2oa76tm2v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseauthapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700263567498:android:25a828510dd16ab6791d73",
+        "android_client_info": {
+          "package_name": "com.example.gtp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGzdo0KLGQ3YZpPN1h686jj8dKVaHl8vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700263567498-7n2bjjq556vltg7viilafqujue4ogosm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700263567498-5i2tf3gum006fsoahqt645s2oa76tm2v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseauthapp"
               }
             }
           ]
@@ -83,10 +263,10 @@
               "client_type": 3
             },
             {
-              "client_id": "700263567498-pcdjseggratokpjt1427ph8cs8dovtpb.apps.googleusercontent.com",
+              "client_id": "700263567498-5i2tf3gum006fsoahqt645s2oa76tm2v.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.pokemon.app"
+                "bundle_id": "com.example.firebaseauthapp"
               }
             }
           ]
