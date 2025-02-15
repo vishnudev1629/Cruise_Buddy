@@ -1,13 +1,9 @@
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
-class FullWidthRectangleBlueButton extends StatelessWidget {
-  final String text;
-  final VoidCallback? onPressed;
-  const FullWidthRectangleBlueButton({
+class RectangleBluebuttonLoading extends StatelessWidget {
+  const RectangleBluebuttonLoading({
     super.key,
-    required this.text,
-     this.onPressed,
   });
 
   @override
@@ -26,11 +22,9 @@ class FullWidthRectangleBlueButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyles.ubuntu16whiteFFw500,
-        ),
+        onPressed: null,
+        child:
+            CircularProgressIndicator(backgroundColor: const Color(0xFF1F8386)),
       ),
     );
   }

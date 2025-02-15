@@ -36,5 +36,7 @@ class GetFavouritesListBloc
             error: 'An error occurred: $e'));
       }
     });
+  
+  
   }
 }

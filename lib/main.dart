@@ -1,6 +1,7 @@
 import 'package:cruise_buddy/UI/Screens/Splash/splash_screen.dart';
 import 'package:cruise_buddy/core/constants/functions/error/custom_error.dart';
 import 'package:cruise_buddy/core/view_model/addItemToFavourites/add_item_to_favourites_bloc.dart';
+import 'package:cruise_buddy/core/view_model/bookMyCruise/book_my_cruise_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getCruiseTypes/get_cruise_types_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getFavouritesList/get_favourites_list_bloc.dart';
 import 'package:cruise_buddy/core/view_model/getFeaturedBoats/get_featured_boats_bloc.dart';
@@ -13,10 +14,8 @@ import 'package:cruise_buddy/core/view_model/postGoogleId/post_google_bloc.dart'
 import 'package:cruise_buddy/core/view_model/regsiter/register_bloc.dart';
 import 'package:cruise_buddy/core/view_model/removeItemFromFavourites/remove_item_favourites_bloc.dart';
 import 'package:cruise_buddy/firebase_options.dart';
-import 'package:cruise_buddy/test_folder/api_test.dart';
-import 'package:cruise_buddy/test_folder/gpay_test.dart';
-import 'package:cruise_buddy/test_folder/margret_test.dart';
-import 'package:cruise_buddy/test_folder/ui_test.dart';
+import 'package:cruise_buddy/test_folder/gpay_tedst.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -74,6 +73,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => PostGoogleBloc(),
         ),
+        BlocProvider(
+          create: (context) => BookMyCruiseBloc(),
+        ),
       ],
       child: MaterialApp(
         builder: (context, child) {
@@ -96,5 +98,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 //---------------------
+
+//https://www.youtube.com/watch?v=KfVeYXAtGAM
