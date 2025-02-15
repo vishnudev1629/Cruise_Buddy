@@ -121,41 +121,6 @@ class _AccountScreenState extends State<AccountScreen> {
             children: [
               ListTile(
                 leading: SvgPicture.asset(
-                  'assets/image/profile/payment_method.svg',
-                ),
-                title: const Text('Payment Methods'),
-                trailing: SvgPicture.asset(
-                  'assets/image/profile/arrow_right.svg',
-                ),
-                onTap: () {
-                  Razorpay razorpay = Razorpay();
-                  var options = {
-                    'key': 'rzp_live_ILgsfZCZoFIKMb',
-                    'amount': 100,
-                    'name': 'Cruise Buddy',
-                    'description': 'Premium House Boat',
-                    'retry': {'enabled': true, 'max_count': 1},
-                    'send_sms_hash': true,
-                    'prefill': {
-                      'contact': '8848055651',
-                      'email': 'test@razorpay.com'
-                    },
-                    'external': {
-                      'wallets': ['paytm']
-                    }
-                  };
-                  razorpay.on(
-                      Razorpay.EVENT_PAYMENT_ERROR, handlePaymentErrorResponse);
-                  razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
-                      handlePaymentSuccessResponse);
-                  razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
-                      handleExternalWalletSelected);
-                  razorpay.open(options);
-                },
-              ),
-              const Divider(),
-              ListTile(
-                leading: SvgPicture.asset(
                   'assets/image/profile/change_password.svg',
                 ),
                 title: const Text('Change Password'),
@@ -296,10 +261,6 @@ class _AccountScreenState extends State<AccountScreen> {
       },
     );
   }
-
-
-
-
 }
 
 class DottedBorderPainter extends CustomPainter {

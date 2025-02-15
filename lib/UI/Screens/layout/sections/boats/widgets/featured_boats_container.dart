@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cruise_buddy/UI/Screens/payment_steps_screen/booking_confirmation_screen.dart';
 import 'package:cruise_buddy/UI/Widgets/toast/custom_toast.dart';
 import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:http/http.dart' as http;
@@ -367,12 +368,27 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                         : 0,
                                   ),
                                   child: GestureDetector(
-                                    onTapDown: (details) =>
-                                        onTapDown(index, details),
-                                    onTapUp: (details) =>
-                                        onTapUp(index, details),
-                                    onTapCancel: () => onTapCancel(index),
-                                    onTap: () => handleTap(index),
+                                    onTapDown: (_) {
+                                      setState(() {
+                                        _scales[index] = 0.94;
+                                      });
+                                    },
+                                    onTapUp: (_) {
+                                      Future.delayed(
+                                          const Duration(milliseconds: 150),
+                                          () {
+                                        setState(() {
+                                          _scales[index] = 1.0;
+                                        });
+                                        AppRoutes.navigateToBoatdetailScreen(
+                                            context);
+                                      });
+                                    },
+                                    onTapCancel: () {
+                                      setState(() {
+                                        _scales[index] = 1.0;
+                                      });
+                                    },
                                     child: AnimatedScale(
                                       scale: _scales[index],
                                       duration:
@@ -419,10 +435,47 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                                 double.infinity,
                                                             height: 130,
                                                             fit: BoxFit.cover,
+                                                            loadingBuilder:
+                                                                (context, child,
+                                                                    loadingProgress) {
+                                                              if (loadingProgress ==
+                                                                  null)
+                                                                return child;
+                                                              return Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                height: 130,
+                                                                color: Colors
+                                                                        .grey[
+                                                                    300], // Placeholder background
+                                                                child: const Center(
+                                                                    child:
+                                                                        CircularProgressIndicator()),
+                                                              );
+                                                            },
+                                                            errorBuilder:
+                                                                (context, error,
+                                                                    stackTrace) {
+                                                              return Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                height: 130,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image: AssetImage(
+                                                                        'assets/image/boat_details_img/boat_detail_img.png'),
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
                                                           ),
                                                         ),
                                                         Positioned(
-                                                          top: 60,
+                                                          bottom: 8,
                                                           right: 8,
                                                           child: Container(
                                                             width: 68,
@@ -619,9 +672,11 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                   height: 45,
                                                   child: ElevatedButton(
                                                     onPressed: () {
-                                                      AppRoutes
-                                                          .navigateToBoatdetailScreen(
-                                                              context);
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  BookingconfirmationScreen()));
                                                     },
                                                     style: ElevatedButton
                                                         .styleFrom(
