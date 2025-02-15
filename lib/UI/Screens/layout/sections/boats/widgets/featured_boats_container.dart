@@ -93,15 +93,14 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
   }
 
   Future<void> fetchFavorites() async {
-     final token = await GetSharedPreferences.getAccessToken();
+    final token = await GetSharedPreferences.getAccessToken();
     final response = await http.get(
       Uri.parse(
           'https://khaki-cheetah-745520.hostingersite.com/api/v1/favorite?include=package.cruise'),
       headers: {
         'Accept': 'application/json',
         'CRUISE_AUTH_KEY': '29B37-89DFC5E37A525891-FE788E23',
-        'Authorization':
-            'Bearer $token',
+        'Authorization': 'Bearer $token',
       },
     );
 
@@ -333,7 +332,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                             ),
                           )
                         : SizedBox(
-                            height: 300,
+                            height: 328,
                             child: ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               shrinkWrap: true,
@@ -381,7 +380,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                       curve: Curves.easeInOut,
                                       child: Container(
                                         width: 240,
-                                        height: 300,
+                                        height: 328,
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
@@ -391,258 +390,266 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                             width: 1.5,
                                           ),
                                         ),
-                                        child: Stack(
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  height: 100,
-                                                  child: Stack(
-                                                    children: [
-                                                      ClipRRect(
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  13),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  13),
-                                                        ),
-                                                        child: Image.network(
-                                                          "${value.featuredBoats.data?[index].cruisesImages?[0].cruiseImg}",
-                                                          width:
-                                                              double.infinity,
-                                                          height: 100,
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                      Positioned(
-                                                        top: 60,
-                                                        right: 8,
-                                                        child: Container(
-                                                          width: 68,
-                                                          height: 30,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        24),
-                                                          ),
-                                                          child: Row(
-                                                            children: [
-                                                              const SizedBox(
-                                                                  width: 10),
-                                                              const Icon(
-                                                                Icons.star,
-                                                                color: Colors
-                                                                    .amber,
-                                                                size: 24,
-                                                              ),
-                                                              const Text("4.3"),
-                                                              const SizedBox(
-                                                                  width: 10),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Container(
-                                                  color: const Color.fromARGB(
-                                                      0, 255, 214, 64),
-                                                  height: 195,
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 12),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                        child: SizedBox(
+                                          height: 320,
+                                          child: Stack(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 130,
+                                                    child: Stack(
                                                       children: [
-                                                        const SizedBox(
-                                                            height: 10),
-                                                        Row(
-                                                          children: [
-                                                            PillWidget(
-                                                              image:
-                                                                  'assets/icons/wifi.svg',
-                                                              text: 'Wifi',
-                                                            ),
-                                                            const SizedBox(
-                                                                width: 5),
-                                                            PillWidget(
-                                                              image:
-                                                                  'assets/icons/heater.svg',
-                                                              text: 'Heater',
-                                                            ),
-                                                          ],
+                                                        ClipRRect(
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                  .only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    13),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    13),
+                                                          ),
+                                                          child: Image.network(
+                                                            "${value.featuredBoats.data?[index].cruisesImages?[0].cruiseImg}",
+                                                            width:
+                                                                double.infinity,
+                                                            height: 130,
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
-                                                        Text(
-                                                          value
-                                                                          .featuredBoats
-                                                                          .data?[
-                                                                              index]
-                                                                          .name !=
-                                                                      null &&
-                                                                  value
-                                                                          .featuredBoats
-                                                                          .data![
-                                                                              index]
-                                                                          .name!
-                                                                          .length >
-                                                                      22
-                                                              ? "${value.featuredBoats.data?[index].name!.substring(0, 22)}..."
-                                                              : "${value.featuredBoats.data?[index].name}",
-                                                          style: TextStyles
-                                                              .ubuntu16black15w500,
-                                                        ),
-                                                        SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            SvgPicture.asset(
-                                                              "assets/icons/mapIcon.svg",
+                                                        Positioned(
+                                                          top: 60,
+                                                          right: 8,
+                                                          child: Container(
+                                                            width: 68,
+                                                            height: 30,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          24),
                                                             ),
-                                                            SizedBox(
-                                                              width: 10,
+                                                            child: Row(
+                                                              children: [
+                                                                const SizedBox(
+                                                                    width: 10),
+                                                                const Icon(
+                                                                  Icons.star,
+                                                                  color: Colors
+                                                                      .amber,
+                                                                  size: 24,
+                                                                ),
+                                                                const Text(
+                                                                    "4.3"),
+                                                                const SizedBox(
+                                                                    width: 10),
+                                                              ],
                                                             ),
-                                                            Text("Kumarakom"),
-                                                          ],
-                                                        ),
-                                                        SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        Column(
-                                                          children: [
-                                                            Text(
-                                                              "₹5000",
-                                                              style: TextStyles
-                                                                  .ubuntu18bluew700,
-                                                            ),
-                                                            Text(
-                                                              "Price per night",
-                                                              style: TextStyles
-                                                                  .ubuntu6grey555,
-                                                            ),
-                                                          ],
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            Positioned(
-                                              top: 8,
-                                              right: 8,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  if (packageId != null) {
-                                                    toggleFavorite(
-                                                      packageId: packageId,
-                                                      isFavorite: isFavorite,
-                                                      favouriteId: favouriteId,
-                                                    );
-                                                  }
-                                                },
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                    ),
+                                                  Container(
+                                                    color: const Color.fromARGB(
+                                                        0, 255, 214, 64),
+                                                    height: 195,
                                                     child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              5.0),
-                                                      child: AnimatedSwitcher(
-                                                        duration:
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    300),
-                                                        transitionBuilder:
-                                                            (child, animation) {
-                                                          return ScaleTransition(
-                                                              scale: animation,
-                                                              child: child);
-                                                        },
-                                                        child: loadingFavorites
-                                                                .contains(
-                                                                    packageId)
-                                                            ? const SizedBox(
-                                                                height: 20,
-                                                                width: 20,
-                                                                child:
-                                                                    CircularProgressIndicator(
-                                                                  strokeWidth:
-                                                                      2,
-                                                                ),
-                                                              )
-                                                            : Icon(
-                                                                isFavorite
-                                                                    ? Icons
-                                                                        .favorite
-                                                                    : Icons
-                                                                        .favorite_border,
-                                                                color: const Color(
-                                                                    0XFF4FC2C5),
-                                                                size: 20,
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                          horizontal: 12),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          Row(
+                                                            children: [
+                                                              PillWidget(
+                                                                image:
+                                                                    'assets/icons/wifi.svg',
+                                                                text: 'Wifi',
                                                               ),
+                                                              const SizedBox(
+                                                                  width: 5),
+                                                              PillWidget(
+                                                                image:
+                                                                    'assets/icons/heater.svg',
+                                                                text: 'Heater',
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Text(
+                                                            value.featuredBoats.data?[index].name !=
+                                                                        null &&
+                                                                    value
+                                                                            .featuredBoats
+                                                                            .data![index]
+                                                                            .name!
+                                                                            .length >
+                                                                        35
+                                                                ? "${value.featuredBoats.data?[index].name!.substring(0, 35)}..."
+                                                                : "${value.featuredBoats.data?[index].name}",
+                                                            style: TextStyles
+                                                                .ubuntu16black15w500,
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              SvgPicture.asset(
+                                                                "assets/icons/mapIcon.svg",
+                                                              ),
+                                                              SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Text("Kumarakom"),
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            height: 4,
+                                                          ),
+                                                          Column(
+                                                            children: [
+                                                              Text(
+                                                                "₹5000",
+                                                                style: TextStyles
+                                                                    .ubuntu18bluew700,
+                                                              ),
+                                                              Text(
+                                                                "Price per night",
+                                                                style: TextStyles
+                                                                    .ubuntu6grey555,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Positioned(
+                                                top: 8,
+                                                right: 8,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    if (packageId != null) {
+                                                      toggleFavorite(
+                                                        packageId: packageId,
+                                                        isFavorite: isFavorite,
+                                                        favouriteId:
+                                                            favouriteId,
+                                                      );
+                                                    }
+                                                  },
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(5.0),
+                                                        child: AnimatedSwitcher(
+                                                          duration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      300),
+                                                          transitionBuilder:
+                                                              (child,
+                                                                  animation) {
+                                                            return ScaleTransition(
+                                                                scale:
+                                                                    animation,
+                                                                child: child);
+                                                          },
+                                                          child: loadingFavorites
+                                                                  .contains(
+                                                                      packageId)
+                                                              ? const SizedBox(
+                                                                  height: 20,
+                                                                  width: 20,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    strokeWidth:
+                                                                        2,
+                                                                  ),
+                                                                )
+                                                              : Icon(
+                                                                  isFavorite
+                                                                      ? Icons
+                                                                          .favorite
+                                                                      : Icons
+                                                                          .favorite_border,
+                                                                  color: const Color(
+                                                                      0XFF4FC2C5),
+                                                                  size: 20,
+                                                                ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            Positioned(
-                                              bottom: 10,
-                                              right: 8,
-                                              child: SizedBox(
-                                                height: 45,
-                                                child: ElevatedButton(
-                                                  onPressed: () {
-                                                    AppRoutes
-                                                        .navigateToBoatdetailScreen(
-                                                            context);
-                                                  },
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                        const Color(0XFF1F8386),
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8),
+                                              Positioned(
+                                                bottom: 20,
+                                                right: 8,
+                                                child: SizedBox(
+                                                  height: 45,
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      AppRoutes
+                                                          .navigateToBoatdetailScreen(
+                                                              context);
+                                                    },
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      backgroundColor:
+                                                          const Color(
+                                                              0XFF1F8386),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                      ),
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 12,
+                                                      ),
                                                     ),
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 12,
+                                                    child: Text(
+                                                      "Book Now",
+                                                      style: TextStyles
+                                                          .ubuntu12whiteFFw400,
                                                     ),
-                                                  ),
-                                                  child: Text(
-                                                    "Book Now",
-                                                    style: TextStyles
-                                                        .ubuntu12whiteFFw400,
                                                   ),
                                                 ),
-                                              ),
-                                            )
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
