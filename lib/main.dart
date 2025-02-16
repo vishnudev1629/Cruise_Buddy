@@ -101,3 +101,5 @@ class MyApp extends StatelessWidget {
 //---------------------
 
 //https://www.youtube.com/watch?v=KfVeYXAtGAM
+
+// Avoid sizedbox height in featured cards as single line name may cause ui vulgar

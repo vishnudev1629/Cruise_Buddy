@@ -395,7 +395,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                           const Duration(milliseconds: 150),
                                       curve: Curves.easeInOut,
                                       child: Container(
-                                        width: 240,
+                                        width: 250,
                                         height: 328,
                                         decoration: BoxDecoration(
                                           color: Colors.white,
@@ -408,6 +408,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                         ),
                                         child: SizedBox(
                                           height: 320,
+                                          width: 250,
                                           child: Stack(
                                             children: [
                                               Column(
@@ -552,42 +553,14 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                                             .data![index]
                                                                             .name!
                                                                             .length >
-                                                                        35
-                                                                ? "${value.featuredBoats.data?[index].name!.substring(0, 35)}..."
+                                                                        24
+                                                                ? "${value.featuredBoats.data?[index].name!.substring(0, 24)}..."
                                                                 : "${value.featuredBoats.data?[index].name}",
                                                             style: TextStyles
                                                                 .ubuntu16black15w500,
                                                           ),
                                                           SizedBox(
                                                             height: 10,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              SvgPicture.asset(
-                                                                "assets/icons/mapIcon.svg",
-                                                              ),
-                                                              SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              Text("Kumarakom"),
-                                                            ],
-                                                          ),
-                                                          SizedBox(
-                                                            height: 4,
-                                                          ),
-                                                          Column(
-                                                            children: [
-                                                              Text(
-                                                                "₹5000",
-                                                                style: TextStyles
-                                                                    .ubuntu18bluew700,
-                                                              ),
-                                                              Text(
-                                                                "Price per night",
-                                                                style: TextStyles
-                                                                    .ubuntu6grey555,
-                                                              ),
-                                                            ],
                                                           ),
                                                         ],
                                                       ),
@@ -702,7 +675,45 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                     ),
                                                   ),
                                                 ),
-                                              )
+                                              ),
+                                              Positioned(
+                                                  bottom: 8,
+                                                  left: 8,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          SvgPicture.asset(
+                                                            "assets/icons/mapIcon.svg",
+                                                          ),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Text("Kumarakom"),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 4,
+                                                      ),
+                                                      Column(
+                                                        children: [
+                                                          Text(
+                                                            "₹5000",
+                                                            style: TextStyles
+                                                                .ubuntu18bluew700,
+                                                          ),
+                                                          Text(
+                                                            "Price per night",
+                                                            style: TextStyles
+                                                                .ubuntu6grey555,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ))
                                             ],
                                           ),
                                         ),
