@@ -101,7 +101,7 @@ class _CategoriesListResultscreenState
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: const SearchResultsContainer(
+                                  child: const SearchResultsContainer(price: '',
                                     imageUrl: '',
                                   ),
                                 );
@@ -131,7 +131,8 @@ class _CategoriesListResultscreenState
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: SearchResultsContainer(
+                                  child: SearchResultsContainer(price:  
+                                        '${value.packagesearchresults.data?[index].bookingTypes?[0].pricePerDay}',
                                     cruisename:
                                         '${value.packagesearchresults.data?[index].cruise?.name}',
                                     imageUrl:
@@ -151,7 +152,7 @@ class _CategoriesListResultscreenState
                                     bottom: 15,
                                   ),
                                   child: const SearchResultsContainer(
-                                    imageUrl: 'ss',
+                                    imageUrl: 'ss',price: '',
                                   ),
                                 );
                               },

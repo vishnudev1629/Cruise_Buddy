@@ -6,9 +6,11 @@ import 'package:flutter_svg/svg.dart';
 class SearchResultsContainer extends StatelessWidget {
   final String cruisename;
   final String imageUrl;
+  final String price;
   const SearchResultsContainer({
     this.cruisename = "Kerala’s Heritage Haven – Traditional Kerala Décor",
     required this.imageUrl,
+    required this.price,
     super.key,
   });
 
@@ -144,7 +146,7 @@ class SearchResultsContainer extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "₹5000",
+                      "₹${(price == null || price == 'null') ? "1000" : price}",
                       style: TextStyles.ubuntu18bluew700,
                     ),
                     Spacer(),

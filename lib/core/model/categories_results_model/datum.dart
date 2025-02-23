@@ -1,3 +1,4 @@
+import 'booking_type.dart';
 import 'cruise.dart';
 
 class Datum {
@@ -7,6 +8,7 @@ class Datum {
 	bool? isActive;
 	int? cruiseId;
 	Cruise? cruise;
+	List<BookingType>? bookingTypes;
 
 	Datum({
 		this.id, 
@@ -15,6 +17,7 @@ class Datum {
 		this.isActive, 
 		this.cruiseId, 
 		this.cruise, 
+		this.bookingTypes, 
 	});
 
 	factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -26,6 +29,9 @@ class Datum {
 				cruise: json['cruise'] == null
 						? null
 						: Cruise.fromJson(json['cruise'] as Map<String, dynamic>),
+				bookingTypes: (json['bookingTypes'] as List<dynamic>?)
+						?.map((e) => BookingType.fromJson(e as Map<String, dynamic>))
+						.toList(),
 			);
 
 	Map<String, dynamic> toJson() => {
@@ -35,5 +41,6 @@ class Datum {
 				'isActive': isActive,
 				'cruiseId': cruiseId,
 				'cruise': cruise?.toJson(),
+				'bookingTypes': bookingTypes?.map((e) => e.toJson()).toList(),
 			};
 }

@@ -43,15 +43,14 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   }
 
   Future<void> fetchFavorites() async {
-     final token = await GetSharedPreferences.getAccessToken();
+    final token = await GetSharedPreferences.getAccessToken();
     final response = await http.get(
       Uri.parse(
           'https://khaki-cheetah-745520.hostingersite.com/api/v1/favorite?include=package.cruise'),
       headers: {
         'Accept': 'application/json',
         'CRUISE_AUTH_KEY': '29B37-89DFC5E37A525891-FE788E23',
-        'Authorization':
-            'Bearer $token',
+        'Authorization': 'Bearer $token',
       },
     );
 
@@ -425,9 +424,11 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
 
 class BuildFavouritesCard extends StatelessWidget {
   final String name;
+  final String imageurl;
   const BuildFavouritesCard({
     super.key,
     required this.name,
+    required this.imageurl,
   });
 
   @override
@@ -450,12 +451,38 @@ class BuildFavouritesCard extends StatelessWidget {
                     topLeft: Radius.circular(13),
                     topRight: Radius.circular(13),
                   ),
-                  child: Image.asset(
-                    "assets/image/fav_screen_img2.png",
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: 160,
-                  ),
+                  child: 
+                  
+                  Image.network(
+                      imageurl,
+                      width: double.infinity,
+                      height: 160,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Container(
+                          width: double.infinity,
+                          height: 160,
+                          color: Colors.grey[300], // Placeholder background
+                          child:
+                              const Center(child: CircularProgressIndicator()),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: double.infinity,
+                          height: 160,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/image/boat_details_img/boat_detail_img.png'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                 
                 ),
                 Positioned(
                   top: 10,

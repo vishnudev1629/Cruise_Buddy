@@ -101,7 +101,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: const SearchResultsContainer(imageUrl: '',),
+                                  child: const SearchResultsContainer(imageUrl: '',price: '',),
                                 );
                               },
                             );
@@ -133,7 +133,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                     cruisename:
                                         '${value.packagesearchresults.data?[index].name}',
                                         imageUrl:  '${value.packagesearchresults.data?[index].cruise?.images?[0].cruiseImg}',
-                                  ),
+                                 price: '${value.packagesearchresults.data?[index].bookingTypes?[0].pricePerDay}', ),
                                 );
                               },
                             );
@@ -147,7 +147,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: const SearchResultsContainer(imageUrl: '',),
+                                  child: const SearchResultsContainer(imageUrl: '',price: '',),
                                 );
                               },
                             );
