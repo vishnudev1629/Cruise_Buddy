@@ -153,8 +153,7 @@ class _LocationsBasedCruiseScreenState
                     ],
                   );
                 }
-                return Expanded(
-                  child: ListView.builder(
+                return ListView.builder(    shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     itemCount: value.cruisemodel.data?.length,
@@ -163,7 +162,7 @@ class _LocationsBasedCruiseScreenState
                         name: value.cruisemodel.data![index].name.toString(),
                       );
                     },
-                  ),
+                  
                 );
               },
               getcruiseFailure: (value) {
