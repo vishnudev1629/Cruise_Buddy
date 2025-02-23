@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:cruise_buddy/core/constants/functions/connection/connectivity_checker.dart';
 import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
+import 'package:cruise_buddy/core/model/categories_results_model/categories_results_model.dart';
 import 'package:cruise_buddy/core/model/cruise_type_model/cruise_type_model.dart';
 import 'package:cruise_buddy/core/model/featured_boats_model/featured_boats_model.dart';
-import 'package:cruise_buddy/core/model/packageSearchResults/package_search_results_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
@@ -96,7 +96,7 @@ class CruiseService {
     }
   }
 
-  Future<Either<String, PackageSearchResultsModel>> getSearchResultsList(
+  Future<Either<String, CategoriesResultsModel>> getSearchResultsList(
       {required String filterCriteria}) async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
@@ -113,7 +113,7 @@ class CruiseService {
       _headers['Authorization'] = 'Bearer $token';
 
       final response = await http.get(
-        Uri.parse('$url/package?${filterCriteria}'),
+        Uri.parse('$url/package?filter[cruiseType.type]=${filterCriteria}&include=cruise.location,cruise.cruisesImages'),
         // Uri.parse(
         //     '$url/package?filter[dateRange][start]=2025-01-10&include=cruise.cruiseType%2Ccruise.ratings&filter[dateRange][end]=2025-02-10'),
         headers: _headers,
@@ -122,7 +122,7 @@ class CruiseService {
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = json.decode(response.body);
         print('data ');
-        final locationdetails = PackageSearchResultsModel.fromJson(data);
+        final locationdetails = CategoriesResultsModel.fromJson(data);
 
         return Right(locationdetails);
       } else {

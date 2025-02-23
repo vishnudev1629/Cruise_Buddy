@@ -345,7 +345,7 @@ mixin _$GetSeachedCruiseresultsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
+    required TResult Function(CategoriesResultsModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -355,7 +355,7 @@ mixin _$GetSeachedCruiseresultsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
+    TResult? Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
@@ -365,7 +365,7 @@ mixin _$GetSeachedCruiseresultsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
+    TResult Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
@@ -469,7 +469,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
+    required TResult Function(CategoriesResultsModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -482,7 +482,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
+    TResult? Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
@@ -495,7 +495,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
+    TResult Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
@@ -595,7 +595,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
+    required TResult Function(CategoriesResultsModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -608,7 +608,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
+    TResult? Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
@@ -621,7 +621,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
+    TResult Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
@@ -685,7 +685,7 @@ abstract class _$$GetSeachedCruiseresultsImplCopyWith<$Res> {
           $Res Function(_$GetSeachedCruiseresultsImpl) then) =
       __$$GetSeachedCruiseresultsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PackageSearchResultsModel packagesearchresults});
+  $Res call({CategoriesResultsModel packagesearchresults});
 }
 
 /// @nodoc
@@ -709,7 +709,7 @@ class __$$GetSeachedCruiseresultsImplCopyWithImpl<$Res>
       packagesearchresults: null == packagesearchresults
           ? _value.packagesearchresults
           : packagesearchresults // ignore: cast_nullable_to_non_nullable
-              as PackageSearchResultsModel,
+              as CategoriesResultsModel,
     ));
   }
 }
@@ -720,7 +720,7 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   const _$GetSeachedCruiseresultsImpl({required this.packagesearchresults});
 
   @override
-  final PackageSearchResultsModel packagesearchresults;
+  final CategoriesResultsModel packagesearchresults;
 
   @override
   String toString() {
@@ -753,7 +753,7 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
+    required TResult Function(CategoriesResultsModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -766,7 +766,7 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
+    TResult? Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
@@ -779,7 +779,7 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
+    TResult Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
@@ -835,10 +835,10 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
 abstract class _GetSeachedCruiseresults
     implements GetSeachedCruiseresultsState {
   const factory _GetSeachedCruiseresults(
-          {required final PackageSearchResultsModel packagesearchresults}) =
+          {required final CategoriesResultsModel packagesearchresults}) =
       _$GetSeachedCruiseresultsImpl;
 
-  PackageSearchResultsModel get packagesearchresults;
+  CategoriesResultsModel get packagesearchresults;
 
   /// Create a copy of GetSeachedCruiseresultsState
   /// with the given fields replaced by the non-null parameter values.
@@ -921,7 +921,7 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
+    required TResult Function(CategoriesResultsModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -934,7 +934,7 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
+    TResult? Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
@@ -947,7 +947,7 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
+    TResult Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
@@ -1056,7 +1056,7 @@ class _$NoInternetImpl implements _NoInternet {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PackageSearchResultsModel packagesearchresults)
+    required TResult Function(CategoriesResultsModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -1069,7 +1069,7 @@ class _$NoInternetImpl implements _NoInternet {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PackageSearchResultsModel packagesearchresults)?
+    TResult? Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
@@ -1082,7 +1082,7 @@ class _$NoInternetImpl implements _NoInternet {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PackageSearchResultsModel packagesearchresults)?
+    TResult Function(CategoriesResultsModel packagesearchresults)?
         getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,

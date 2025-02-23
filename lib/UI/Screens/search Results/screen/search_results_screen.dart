@@ -10,7 +10,11 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchResultsScreen extends StatefulWidget {
-  const SearchResultsScreen({super.key});
+  final String filterCriteria;
+  const SearchResultsScreen({
+    super.key,
+    required this.filterCriteria,
+  });
 
   @override
   State<SearchResultsScreen> createState() => _SearchResultsScreenState();
@@ -23,8 +27,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       BlocProvider.of<GetSeachedCruiseresultsBloc>(context).add(
           GetSeachedCruiseresultsEvent.SeachedCruise(
-              filterCriteria:
-                  'filter[dateRange][start]=2025-01-10&include=cruise.cruiseType%2Ccruise.ratings&filter[dateRange][end]=2025-02-10'));
+              filterCriteria: widget.filterCriteria));
     });
   }
 
@@ -98,7 +101,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: const SearchResultsContainer(),
+                                  child: const SearchResultsContainer(imageUrl: '',),
                                 );
                               },
                             );
@@ -119,7 +122,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                           getuseruccess: (value) {
                             return ListView.builder(
                               physics: BouncingScrollPhysics(),
-                              itemCount: value.packagesearchresults.data.length,
+                              itemCount:
+                                  value.packagesearchresults.data?.length,
                               itemBuilder: (context, index) {
                                 return Padding(
                                   padding: const EdgeInsets.only(
@@ -127,7 +131,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                   ),
                                   child: SearchResultsContainer(
                                     cruisename:
-                                        '${value.packagesearchresults.data[index].name}',
+                                        '${value.packagesearchresults.data?[index].name}',
+                                        imageUrl:  '${value.packagesearchresults.data?[index].cruise?.images?[0].cruiseImg}',
                                   ),
                                 );
                               },
@@ -142,7 +147,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: const SearchResultsContainer(),
+                                  child: const SearchResultsContainer(imageUrl: '',),
                                 );
                               },
                             );

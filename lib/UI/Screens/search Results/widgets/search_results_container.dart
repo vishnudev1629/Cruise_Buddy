@@ -5,16 +5,25 @@ import 'package:flutter_svg/svg.dart';
 
 class SearchResultsContainer extends StatelessWidget {
   final String cruisename;
+  final String imageUrl;
   const SearchResultsContainer({
     this.cruisename = "Kerala’s Heritage Haven – Traditional Kerala Décor",
+    required this.imageUrl,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    String truncateString(String? value, int maxLength) {
+      if (value == null) {
+        return '';
+      }
+      return value.length > maxLength ? value.substring(0, maxLength) : value;
+    }
+
     return Container(
       width: double.infinity,
-      height: 290,
+      height: 320,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(13),
@@ -31,17 +40,39 @@ class SearchResultsContainer extends StatelessWidget {
             child: Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(13),
-                    topRight: Radius.circular(13),
-                  ),
-                  child: Image.asset(
-                    "assets/image/onboarding_img/onboarding_one.png",
-                    width: double.infinity,
-                    height: 160,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(13),
+                      topRight: Radius.circular(13),
+                    ),
+                    child: Image.network(
+                      imageUrl,
+                      width: double.infinity,
+                      height: 160,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Container(
+                          width: double.infinity,
+                          height: 130,
+                          color: Colors.grey[300], // Placeholder background
+                          child:
+                              const Center(child: CircularProgressIndicator()),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: double.infinity,
+                          height: 130,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/image/boat_details_img/boat_detail_img.png'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                    )),
                 Positioned(
                   top: 8,
                   right: 8,
@@ -107,7 +138,7 @@ class SearchResultsContainer extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  cruisename,
+                  truncateString(cruisename, 43),
                   style: TextStyles.ubuntu16black15w500,
                 ),
                 Row(

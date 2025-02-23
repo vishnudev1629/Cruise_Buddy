@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:cruise_buddy/core/model/packageSearchResults/package_search_results_model.dart';
+import 'package:cruise_buddy/core/model/categories_results_model/categories_results_model.dart';
 import 'package:cruise_buddy/core/services/cruise/cruise_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -27,7 +27,7 @@ class GetSeachedCruiseresultsBloc
             emit(GetSeachedCruiseresultsState.getuserFailure(error: failure));
           }
         }, (success) async {
-          print('Sucees ${success.data[0].name}');
+        
           emit(GetSeachedCruiseresultsState.getuseruccess(
               packagesearchresults: success));
         });

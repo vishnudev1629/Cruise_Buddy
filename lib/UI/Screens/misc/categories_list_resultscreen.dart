@@ -60,10 +60,10 @@ class _CategoriesListResultscreenState
                       ),
                       const SizedBox(width: 5),
                       const SizedBox(width: 5),
-                      Text(
-                        widget.category,
-                        style: TextStyles.ubuntu20black15w600,
-                      ),
+                      // Text(
+                      //   widget.category,
+                      //   style: TextStyles.ubuntu20black15w600,
+                      // ),
                       const Spacer(),
                       Material(
                         color: Colors.transparent,
@@ -101,7 +101,9 @@ class _CategoriesListResultscreenState
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: const SearchResultsContainer(),
+                                  child: const SearchResultsContainer(
+                                    imageUrl: '',
+                                  ),
                                 );
                               },
                             );
@@ -122,7 +124,8 @@ class _CategoriesListResultscreenState
                           getuseruccess: (value) {
                             return ListView.builder(
                               physics: BouncingScrollPhysics(),
-                              itemCount: value.packagesearchresults.data.length,
+                              itemCount:
+                                  value.packagesearchresults.data?.length,
                               itemBuilder: (context, index) {
                                 return Padding(
                                   padding: const EdgeInsets.only(
@@ -130,7 +133,9 @@ class _CategoriesListResultscreenState
                                   ),
                                   child: SearchResultsContainer(
                                     cruisename:
-                                        '${value.packagesearchresults.data[index].name}',
+                                        '${value.packagesearchresults.data?[index].cruise?.name}',
+                                    imageUrl:
+                                        '${value.packagesearchresults.data?[index].cruise?.images?[0].cruiseImg}',
                                   ),
                                 );
                               },
@@ -145,7 +150,9 @@ class _CategoriesListResultscreenState
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: const SearchResultsContainer(),
+                                  child: const SearchResultsContainer(
+                                    imageUrl: 'ss',
+                                  ),
                                 );
                               },
                             );

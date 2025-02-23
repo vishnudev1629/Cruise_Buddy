@@ -108,7 +108,7 @@ class _DetailsDelegateState extends State<DetailsDelegate> {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) {
-                            return SearchResultsScreen();
+                            return SearchResultsScreen(filterCriteria: 'closed',);
                           },
                         ));
                       },
