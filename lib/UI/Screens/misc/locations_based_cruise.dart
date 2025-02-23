@@ -2,7 +2,6 @@ import 'package:cruise_buddy/UI/Screens/layout/sections/boats/widgets/featured_b
 import 'package:cruise_buddy/UI/Screens/layout/sections/favourites/favourites_screen.dart';
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:cruise_buddy/core/view_model/listCruiseonLocation/list_cruiseon_location_bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -153,17 +152,16 @@ class _LocationsBasedCruiseScreenState
                     ],
                   );
                 }
-                return Expanded(
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: value.cruisemodel.data?.length,
-                    itemBuilder: (context, index) {
-                      return BuildFavouritesCard(
-                        name: value.cruisemodel.data![index].name.toString(),
-                      );
-                    },
-                  ),
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: value.cruisemodel.data?.length,
+                  itemBuilder: (context, index) {
+                    return BuildFavouritesCard(
+                      name: value.cruisemodel.data![index].name.toString(),
+                    );
+                  },
                 );
               },
               getcruiseFailure: (value) {

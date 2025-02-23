@@ -341,8 +341,8 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 final packageId = value
-                                    .featuredBoats.data?[index].packages?[0].id
-                                    ?.toString();
+                                    .featuredBoats.data?[index].id
+                                    .toString();
 
                                 final isFavorite = packageId != null &&
                                     favoritePackageMap.containsKey(packageId);
@@ -431,7 +431,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                                     13),
                                                           ),
                                                           child: Image.network(
-                                                            "${value.featuredBoats.data?[index].cruisesImages?[0].cruiseImg}",
+                                                            "${value.featuredBoats.data?[index].images?[0].packageImg}",
                                                             width:
                                                                 double.infinity,
                                                             height: 130,
@@ -546,16 +546,18 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                             height: 10,
                                                           ),
                                                           Text(
-                                                            value.featuredBoats.data?[index].name !=
-                                                                        null &&
-                                                                    value
-                                                                            .featuredBoats
-                                                                            .data![index]
-                                                                            .name!
-                                                                            .length >
-                                                                        24
-                                                                ? "${value.featuredBoats.data?[index].name!.substring(0, 24)}..."
-                                                                : "${value.featuredBoats.data?[index].name}",
+                                                            (value.featuredBoats.data?[index].cruise?.name ??
+                                                                            '')
+                                                                        .length >
+                                                                    24
+                                                                ? "${value.featuredBoats.data?[index].cruise?.name?.substring(0, 24)}..."
+                                                                : (value
+                                                                        .featuredBoats
+                                                                        .data?[
+                                                                            index]
+                                                                        .cruise
+                                                                        ?.name ??
+                                                                    ''),
                                                             style: TextStyles
                                                                 .ubuntu16black15w500,
                                                           ),
@@ -639,7 +641,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                 ),
                                               ),
                                               Positioned(
-                                                bottom: 20,
+                                                bottom: 8,
                                                 right: 8,
                                                 child: SizedBox(
                                                   height: 45,
@@ -677,7 +679,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                 ),
                                               ),
                                               Positioned(
-                                                  bottom: 8,
+                                                  bottom: 19,
                                                   left: 8,
                                                   child: Column(
                                                     crossAxisAlignment:
@@ -692,7 +694,8 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                           SizedBox(
                                                             width: 10,
                                                           ),
-                                                          Text("Kumarakom"),
+                                                          Text(
+                                                              "${value.featuredBoats.data?[index].cruise?.location?.name}"),
                                                         ],
                                                       ),
                                                       SizedBox(
@@ -701,7 +704,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
                                                       Column(
                                                         children: [
                                                           Text(
-                                                            "₹5000",
+                                                            "₹${value.featuredBoats.data?[index].bookingTypes?[0].pricePerDay}",
                                                             style: TextStyles
                                                                 .ubuntu18bluew700,
                                                           ),

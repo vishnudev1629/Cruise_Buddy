@@ -77,7 +77,7 @@ class CruiseService {
 
       final response = await http.get(
         Uri.parse(
-            '$url/featured/cruise?include=cruisesImages,packages.packageImages'),
+            '$url/featured/package?limit=10&include=cruise.location%2CbookingTypes%2CpackageImages&limit=10'),
         headers: _headers,
       );
 
