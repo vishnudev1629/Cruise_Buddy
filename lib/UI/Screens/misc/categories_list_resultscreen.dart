@@ -20,18 +20,18 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 
-class CategoriesTest extends StatefulWidget {
+class CategoriesListResultscreen extends StatefulWidget {
   final String category;
-  const CategoriesTest({
+  const CategoriesListResultscreen({
     super.key,
     required this.category,
   });
 
   @override
-  State<CategoriesTest> createState() => _CategoriesListResultscreenState();
+  State<CategoriesListResultscreen> createState() => _CategoriesListResultscreenState();
 }
 
-class _CategoriesListResultscreenState extends State<CategoriesTest> {
+class _CategoriesListResultscreenState extends State<CategoriesListResultscreen> {
   final StreamController<FavouritesListModel> _favoritesController =
       StreamController<FavouritesListModel>();
   Map<String, String> favoritePackageMap = {};
