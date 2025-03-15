@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class LocationService {
   final ConnectivityChecker _connectivityChecker = ConnectivityChecker();
 
-  final String url = 'https://khaki-cheetah-745520.hostingersite.com/api/v1';
+  final String url = 'https://cruisebuddy.in/api/v1';
 
   final Map<String, String> _headers = {
     'Accept': 'application/json',

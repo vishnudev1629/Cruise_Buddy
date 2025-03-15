@@ -46,7 +46,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
     final token = await GetSharedPreferences.getAccessToken();
     final response = await http.get(
       Uri.parse(
-          'https://khaki-cheetah-745520.hostingersite.com/api/v1/favorite?include=package.cruise'),
+          'https://cruisebuddy.in/api/v1/favorite?include=package.cruise'),
       headers: {
         'Accept': 'application/json',
         'CRUISE_AUTH_KEY': '29B37-89DFC5E37A525891-FE788E23',
@@ -447,13 +447,11 @@ class BuildFavouritesCard extends StatelessWidget {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(13),
-                    topRight: Radius.circular(13),
-                  ),
-                  child: 
-                  
-                  Image.network(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(13),
+                      topRight: Radius.circular(13),
+                    ),
+                    child: Image.network(
                       imageurl,
                       width: double.infinity,
                       height: 160,
@@ -481,9 +479,7 @@ class BuildFavouritesCard extends StatelessWidget {
                           ),
                         );
                       },
-                    )
-                 
-                ),
+                    )),
                 Positioned(
                   top: 10,
                   right: 10,

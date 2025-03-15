@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class PackagesService {
   final ConnectivityChecker _connectivityChecker = ConnectivityChecker();
 
-  final String url = 'https://khaki-cheetah-745520.hostingersite.com/api/v1';
+  final String url = 'https://cruisebuddy.in/api/v1';
 
   final Map<String, String> _headers = {
     'Accept': 'application/json',
@@ -16,7 +16,8 @@ class PackagesService {
     // Bearer token will be added dynamically to the headers
   };
 
-  Future<Either<String, CruiseModel>> getCruise({required String location}) async {
+  Future<Either<String, CruiseModel>> getCruise(
+      {required String location}) async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {

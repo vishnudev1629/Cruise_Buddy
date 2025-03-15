@@ -260,7 +260,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CategoriesListResultscreen(
+                              builder: (context) => CategoriesTest(
                                 category:
                                     '${openCruiseTypes?[index].type}',
                               ),

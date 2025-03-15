@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 class CruiseService {
   final ConnectivityChecker _connectivityChecker = ConnectivityChecker();
 
-  final String url = 'https://khaki-cheetah-745520.hostingersite.com/api/v1';
+  final String url = 'https://cruisebuddy.in/api/v1';
 
   final Map<String, String> _headers = {
     'Accept': 'application/json',
@@ -113,7 +113,8 @@ class CruiseService {
       _headers['Authorization'] = 'Bearer $token';
 
       final response = await http.get(
-        Uri.parse('$url/package?filter[cruiseType.type]=${filterCriteria}&include=cruise.location,cruise.cruisesImages'),
+        Uri.parse(
+            '$url/package?filter[cruiseType.type]=${filterCriteria}&include=cruise.location,cruise.cruisesImages'),
         // Uri.parse(
         //     '$url/package?filter[dateRange][start]=2025-01-10&include=cruise.cruiseType%2Ccruise.ratings&filter[dateRange][end]=2025-02-10'),
         headers: _headers,

@@ -97,7 +97,7 @@ class _FeaturedBoatsSectionState extends State<FeaturedBoatsSection> {
     final token = await GetSharedPreferences.getAccessToken();
     final response = await http.get(
       Uri.parse(
-          'https://khaki-cheetah-745520.hostingersite.com/api/v1/favorite?include=package.cruise'),
+          'https://cruisebuddy.in/api/v1/favorite?include=package.cruise'),
       headers: {
         'Accept': 'application/json',
         'CRUISE_AUTH_KEY': '29B37-89DFC5E37A525891-FE788E23',
