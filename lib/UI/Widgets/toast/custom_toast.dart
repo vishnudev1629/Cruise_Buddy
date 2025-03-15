@@ -33,9 +33,9 @@ class CustomToast {
               ),
               const Spacer(),
               TextButton(
-                onPressed: onChangeTab,
+                onPressed: null,
                 child: Text(
-                  "Change",
+                  "",
                   style: TextStyles.ubuntu12greyFFw800,
                 ),
               ),
@@ -150,6 +150,4 @@ class CustomToast {
       },
     );
   }
-
-
 }
