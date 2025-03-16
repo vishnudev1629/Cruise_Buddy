@@ -8,9 +8,12 @@ import 'package:cruise_buddy/UI/Widgets/dateSelection/single_date_selection.dart
 import 'package:cruise_buddy/core/constants/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
-
 class DetailsDelegate extends StatefulWidget {
-  const DetailsDelegate({super.key});
+  final String? location;
+  const DetailsDelegate({
+    super.key,
+     this.location,
+  });
 
   @override
   State<DetailsDelegate> createState() => _DetailsDelegateState();
@@ -47,7 +50,7 @@ class _DetailsDelegateState extends State<DetailsDelegate> {
                     style: TextStyles.ubuntu16black23w500,
                   ),
                   SizedBox(height: 10),
-                 if (selectedCruise == "Day Cruise")
+                  if (selectedCruise == "Day Cruise")
                     SingleBookingDateselection(),
                   if (selectedCruise == "Full Cruise")
                     MultiplebookingDateselection(),
@@ -108,7 +111,10 @@ class _DetailsDelegateState extends State<DetailsDelegate> {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) {
-                            return SearchResultsScreen(filterCriteria: 'closed',);
+                            return SearchResultsScreen(
+                              filterCriteria: 'closed',
+                              location: widget.location,
+                            );
                           },
                         ));
                       },

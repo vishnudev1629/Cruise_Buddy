@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:cruise_buddy/core/constants/functions/connection/connectivity_checker.dart';
 import 'package:cruise_buddy/core/db/shared/shared_prefernce.dart';
 import 'package:cruise_buddy/core/model/categories_results_model/categories_results_model.dart';
+import 'package:cruise_buddy/core/model/category_search_model/category_search_model.dart';
 import 'package:cruise_buddy/core/model/cruise_type_model/cruise_type_model.dart';
 import 'package:cruise_buddy/core/model/featured_boats_model/featured_boats_model.dart';
 import 'package:dartz/dartz.dart';
@@ -96,8 +97,12 @@ class CruiseService {
     }
   }
 
-  Future<Either<String, CategoriesResultsModel>> getSearchResultsList(
-      {required String filterCriteria}) async {
+  Future<Either<String, CategorySearchModel>> getSearchResultsList({
+    required String filterCriteria,
+    required String location,
+    required String minAmount,
+    required String maxAmount,
+  }) async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
       if (!hasInternet) {
@@ -111,19 +116,17 @@ class CruiseService {
       }
 
       _headers['Authorization'] = 'Bearer $token';
-
+      print('my location ${location}');
       final response = await http.get(
         Uri.parse(
-            '$url/package?filter[cruiseType.type]=${filterCriteria}&include=cruise.location,cruise.cruisesImages'),
-        // Uri.parse(
-        //     '$url/package?filter[dateRange][start]=2025-01-10&include=cruise.cruiseType%2Ccruise.ratings&filter[dateRange][end]=2025-02-10'),
+            '$url/package?filter[priceRange][min]=${minAmount}&filter[priceRange][max]=${maxAmount}&filter[cruise.location.name]=${location}&include=cruise.location,cruise.cruisesImages,bookingTypes'),
         headers: _headers,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = json.decode(response.body);
         print('data ');
-        final locationdetails = CategoriesResultsModel.fromJson(data);
+        final locationdetails = CategorySearchModel.fromJson(data);
 
         return Right(locationdetails);
       } else {

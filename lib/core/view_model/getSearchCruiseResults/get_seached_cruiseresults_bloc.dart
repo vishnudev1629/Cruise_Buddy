@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cruise_buddy/core/model/categories_results_model/categories_results_model.dart';
+import 'package:cruise_buddy/core/model/category_search_model/category_search_model.dart';
 import 'package:cruise_buddy/core/services/cruise/cruise_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,6 +18,9 @@ class GetSeachedCruiseresultsBloc
       try {
         final result = await userService.getSearchResultsList(
           filterCriteria: event.filterCriteria,
+          location: event.location,
+          maxAmount: event.maxAmount,
+          minAmount: event.minAmount,
         );
 
         await result.fold((failure) async {
@@ -27,7 +31,6 @@ class GetSeachedCruiseresultsBloc
             emit(GetSeachedCruiseresultsState.getuserFailure(error: failure));
           }
         }, (success) async {
-        
           emit(GetSeachedCruiseresultsState.getuseruccess(
               packagesearchresults: success));
         });

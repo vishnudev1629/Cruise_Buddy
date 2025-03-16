@@ -11,9 +11,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchResultsScreen extends StatefulWidget {
   final String filterCriteria;
+  final String? location;
   const SearchResultsScreen({
     super.key,
     required this.filterCriteria,
+    this.location,
   });
 
   @override
@@ -26,8 +28,13 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       BlocProvider.of<GetSeachedCruiseresultsBloc>(context).add(
-          GetSeachedCruiseresultsEvent.SeachedCruise(
-              filterCriteria: widget.filterCriteria));
+        GetSeachedCruiseresultsEvent.SeachedCruise(
+          location: widget.location.toString(),
+          filterCriteria: widget.filterCriteria,
+          maxAmount: '10000000',
+          minAmount: '0',
+        ),
+      );
     });
   }
 
@@ -61,7 +68,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                       SvgPicture.asset('assets/icons/map.svg'),
                       const SizedBox(width: 5),
                       Text(
-                        "Kumarakom",
+                        widget.location.toString() ?? "Kumarakom",
                         style: TextStyles.ubuntu14black55w400,
                       ),
                       const Spacer(),
@@ -101,7 +108,10 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: const SearchResultsContainer(imageUrl: '',price: '',),
+                                  child: const SearchResultsContainer(
+                                    imageUrl: '',
+                                    price: '',
+                                  ),
                                 );
                               },
                             );
@@ -120,6 +130,64 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                             );
                           },
                           getuseruccess: (value) {
+                            if (value.packagesearchresults.data == null ||
+                                value.packagesearchresults.data!.isEmpty) {
+                              return Stack(
+                                children: [
+                                  Positioned(
+                                    bottom: -40,
+                                    child: SvgPicture.asset(
+                                      'assets/icons/cruise_background.svg',
+                                      color: const Color.fromARGB(
+                                          255, 196, 238, 237),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 140,
+                                    child: SvgPicture.asset(
+                                      'assets/icons/cruise_background.svg',
+                                      color: const Color.fromARGB(
+                                          255, 181, 235, 233),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 150,
+                                    child: SvgPicture.asset(
+                                      'assets/icons/cruise_background.svg',
+                                      color: const Color.fromARGB(
+                                          255, 181, 235, 233),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Center(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          SvgPicture.asset(
+                                              'assets/icons/not_available_404.svg'),
+                                          Text(
+                                            "No Cruise Found",
+                                            style: TextStyles.ubuntu18bluew700,
+                                          ),
+                                          Center(
+                                            child: Text(
+                                              "It looks like no cruise are available in this price range.",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyles
+                                                  .ubuntu14black55w400,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }
                             return ListView.builder(
                               physics: BouncingScrollPhysics(),
                               itemCount:
@@ -132,8 +200,11 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                   child: SearchResultsContainer(
                                     cruisename:
                                         '${value.packagesearchresults.data?[index].name}',
-                                        imageUrl:  '${value.packagesearchresults.data?[index].cruise?.images?[0].cruiseImg}',
-                                 price: '${value.packagesearchresults.data?[index].bookingTypes?[0].pricePerDay}', ),
+                                    imageUrl:
+                                        '${value.packagesearchresults.data?[index].cruise?.images?[0].cruiseImg}',
+                                    price:
+                                        '${value.packagesearchresults.data?[index].bookingTypes?[0].pricePerDay}',
+                                  ),
                                 );
                               },
                             );
@@ -147,7 +218,10 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                   padding: const EdgeInsets.only(
                                     bottom: 15,
                                   ),
-                                  child: const SearchResultsContainer(imageUrl: '',price: '',),
+                                  child: const SearchResultsContainer(
+                                    imageUrl: '',
+                                    price: '',
+                                  ),
                                 );
                               },
                             );
@@ -174,12 +248,11 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
   }
 
   void _showFilterPopup(BuildContext context) {
+    double _minPrice = 0; // Default minimum price
+    double _maxPrice = 120000; // Default maximum price
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        double _minPrice = 3000; // Default minimum price
-        double _maxPrice = 50000; // Default maximum price
-
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return AlertDialog(
@@ -239,8 +312,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                             ),
                             child: RangeSlider(
                               values: RangeValues(_minPrice, _maxPrice),
-                              min: 3000,
-                              max: 50000,
+                              min: 0,
+                              max: 120000,
                               divisions: 5000000,
                               labels: RangeLabels(
                                 _minPrice.toInt().toString(),
@@ -331,6 +404,15 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () {
+                                  BlocProvider.of<GetSeachedCruiseresultsBloc>(
+                                          context)
+                                      .add(GetSeachedCruiseresultsEvent
+                                          .SeachedCruise(
+                                    filterCriteria: 'closed',
+                                    location: widget.location.toString(),
+                                    maxAmount: _maxPrice.toInt().toString(),
+                                    minAmount: _minPrice.toInt().toString(),
+                                  ));
                                   Navigator.of(context).pop();
                                 },
                                 style: ElevatedButton.styleFrom(

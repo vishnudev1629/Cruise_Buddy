@@ -16,7 +16,12 @@ class FeaturedBoatsShimmer extends StatelessWidget {
         itemCount: isLoading ? 5 : 0, // Show 5 shimmer items when loading
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return _buildShimmer(); // Display shimmer only
+          return Padding(
+            padding: EdgeInsets.only(
+              left: index == 0 ? 30 : 2,
+            ),
+            child: _buildShimmer(),
+          ); // Display shimmer only
         },
       ),
     );
@@ -25,7 +30,7 @@ class FeaturedBoatsShimmer extends StatelessWidget {
   // Shimmer effect matching the boat card layout
   Widget _buildShimmer() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Shimmer.fromColors(
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.grey[100]!,

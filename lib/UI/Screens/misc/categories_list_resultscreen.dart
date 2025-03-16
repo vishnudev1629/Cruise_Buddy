@@ -22,16 +22,20 @@ import 'package:http/http.dart' as http;
 
 class CategoriesListResultscreen extends StatefulWidget {
   final String category;
+  final String location;
   const CategoriesListResultscreen({
     super.key,
     required this.category,
+    required this.location,
   });
 
   @override
-  State<CategoriesListResultscreen> createState() => _CategoriesListResultscreenState();
+  State<CategoriesListResultscreen> createState() =>
+      _CategoriesListResultscreenState();
 }
 
-class _CategoriesListResultscreenState extends State<CategoriesListResultscreen> {
+class _CategoriesListResultscreenState
+    extends State<CategoriesListResultscreen> {
   final StreamController<FavouritesListModel> _favoritesController =
       StreamController<FavouritesListModel>();
   Map<String, String> favoritePackageMap = {};
@@ -43,9 +47,13 @@ class _CategoriesListResultscreenState extends State<CategoriesListResultscreen>
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       fetchFavorites();
-      BlocProvider.of<GetSeachedCruiseresultsBloc>(context).add(
-          GetSeachedCruiseresultsEvent.SeachedCruise(
-              filterCriteria: widget.category));
+      BlocProvider.of<GetSeachedCruiseresultsBloc>(context)
+          .add(GetSeachedCruiseresultsEvent.SeachedCruise(
+        filterCriteria: widget.category,
+        location: widget.location,
+        maxAmount: '1000000',
+        minAmount: '0',
+      ));
     });
   }
 
@@ -140,7 +148,27 @@ class _CategoriesListResultscreenState extends State<CategoriesListResultscreen>
                       Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () => _showFilterPopup(context),
+                          onTap: () => _showFilterPopup(
+                            context,
+                            onApplyPressed:
+                                (String minAmount, String maxAmount) {
+                              // Use the selected minAmount and maxAmount as strings
+                              print("Selected Min Amount: $minAmount");
+                              print("Selected Max Amount: $maxAmount");
+
+                              // Dispatch the BLoC event with the updated filter values
+                              BlocProvider.of<GetSeachedCruiseresultsBloc>(
+                                      context)
+                                  .add(
+                                GetSeachedCruiseresultsEvent.SeachedCruise(
+                                  filterCriteria: widget.category,
+                                  location: widget.location,
+                                  maxAmount: maxAmount, // Pass as string
+                                  minAmount: minAmount, // Pass as string
+                                ),
+                              );
+                            },
+                          ),
                           borderRadius: BorderRadius.circular(8),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -253,7 +281,6 @@ class _CategoriesListResultscreenState extends State<CategoriesListResultscreen>
                                           .toString());
                                     });
                                     fetchFavorites();
-                            
                                   },
                                   addedFailure: (value) {
                                     CustomToast.errorToast(context: context);
@@ -283,7 +310,6 @@ class _CategoriesListResultscreenState extends State<CategoriesListResultscreen>
                                       loadingFavorites.clear();
                                     });
                                     fetchFavorites();
-                                 
                                   },
                                   addedFailure: (value) {
                                     CustomToast.errorToast(context: context);
@@ -302,44 +328,105 @@ class _CategoriesListResultscreenState extends State<CategoriesListResultscreen>
                               },
                             ),
                           ],
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: BlocBuilder<GetSeachedCruiseresultsBloc,
-                                GetSeachedCruiseresultsState>(
-                              builder: (context, state) {
-                                return state.map(
-                                  initial: (value) {
-                                    return ListView.builder(
-                                      physics: BouncingScrollPhysics(),
-                                      itemCount: 12,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: 15,
-                                          ),
-                                          child: const SearchResultsContainer(
-                                            price: '',
-                                            imageUrl: '',
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                  loading: (value) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                        top: 100,
-                                      ),
-                                      child: Center(
-                                        child: SpinKitWave(
-                                          color: Colors.blue,
-                                          size: 50.0,
+                          child: BlocBuilder<GetSeachedCruiseresultsBloc,
+                              GetSeachedCruiseresultsState>(
+                            builder: (context, state) {
+                              return state.map(
+                                initial: (value) {
+                                  return ListView.builder(
+                                    physics: BouncingScrollPhysics(),
+                                    itemCount: 12,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 15,
                                         ),
+                                        child: const SearchResultsContainer(
+                                          price: '',
+                                          imageUrl: '',
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                loading: (value) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 100,
+                                    ),
+                                    child: Center(
+                                      child: SpinKitWave(
+                                        color: Colors.blue,
+                                        size: 50.0,
                                       ),
+                                    ),
+                                  );
+                                },
+                                getuseruccess: (value) {
+                                  if (value.packagesearchresults.data == null ||
+                                      value
+                                          .packagesearchresults.data!.isEmpty) {
+                                    return Stack(
+                                      children: [
+                                        Positioned(
+                                          bottom: -40,
+                                          child: SvgPicture.asset(
+                                            'assets/icons/cruise_background.svg',
+                                            color: const Color.fromARGB(
+                                                255, 196, 238, 237),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 140,
+                                          child: SvgPicture.asset(
+                                            'assets/icons/cruise_background.svg',
+                                            color: const Color.fromARGB(
+                                                255, 181, 235, 233),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 150,
+                                          child: SvgPicture.asset(
+                                            'assets/icons/cruise_background.svg',
+                                            color: const Color.fromARGB(
+                                                255, 181, 235, 233),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Center(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                SvgPicture.asset(
+                                                    'assets/icons/not_available_404.svg'),
+                                                Text(
+                                                  "No Cruise Found",
+                                                  style: TextStyles
+                                                      .ubuntu18bluew700,
+                                                ),
+                                                Center(
+                                                  child: Text(
+                                                    "It looks like no cruise are available in this price range.",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyles
+                                                        .ubuntu14black55w400,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     );
-                                  },
-                                  getuseruccess: (value) {
-                                    return ListView.builder(
+                                  }
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16),
+                                    child: ListView.builder(
                                       physics: BouncingScrollPhysics(),
                                       itemCount: value
                                           .packagesearchresults.data?.length,
@@ -641,36 +728,36 @@ class _CategoriesListResultscreenState extends State<CategoriesListResultscreen>
                                           ),
                                         );
                                       },
-                                    );
-                                  },
-                                  getuserFailure: (value) {
-                                    return ListView.builder(
-                                      physics: BouncingScrollPhysics(),
-                                      itemCount: 12,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: 15,
-                                          ),
-                                          child: const SearchResultsContainer(
-                                            imageUrl: 'ss',
-                                            price: '',
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                  noInternet: (value) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                        top: 100,
-                                      ),
-                                      child: Center(child: Text("No Internet")),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
+                                    ),
+                                  );
+                                },
+                                getuserFailure: (value) {
+                                  return ListView.builder(
+                                    physics: BouncingScrollPhysics(),
+                                    itemCount: 12,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 15,
+                                        ),
+                                        child: const SearchResultsContainer(
+                                          imageUrl: 'ss',
+                                          price: '',
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                noInternet: (value) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 100,
+                                    ),
+                                    child: Center(child: Text("No Internet")),
+                                  );
+                                },
+                              );
+                            },
                           ),
                         );
                       }),
@@ -683,13 +770,15 @@ class _CategoriesListResultscreenState extends State<CategoriesListResultscreen>
     );
   }
 
-  void _showFilterPopup(BuildContext context) {
+  void _showFilterPopup(
+    BuildContext context, {
+    required Function(String minAmount, String maxAmount) onApplyPressed,
+  }) {
+    double _minPrice = 0; // Default minimum price
+    double _maxPrice = 120000; // Default maximum price
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        double _minPrice = 3000; // Default minimum price
-        double _maxPrice = 50000; // Default maximum price
-
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return AlertDialog(
@@ -749,8 +838,8 @@ class _CategoriesListResultscreenState extends State<CategoriesListResultscreen>
                             ),
                             child: RangeSlider(
                               values: RangeValues(_minPrice, _maxPrice),
-                              min: 3000,
-                              max: 50000,
+                              min: 0,
+                              max: 120000,
                               divisions: 5000000,
                               labels: RangeLabels(
                                 _minPrice.toInt().toString(),
@@ -841,8 +930,30 @@ class _CategoriesListResultscreenState extends State<CategoriesListResultscreen>
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () {
+                                  // Convert min and max prices to strings of integers
+                                  String minAmount =
+                                      _minPrice.toInt().toString();
+                                  String maxAmount =
+                                      _maxPrice.toInt().toString();
+
+                                  // Pass the selected min and max amounts back to the caller
+                                  onApplyPressed(minAmount, maxAmount);
                                   Navigator.of(context).pop();
                                 },
+                                // () {
+                                //   // Call Bloc with filters
+                                //   BlocProvider.of<GetSeachedCruiseresultsBloc>(
+                                //           context)
+                                //       .add(GetSeachedCruiseresultsEvent
+                                //           .SeachedCruise(
+                                //     filterCriteria: widget.category,
+                                //     location: widget.location,
+                                //     maxAmount: '0',
+                                //     minAmount: '100000',
+                                //   ));
+                                //   Navigator.of(context).pop();
+                                // },
+
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0XFF1F8386),
                                   shape: RoundedRectangleBorder(

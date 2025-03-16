@@ -19,19 +19,25 @@ mixin _$GetSeachedCruiseresultsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String filterCriteria) SeachedCruise,
+    required TResult Function(String filterCriteria, String location,
+            String minAmount, String maxAmount)
+        SeachedCruise,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String filterCriteria)? SeachedCruise,
+    TResult? Function(String filterCriteria, String location, String minAmount,
+            String maxAmount)?
+        SeachedCruise,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String filterCriteria)? SeachedCruise,
+    TResult Function(String filterCriteria, String location, String minAmount,
+            String maxAmount)?
+        SeachedCruise,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,7 +129,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String filterCriteria) SeachedCruise,
+    required TResult Function(String filterCriteria, String location,
+            String minAmount, String maxAmount)
+        SeachedCruise,
   }) {
     return started();
   }
@@ -132,7 +140,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String filterCriteria)? SeachedCruise,
+    TResult? Function(String filterCriteria, String location, String minAmount,
+            String maxAmount)?
+        SeachedCruise,
   }) {
     return started?.call();
   }
@@ -141,7 +151,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String filterCriteria)? SeachedCruise,
+    TResult Function(String filterCriteria, String location, String minAmount,
+            String maxAmount)?
+        SeachedCruise,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -194,7 +206,11 @@ abstract class _$$GetSeachedCruiseresultsEventImplCopyWith<$Res> {
           $Res Function(_$GetSeachedCruiseresultsEventImpl) then) =
       __$$GetSeachedCruiseresultsEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String filterCriteria});
+  $Res call(
+      {String filterCriteria,
+      String location,
+      String minAmount,
+      String maxAmount});
 }
 
 /// @nodoc
@@ -213,11 +229,26 @@ class __$$GetSeachedCruiseresultsEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? filterCriteria = null,
+    Object? location = null,
+    Object? minAmount = null,
+    Object? maxAmount = null,
   }) {
     return _then(_$GetSeachedCruiseresultsEventImpl(
       filterCriteria: null == filterCriteria
           ? _value.filterCriteria
           : filterCriteria // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      minAmount: null == minAmount
+          ? _value.minAmount
+          : minAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      maxAmount: null == maxAmount
+          ? _value.maxAmount
+          : maxAmount // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -227,14 +258,24 @@ class __$$GetSeachedCruiseresultsEventImplCopyWithImpl<$Res>
 
 class _$GetSeachedCruiseresultsEventImpl
     implements _GetSeachedCruiseresultsEvent {
-  const _$GetSeachedCruiseresultsEventImpl({required this.filterCriteria});
+  const _$GetSeachedCruiseresultsEventImpl(
+      {required this.filterCriteria,
+      required this.location,
+      required this.minAmount,
+      required this.maxAmount});
 
   @override
   final String filterCriteria;
+  @override
+  final String location;
+  @override
+  final String minAmount;
+  @override
+  final String maxAmount;
 
   @override
   String toString() {
-    return 'GetSeachedCruiseresultsEvent.SeachedCruise(filterCriteria: $filterCriteria)';
+    return 'GetSeachedCruiseresultsEvent.SeachedCruise(filterCriteria: $filterCriteria, location: $location, minAmount: $minAmount, maxAmount: $maxAmount)';
   }
 
   @override
@@ -243,11 +284,18 @@ class _$GetSeachedCruiseresultsEventImpl
         (other.runtimeType == runtimeType &&
             other is _$GetSeachedCruiseresultsEventImpl &&
             (identical(other.filterCriteria, filterCriteria) ||
-                other.filterCriteria == filterCriteria));
+                other.filterCriteria == filterCriteria) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.minAmount, minAmount) ||
+                other.minAmount == minAmount) &&
+            (identical(other.maxAmount, maxAmount) ||
+                other.maxAmount == maxAmount));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, filterCriteria);
+  int get hashCode =>
+      Object.hash(runtimeType, filterCriteria, location, minAmount, maxAmount);
 
   /// Create a copy of GetSeachedCruiseresultsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -263,29 +311,35 @@ class _$GetSeachedCruiseresultsEventImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String filterCriteria) SeachedCruise,
+    required TResult Function(String filterCriteria, String location,
+            String minAmount, String maxAmount)
+        SeachedCruise,
   }) {
-    return SeachedCruise(filterCriteria);
+    return SeachedCruise(filterCriteria, location, minAmount, maxAmount);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String filterCriteria)? SeachedCruise,
+    TResult? Function(String filterCriteria, String location, String minAmount,
+            String maxAmount)?
+        SeachedCruise,
   }) {
-    return SeachedCruise?.call(filterCriteria);
+    return SeachedCruise?.call(filterCriteria, location, minAmount, maxAmount);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String filterCriteria)? SeachedCruise,
+    TResult Function(String filterCriteria, String location, String minAmount,
+            String maxAmount)?
+        SeachedCruise,
     required TResult orElse(),
   }) {
     if (SeachedCruise != null) {
-      return SeachedCruise(filterCriteria);
+      return SeachedCruise(filterCriteria, location, minAmount, maxAmount);
     }
     return orElse();
   }
@@ -326,10 +380,15 @@ class _$GetSeachedCruiseresultsEventImpl
 abstract class _GetSeachedCruiseresultsEvent
     implements GetSeachedCruiseresultsEvent {
   const factory _GetSeachedCruiseresultsEvent(
-          {required final String filterCriteria}) =
-      _$GetSeachedCruiseresultsEventImpl;
+      {required final String filterCriteria,
+      required final String location,
+      required final String minAmount,
+      required final String maxAmount}) = _$GetSeachedCruiseresultsEventImpl;
 
   String get filterCriteria;
+  String get location;
+  String get minAmount;
+  String get maxAmount;
 
   /// Create a copy of GetSeachedCruiseresultsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -345,7 +404,7 @@ mixin _$GetSeachedCruiseresultsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CategoriesResultsModel packagesearchresults)
+    required TResult Function(CategorySearchModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -355,8 +414,7 @@ mixin _$GetSeachedCruiseresultsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult? Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) =>
@@ -365,8 +423,7 @@ mixin _$GetSeachedCruiseresultsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
@@ -469,7 +526,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CategoriesResultsModel packagesearchresults)
+    required TResult Function(CategorySearchModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -482,8 +539,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult? Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
@@ -495,8 +551,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
@@ -595,7 +650,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CategoriesResultsModel packagesearchresults)
+    required TResult Function(CategorySearchModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -608,8 +663,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult? Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
@@ -621,8 +675,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
@@ -685,7 +738,7 @@ abstract class _$$GetSeachedCruiseresultsImplCopyWith<$Res> {
           $Res Function(_$GetSeachedCruiseresultsImpl) then) =
       __$$GetSeachedCruiseresultsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CategoriesResultsModel packagesearchresults});
+  $Res call({CategorySearchModel packagesearchresults});
 }
 
 /// @nodoc
@@ -709,7 +762,7 @@ class __$$GetSeachedCruiseresultsImplCopyWithImpl<$Res>
       packagesearchresults: null == packagesearchresults
           ? _value.packagesearchresults
           : packagesearchresults // ignore: cast_nullable_to_non_nullable
-              as CategoriesResultsModel,
+              as CategorySearchModel,
     ));
   }
 }
@@ -720,7 +773,7 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   const _$GetSeachedCruiseresultsImpl({required this.packagesearchresults});
 
   @override
-  final CategoriesResultsModel packagesearchresults;
+  final CategorySearchModel packagesearchresults;
 
   @override
   String toString() {
@@ -753,7 +806,7 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CategoriesResultsModel packagesearchresults)
+    required TResult Function(CategorySearchModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -766,8 +819,7 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult? Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
@@ -779,8 +831,7 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
@@ -835,10 +886,10 @@ class _$GetSeachedCruiseresultsImpl implements _GetSeachedCruiseresults {
 abstract class _GetSeachedCruiseresults
     implements GetSeachedCruiseresultsState {
   const factory _GetSeachedCruiseresults(
-          {required final CategoriesResultsModel packagesearchresults}) =
+          {required final CategorySearchModel packagesearchresults}) =
       _$GetSeachedCruiseresultsImpl;
 
-  CategoriesResultsModel get packagesearchresults;
+  CategorySearchModel get packagesearchresults;
 
   /// Create a copy of GetSeachedCruiseresultsState
   /// with the given fields replaced by the non-null parameter values.
@@ -921,7 +972,7 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CategoriesResultsModel packagesearchresults)
+    required TResult Function(CategorySearchModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -934,8 +985,7 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult? Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
@@ -947,8 +997,7 @@ class _$GetSeachedCruiseFailureImpl implements GetSeachedCruiseFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),
@@ -1056,7 +1105,7 @@ class _$NoInternetImpl implements _NoInternet {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CategoriesResultsModel packagesearchresults)
+    required TResult Function(CategorySearchModel packagesearchresults)
         getuseruccess,
     required TResult Function(String error) getuserFailure,
     required TResult Function() noInternet,
@@ -1069,8 +1118,7 @@ class _$NoInternetImpl implements _NoInternet {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult? Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult? Function(String error)? getuserFailure,
     TResult? Function()? noInternet,
   }) {
@@ -1082,8 +1130,7 @@ class _$NoInternetImpl implements _NoInternet {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CategoriesResultsModel packagesearchresults)?
-        getuseruccess,
+    TResult Function(CategorySearchModel packagesearchresults)? getuseruccess,
     TResult Function(String error)? getuserFailure,
     TResult Function()? noInternet,
     required TResult orElse(),

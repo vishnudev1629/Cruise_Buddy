@@ -221,7 +221,9 @@ class _LocationSearchDelegateState extends State<LocationSearchDelegate> {
         pageBuilder: (context, animation, secondaryAnimation) {
           return FadeTransition(
             opacity: animation,
-            child: const DetailsDelegate(),
+            child: DetailsDelegate(
+              location: selectedLocation.toString(),
+            ),
           );
         },
         transitionDuration: const Duration(milliseconds: 500),
